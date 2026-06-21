@@ -7,8 +7,8 @@ import Hero from '../components/Hero.astro';
 <html lang="ru">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href={import.meta.env.BASE_URL + 'favicon.svg'} />
+		<link rel="icon" href={import.meta.env.BASE_URL + 'favicon.ico'} />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Baisanat Holding — Центр экспертизы и проектных решений</title>
