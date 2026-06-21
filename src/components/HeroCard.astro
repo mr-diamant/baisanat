@@ -1,0 +1,103 @@
+---
+export interface Props {
+  en: string;
+  ru: string;
+  items: string;
+  logo: string;
+}
+
+const { en, ru, items, logo } = Astro.props;
+---
+
+<article class="hero-card">
+	<div class="hero-card__top">
+		<img class="hero-card__logo" src={logo} alt={en} width="280" height="28" loading="lazy" />
+		<p class="hero-card__en">{en}</p>
+	</div>
+	<div class="hero-card__body">
+		<h3 class="hero-card__title">{ru}</h3>
+		<span class="hero-card__line"></span>
+		<p class="hero-card__items">{items}</p>
+	</div>
+</article>
+
+<style>
+.hero-card {
+	position: relative;
+	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 2px;
+	padding: 36px 32px 40px;
+	min-height: 360px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	color: var(--color-white);
+	backdrop-filter: blur(6px);
+	overflow: hidden;
+}
+
+.hero-card::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 60%);
+	pointer-events: none;
+}
+
+.hero-card__top {
+	position: relative;
+	z-index: 1;
+}
+
+.hero-card__logo {
+	width: 100%;
+	max-width: 240px;
+	height: auto;
+	object-fit: contain;
+	object-position: left center;
+	margin-bottom: 16px;
+}
+
+.hero-card__en {
+	font-size: 18px;
+	font-weight: 300;
+	opacity: 0.8;
+}
+
+.hero-card__body {
+	position: relative;
+	z-index: 1;
+	margin-top: auto;
+}
+
+.hero-card__title {
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 1.2;
+	margin-bottom: 16px;
+}
+
+.hero-card__line {
+	display: block;
+	width: 50px;
+	height: 1px;
+	background: var(--color-white);
+	margin-bottom: 16px;
+}
+
+.hero-card__items {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.4;
+	opacity: 0.85;
+	white-space: pre-line;
+}
+
+@media (max-width: 768px) {
+	.hero-card {
+		min-height: auto;
+		padding: 28px 24px;
+	}
+}
+</style>

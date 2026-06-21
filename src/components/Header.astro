@@ -1,0 +1,111 @@
+---
+---
+
+<header class="site-header">
+	<div class="container header__inner">
+		<a href="/" class="header__logo" aria-label="Baisanat Holding">
+			<img src="/logo.png" alt="Baisanat Holding" width="300" height="59" />
+		</a>
+
+		<nav class="header__nav">
+			<a href="#" class="header__lang">EN</a>
+			<button class="header__menu" type="button" aria-label="Открыть меню">
+				<span class="header__menu-label">MENU</span>
+				<span class="header__menu-dots">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</button>
+		</nav>
+	</div>
+</header>
+
+<style>
+.site-header {
+	position: absolute;
+	inset: 0 0 auto;
+	z-index: 100;
+	padding-top: 45px;
+}
+
+.header__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.header__logo {
+	display: block;
+	width: 300px;
+	line-height: 0;
+}
+
+.header__logo img {
+	width: 100%;
+	height: auto;
+}
+
+.header__nav {
+	display: flex;
+	align-items: center;
+	gap: 40px;
+}
+
+.header__lang {
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--color-white);
+	letter-spacing: 0.05em;
+}
+
+.header__menu {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	color: var(--color-accent);
+}
+
+.header__menu-label {
+	font-size: 14px;
+	font-weight: 500;
+	letter-spacing: 0.05em;
+}
+
+.header__menu-dots {
+	display: inline-flex;
+	flex-direction: column;
+	gap: 8px;
+	width: 52px;
+	height: 52px;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	border-radius: 50%;
+	align-items: center;
+	justify-content: center;
+}
+
+.header__menu-dots span {
+	width: 4px;
+	height: 4px;
+	background: var(--color-white);
+	border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+	.site-header {
+		padding-top: 24px;
+	}
+
+	.header__logo {
+		width: 200px;
+	}
+
+	.header__nav {
+		gap: 20px;
+	}
+}
+</style>

@@ -1,43 +1,47 @@
-# Astro Starter Kit: Minimal
+# Baisanat Landing
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Корпоративный лендинг холдинга **Baisanat** на фреймворке [Astro](https://astro.build/).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## О проекте
 
-## 🚀 Project Structure
+- **Фреймворк:** Astro v6
+- **Репозиторий:** https://github.com/mr-diamant/baisanat
+- **Хостинг:** https://me-qr.kz/baisanat/
+- **Дизайн:** Figma, страница `Baisanat`
 
-Inside of your Astro project, you'll see the following folders and files:
+## Структура
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── components/
+│   ├── Header.astro      # Шапка: логотип, язык, меню
+│   ├── Hero.astro        # Первый экран (hero)
+│   └── HeroCard.astro    # Карточка направления
+├── pages/
+│   └── index.astro       # Главная страница
+└── styles/
+    └── global.css        # Глобальные стили и CSS-переменные
+
+public/
+├── logo.png              # Логотип Baisanat Holding
+├── logo1.png … logo4.png # Логотипы направлений
+├── favicon.svg
+└── favicon.ico
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Команды
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Команда           | Действие                                    |
+| :---------------- | :------------------------------------------ |
+| `npm install`     | Установить зависимости                      |
+| `npm run dev`     | Запустить dev-сервер на `localhost:4321`    |
+| `npm run build`   | Собрать статический сайт в `./dist/`        |
+| `npm run preview` | Предпросмотр сборки локально                |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Статус
 
-## 🧞 Commands
+Сейчас свёрстан **первый (верхний) блок**: шапка, hero, формула Baisanat, экосистема и карточки направлений. Дальнейшие блоки лендинга добавляются пошагово.
 
-All commands are run from the root of the project, from a terminal:
+## Деплой
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Сборка (`./dist/`) выгружается на хостинг `me-qr.kz/baisanat/`.
