@@ -779,7 +779,7 @@ import HeroCard from './HeroCard.astro';
 	padding-left: 20px;
 }
 
-.actions__pill {
+:global(.actions__pill) {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -796,7 +796,7 @@ import HeroCard from './HeroCard.astro';
 	white-space: nowrap;
 }
 
-.actions__pill:hover {
+:global(.actions__pill:hover) {
 	background: #000000;
 	color: #ffffff;
 	border-color: #000000;
@@ -827,7 +827,7 @@ import HeroCard from './HeroCard.astro';
 		padding-left: 0;
 	}
 	
-	.actions__pill {
+	:global(.actions__pill) {
 		font-size: 13px;
 		padding: 6px 16px;
 	}
