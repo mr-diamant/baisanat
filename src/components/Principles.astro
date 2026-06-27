@@ -1,0 +1,447 @@
+---
+---
+
+<section class="principles" id="principles">
+	<canvas id="principles-bg" class="principles__bg-canvas"></canvas>
+	<div class="container principles__container">
+		
+		<div class="hero__section-label principles__label">
+			<span class="hero__number">05</span>
+			<div class="hero__label-block">
+				<span class="hero__label" typewriter="true" typewriter-delay="150">
+					<span class="split-lines">
+						<span class="split-words">
+							<span class="split-chars">П</span>
+							<span class="split-chars">р</span>
+							<span class="split-chars">и</span>
+							<span class="split-chars">н</span>
+							<span class="split-chars">ц</span>
+							<span class="split-chars">и</span>
+							<span class="split-chars">п</span>
+							<span class="split-chars">ы</span>
+						</span>
+					</span>
+				</span>
+				<span class="hero__line"></span>
+			</div>
+		</div>
+
+		<div class="principles__content">
+			<h2 class="principles__title">
+				Система координат Baisanat
+			</h2>
+
+			<div class="principles__list">
+				
+				<div class="principles__item">
+					<div class="principles__item-num">/01</div>
+					<div class="principles__item-text">
+						<h3 class="principles__item-title">Экспертиза</h3>
+						<p class="principles__item-desc">
+							<span class="text-orange">Опираемся на опыт, глубокую аналитику, и практическое знание рынков.</span> Прогнозируем риски, находя и внедряя эффективные решения
+						</p>
+					</div>
+				</div>
+
+				<div class="principles__item">
+					<div class="principles__item-num">/02</div>
+					<div class="principles__item-text">
+						<h3 class="principles__item-title">Проектное управление</h3>
+						<p class="principles__item-desc">
+							<span class="text-orange">Применяем сертифицированные методологии</span> PMBOK, Agile, Scrum, Kanban, P3Express. Планируем, распределяем роли, контролируем сроки, бюджет и результат
+						</p>
+					</div>
+				</div>
+
+				<div class="principles__item">
+					<div class="principles__item-num">/03</div>
+					<div class="principles__item-text">
+						<h3 class="principles__item-title">Единая точка контакта</h3>
+						<p class="principles__item-desc">
+							Персональный менеджер предоставляет <span class="text-orange">доступ ко всем возможностям экосистемы</span> и ведет проект от постановки задачи до результата
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.principles {
+		padding: 200px 0;
+		position: relative;
+		z-index: 2;
+		overflow: hidden;
+	}
+
+	.principles__bg-canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	.principles__label {
+		margin-bottom: 60px;
+	}
+
+	.hero__section-label {
+		display: flex;
+		align-items: flex-start;
+		gap: 80px;
+		color: #ffffff;
+	}
+
+	.hero__number {
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1;
+		opacity: 0.8;
+		min-width: 30px;
+		padding-top: 4px;
+	}
+
+	.hero__label-block {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.hero__label {
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.hero__line {
+		display: block;
+		width: 50px;
+		height: 1px;
+		background: #ffffff;
+	}
+
+	[typewriter="true"] .split-chars {
+		opacity: 0.1;
+	}
+
+	.split-lines, .split-words {
+		display: inline;
+	}
+	.split-chars {
+		display: inline-block;
+	}
+
+	.principles__content {
+		margin-left: 110px;
+	}
+
+	.principles__title {
+		font-family: var(--font-main);
+		font-size: 3vw;
+		font-weight: 500;
+		line-height: 1.1;
+		color: #ffffff;
+		letter-spacing: -0.02em;
+		margin-bottom: 80px;
+	}
+
+	.principles__list {
+		display: flex;
+		flex-direction: column;
+		max-width: 900px;
+	}
+
+	.principles__item {
+		display: flex;
+		gap: 100px;
+		padding-top: 40px;
+	}
+
+	.principles__item:first-child {
+		padding-top: 0;
+	}
+
+	.principles__item:last-child .principles__item-text {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+
+	.principles__item-num {
+		font-family: var(--font-main);
+		font-size: 24px;
+		font-weight: 400;
+		color: #ffffff;
+		flex: 0 0 50px;
+	}
+
+	.principles__item-text {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		flex: 1;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		padding-bottom: 40px;
+	}
+
+	.principles__item-title {
+		font-family: var(--font-main);
+		font-size: 28px;
+		font-weight: 400;
+		color: #ffffff;
+		margin: 0;
+	}
+
+	.principles__item-desc {
+		font-family: var(--font-main);
+		font-size: 18px;
+		font-weight: 300;
+		line-height: 1.4;
+		color: #ffffff;
+		margin: 0;
+		max-width: 700px;
+	}
+
+	.text-orange {
+		color: #ff5000;
+	}
+
+	@media (max-width: 1024px) {
+		.principles__content {
+			margin-left: 40px;
+		}
+
+		.principles__title {
+			font-size: 36px;
+			margin-bottom: 60px;
+		}
+
+		.principles__item {
+			gap: 40px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.principles {
+			padding: 60px 0;
+		}
+		
+		.principles__content {
+			margin-left: 0;
+		}
+
+		.principles__title {
+			font-size: 32px;
+			margin-bottom: 40px;
+		}
+		
+		.principles__item {
+			flex-direction: column;
+			gap: 16px;
+			padding: 30px 0;
+		}
+
+		.principles__item-num {
+			font-size: 20px;
+		}
+
+		.principles__item-title {
+			font-size: 24px;
+		}
+
+		.principles__item-desc {
+			font-size: 16px;
+		}
+	}
+</style>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const principlesTypewriter = document.querySelector('#principles .hero__label[typewriter="true"]') as HTMLElement | null;
+	if (principlesTypewriter) {
+		const chars = principlesTypewriter.querySelectorAll('.split-chars');
+		const delayAttr = principlesTypewriter.getAttribute('typewriter-delay');
+		const delay = delayAttr ? parseInt(delayAttr, 10) / 1000 : 0.15;
+
+		gsap.to(chars, {
+			opacity: 1,
+			duration: 0.002,
+			stagger: {
+				amount: 0.7,
+			},
+			delay: delay,
+			scrollTrigger: {
+				trigger: principlesTypewriter,
+				start: 'top 90%',
+				toggleActions: 'play none none none',
+			}
+		});
+	}
+
+	// WebGL Background
+	const canvas = document.getElementById('principles-bg') as HTMLCanvasElement | null;
+	if (canvas) {
+		const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl') as WebGLRenderingContext | null;
+		
+		// Функция для перевода привычных HEX-кодов (#ffffff) в формат WebGL
+		const hexToGLSL = (hex: string) => {
+			const r = parseInt(hex.slice(1, 3), 16) / 255;
+			const g = parseInt(hex.slice(3, 5), 16) / 255;
+			const b = parseInt(hex.slice(5, 7), 16) / 255;
+			return `vec3(${r.toFixed(4)}, ${g.toFixed(4)}, ${b.toFixed(4)})`;
+		};
+
+		if (gl) {
+			const vsSource = `
+				attribute vec2 position;
+				void main() {
+					gl_Position = vec4(position, 0.0, 1.0);
+				}
+			`;
+			const fsSource = `
+				precision highp float;
+				uniform vec2 u_resolution;
+				uniform float u_time; // Время для анимации
+
+				void main() {
+					vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+					
+					// ==== НАСТРОЙКИ ФОНОВОГО ГРАДИЕНТА ====
+					vec3 c_bottom = ${hexToGLSL('#02021f')}; // Самый низ
+					vec3 c_mid =    ${hexToGLSL('#080e5b')}; // Середина
+					vec3 c_top =    ${hexToGLSL('#ffffff')}; // Самый верх
+
+					vec3 baseColor = mix(c_bottom, c_mid, smoothstep(0.0, 0.6, uv.y));
+					baseColor = mix(baseColor, c_top, smoothstep(0.6, 1.0, uv.y));
+
+					float aspect = u_resolution.x / u_resolution.y;
+
+					// ==== НАСТРОЙКИ ПЯТЕН (ОВАЛОВ) С АНИМАЦИЕЙ ====
+					
+					// 1. Левое верхнее пятно
+					float t1 = u_time * 0.4; // Скорость анимации левого пятна
+					vec2 pos1 = vec2(0.1, 1.0 + sin(t1) * 0.05); // Плавное движение вверх-вниз
+					vec2 p1 = uv - pos1;
+					p1.x *= aspect;
+					p1.y *= 1.4 + cos(t1 * 1.3) * 0.15; // Сжимается и растягивается по вертикали
+					p1.x *= 1.0 + sin(t1 * 0.8) * 0.1;  // Дышит по горизонтали
+					vec3 color1 = ${hexToGLSL('#693cff')};
+					float size1 = 1.2 + sin(t1 * 1.1) * 0.15; // Увеличивается и уменьшается
+					float w1 = smoothstep(size1, size1 - 0.3, length(p1));
+
+					// 2. Правое верхнее пятно
+					float t2 = u_time * 0.3 + 2.0; // Скорость и смещение фазы (чтобы не двигались одинаково)
+					vec2 pos2 = vec2(1.1, 1.0 + cos(t2) * 0.05); // Движение вверх-вниз
+					vec2 p2 = uv - pos2;
+					p2.x *= aspect;
+					p2.y *= 1.5 + sin(t2 * 1.2) * 0.15; // Сжимается и растягивается
+					p2.x *= 1.0 + cos(t2 * 0.9) * 0.1;  // Дышит
+					vec3 color2 = ${hexToGLSL('#4830ff')};
+					float size2 = 1.2 + cos(t2 * 1.4) * 0.15; // Увеличивается и уменьшается
+					float w2 = smoothstep(size2, size2 - 0.3, length(p2));
+
+					// 3. Центральное белое пятно
+					vec2 p3 = uv - vec2(0.5, 1.1); // Позиция (0.5 = центр по горизонтали)
+					p3.x *= aspect;
+					p3.y *= 2.5;
+					vec3 color3 = ${hexToGLSL('#ffffff')}; // Цвет (белый)
+					float w3 = smoothstep(1.2, 0.7, length(p3));
+
+					// 4. Дополнительное темное пятно сверху
+					vec2 p4 = uv - vec2(0.8, 0.9); // Позиция (сверху по центру)
+					p4.x *= aspect;
+					p4.y *= 1.8;
+					vec3 color4 = ${hexToGLSL('#ffffff')}; // Темный цвет
+					float w4 = smoothstep(0.7, 0.1, length(p4));
+
+					// СМЕШИВАНИЕ (Порядок имеет значение! То, что ниже в коде — рисуется поверх остального)
+					vec3 finalColor = baseColor;
+					
+					// Сначала рисуем правое пятно (оно в самом низу из пятен)
+					finalColor = mix(finalColor, color2, w2 * 0.9);
+					
+					// Затем левое пятно (оно перекрывает правое)
+					finalColor = mix(finalColor, color1, w1 * 0.9);
+					
+					// Затем белое центральное пятно
+					finalColor = mix(finalColor, color3, w3 * 1.0);
+					
+					// В самом конце рисуем темное пятно (теперь оно на самом верху и перекрывает всё, включая белое)
+					finalColor = mix(finalColor, color4, w4 * 1.0);
+
+					gl_FragColor = vec4(finalColor, 1.0);
+				}
+			`;
+
+			const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
+				const shader = gl.createShader(type);
+				if (!shader) return null;
+				gl.shaderSource(shader, source);
+				gl.compileShader(shader);
+				return shader;
+			};
+
+			const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+			const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+			if (vertexShader && fragmentShader) {
+				const program = gl.createProgram();
+				if (program) {
+					gl.attachShader(program, vertexShader);
+					gl.attachShader(program, fragmentShader);
+					gl.linkProgram(program);
+					gl.useProgram(program);
+
+					const positionLocation = gl.getAttribLocation(program, 'position');
+					const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+					const timeLocation = gl.getUniformLocation(program, 'u_time'); // Локация для времени
+
+					const buffer = gl.createBuffer();
+					gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+					gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+						-1.0, -1.0,
+						 1.0, -1.0,
+						-1.0,  1.0,
+						-1.0,  1.0,
+						 1.0, -1.0,
+						 1.0,  1.0
+					]), gl.STATIC_DRAW);
+
+					gl.enableVertexAttribArray(positionLocation);
+					gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+					const resizeCanvas = () => {
+						const width = window.innerWidth;
+						const height = canvas.parentElement?.clientHeight || window.innerHeight;
+						canvas.width = width;
+						canvas.height = height;
+						gl.viewport(0, 0, width, height);
+						gl.uniform2f(resolutionLocation, width, height);
+					};
+
+					window.addEventListener('resize', resizeCanvas);
+					// Set timeout to ensure parent has rendered correctly for height calculation
+					setTimeout(resizeCanvas, 0);
+
+					// Цикл анимации
+					const render = (time: number) => {
+						// Передаем текущее время (в секундах) в шейдер
+						gl.uniform1f(timeLocation, time * 0.001);
+						
+						gl.drawArrays(gl.TRIANGLES, 0, 6);
+						requestAnimationFrame(render);
+					};
+					requestAnimationFrame(render);
+				}
+			}
+		}
+	}
+</script>

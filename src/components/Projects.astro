@@ -1,0 +1,424 @@
+---
+---
+
+<section class="projects" id="projects">
+	<div class="container projects__container">
+		
+		<div class="hero__section-label hero__section-label--dark projects__label">
+			<span class="hero__number">04</span>
+			<div class="hero__label-block">
+				<span class="hero__label" typewriter="true" typewriter-delay="150">
+					<span class="split-lines">
+						<span class="split-words">
+							<span class="split-chars">П</span>
+							<span class="split-chars">р</span>
+							<span class="split-chars">о</span>
+							<span class="split-chars">е</span>
+							<span class="split-chars">к</span>
+							<span class="split-chars">т</span>
+							<span class="split-chars">ы</span>
+						</span>
+					</span>
+				</span>
+				<span class="hero__line hero__line--dark"></span>
+			</div>
+		</div>
+
+		<div class="projects__content">
+			<h2 class="projects__title">
+				Создано командой Baisanat
+			</h2>
+
+			<div class="projects__inner">
+				<div class="projects__left">
+					<div class="projects__slider-nav">
+						<button class="projects__nav-btn projects__nav-btn--prev">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</button>
+						<button class="projects__nav-btn projects__nav-btn--next">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</button>
+					</div>
+
+					<div class="projects__category">
+						Продвижение
+					</div>
+
+					<ul class="projects__list">
+						<li class="projects__item" data-image="Media/project1.webp">
+							<span class="projects__item-icon">→</span>
+							<span class="projects__item-text">Международная<br/>конференция<br/>Digital Tanba</span>
+						</li>
+						<li class="projects__item" data-image="Media/project1.webp">
+							<span class="projects__item-icon">→</span>
+							<span class="projects__item-text">Конкурс Талантов<br/>Samruk Kazyna</span>
+						</li>
+						<li class="projects__item projects__item--active" data-image="Media/project1.webp">
+							<span class="projects__item-icon">→</span>
+							<span class="projects__item-text">Таунхолл<br/>Kazatomprom</span>
+						</li>
+						<li class="projects__item" data-image="Media/project1.webp">
+							<span class="projects__item-icon">→</span>
+							<span class="projects__item-text">Фестиваль<br/>The Spirit of Tengri</span>
+						</li>
+						<li class="projects__item" data-image="Media/project1.webp">
+							<span class="projects__item-icon">→</span>
+							<span class="projects__item-text">Экспомаркет<br/>Eurasia Music Hub</span>
+						</li>
+						<li class="projects__item" data-image="Media/project1.webp">
+							<span class="projects__item-icon">→</span>
+							<span class="projects__item-text">Энергетический<br/>форум ШОС</span>
+						</li>
+					</ul>
+
+					<a href="#" class="projects__link">
+						<svg width="12" height="12" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
+						</svg>
+						Все проекты
+					</a>
+				</div>
+
+				<div class="projects__right">
+					<div class="projects__image-wrapper">
+						<img src={import.meta.env.BASE_URL + 'Media/project1.webp'} alt="Project Image" class="projects__image" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.projects {
+		padding: 100px 0;
+		background-color: #ffffff;
+		position: relative;
+		z-index: 2;
+	}
+
+	.projects__label {
+		margin-bottom: 40px;
+	}
+
+	.hero__section-label {
+		display: flex;
+		align-items: flex-start;
+		gap: 80px;
+		color: var(--color-white);
+	}
+
+	.hero__section-label--dark {
+		color: #000000;
+	}
+
+	.hero__number {
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1;
+		opacity: 0.8;
+		min-width: 30px;
+		padding-top: 4px;
+	}
+
+	.hero__label-block {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.hero__label {
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.hero__line {
+		display: block;
+		width: 50px;
+		height: 1px;
+		background: var(--color-accent);
+	}
+
+	.hero__line--dark {
+		background: #000000;
+	}
+
+	[typewriter="true"] .split-chars {
+		opacity: 0.1;
+	}
+
+	.split-lines, .split-words {
+		display: inline;
+	}
+	.split-chars {
+		display: inline-block;
+	}
+
+	.projects__content {
+		margin-left: 110px;
+	}
+
+	.projects__title {
+		font-family: var(--font-main);
+		font-size: 2.5vw;
+		font-weight: 500;
+		line-height: 1.1;
+		color: #000000;
+		letter-spacing: -0.02em;
+		margin-bottom: 60px;
+	}
+
+	.projects__inner {
+		display: flex;
+		gap: 40px;
+		justify-content: space-between;
+	}
+
+	.projects__left {
+		flex: 0 0 250px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.projects__slider-nav {
+		display: flex;
+		gap: 16px;
+		margin-bottom: 24px;
+	}
+
+	.projects__nav-btn {
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		color: rgba(0, 0, 0, 0.3);
+		transition: color 0.2s ease;
+	}
+
+	.projects__nav-btn:hover {
+		color: #000000;
+	}
+
+	.projects__category {
+		font-family: var(--font-main);
+		font-size: 22px;
+		font-weight: 500;
+		color: #000000;
+		margin-bottom: 32px;
+		display: flex;
+		align-items: flex-start;
+		gap: 4px;
+	}
+
+	.projects__category-num {
+		font-size: 12px;
+		color: rgba(0, 0, 0, 0.3);
+		font-weight: 400;
+		margin-top: 4px;
+	}
+
+	.projects__list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 40px 0;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.projects__item {
+		display: flex;
+		align-items: flex-start;
+		font-family: var(--font-main);
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1.3;
+		color: rgba(0, 0, 0, 0.6);
+		cursor: pointer;
+		transition: color 0.2s ease;
+	}
+
+	.projects__item:hover {
+		color: #000000;
+	}
+
+	.projects__item--active {
+		color: #000000;
+		font-weight: 500;
+	}
+
+	.projects__item-icon {
+		margin-right: 8px;
+		font-weight: 400;
+		opacity: 0;
+		width: 0;
+		overflow: hidden;
+		display: inline-block;
+		transition: all 0.2s ease;
+	}
+
+	.projects__item--active .projects__item-icon {
+		opacity: 1;
+		width: 16px;
+	}
+
+	.projects__link {
+		margin-top: auto;
+		display: inline-flex;
+		align-items: center;
+		align-self: flex-start;
+		gap: 8px;
+		font-family: var(--font-main);
+		font-size: 16px;
+		font-weight: 500;
+		color: #000000;
+		text-decoration: none;
+		border-bottom: 1px solid #000000;
+		padding-bottom: 4px;
+		transition: opacity 0.2s ease;
+	}
+
+	.projects__link:hover {
+		opacity: 0.7;
+	}
+
+	.projects__link svg {
+		transition: transform 0.2s ease;
+	}
+
+	.projects__link:hover svg {
+		transform: translate(2px, -2px);
+	}
+
+	.projects__right {
+		flex: 1;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.projects__image-wrapper {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.projects__image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	@media (max-width: 1024px) {
+		.projects__title {
+			font-size: 32px;
+		}
+		
+		.projects__content {
+			margin-left: 40px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.projects {
+			padding: 60px 0;
+		}
+		
+		.projects__content {
+			margin-left: 0;
+		}
+		
+		.projects__inner {
+			flex-direction: column;
+		}
+
+		.projects__left {
+			flex: auto;
+		}
+
+		.projects__title {
+			font-size: 28px;
+			margin-bottom: 30px;
+		}
+	}
+</style>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const projectsTypewriter = document.querySelector('#projects .hero__label[typewriter="true"]') as HTMLElement | null;
+	if (projectsTypewriter) {
+		const chars = projectsTypewriter.querySelectorAll('.split-chars');
+		const delayAttr = projectsTypewriter.getAttribute('typewriter-delay');
+		const delay = delayAttr ? parseInt(delayAttr, 10) / 1000 : 0.15;
+
+		gsap.to(chars, {
+			opacity: 1,
+			duration: 0.002,
+			stagger: {
+				amount: 0.7,
+			},
+			delay: delay,
+			scrollTrigger: {
+				trigger: projectsTypewriter,
+				start: 'top 90%',
+				toggleActions: 'play none none none',
+			}
+		});
+	}
+
+	// Slider logic
+	const projectItems = document.querySelectorAll('.projects__item');
+	const projectImage = document.querySelector('.projects__image') as HTMLImageElement | null;
+	const btnPrev = document.querySelector('.projects__nav-btn--prev');
+	const btnNext = document.querySelector('.projects__nav-btn--next');
+
+	if (projectItems.length > 0 && projectImage) {
+		const updateSlider = (index: number) => {
+			projectItems.forEach(el => el.classList.remove('projects__item--active'));
+			const activeItem = projectItems[index];
+			activeItem.classList.add('projects__item--active');
+			
+			const newImageSrc = activeItem.getAttribute('data-image');
+			if (newImageSrc) {
+				gsap.to(projectImage, {
+					opacity: 0,
+					duration: 0.2,
+					onComplete: () => {
+						projectImage.src = newImageSrc;
+						gsap.to(projectImage, { opacity: 1, duration: 0.2 });
+					}
+				});
+			}
+		};
+
+		projectItems.forEach((item, index) => {
+			item.addEventListener('click', () => {
+				updateSlider(index);
+			});
+		});
+
+		if (btnPrev && btnNext) {
+			btnPrev.addEventListener('click', () => {
+				let currentIndex = Array.from(projectItems).findIndex(item => item.classList.contains('projects__item--active'));
+				if (currentIndex === -1) currentIndex = 0;
+				const newIndex = currentIndex === 0 ? projectItems.length - 1 : currentIndex - 1;
+				updateSlider(newIndex);
+			});
+
+			btnNext.addEventListener('click', () => {
+				let currentIndex = Array.from(projectItems).findIndex(item => item.classList.contains('projects__item--active'));
+				if (currentIndex === -1) currentIndex = 0;
+				const newIndex = currentIndex === projectItems.length - 1 ? 0 : currentIndex + 1;
+				updateSlider(newIndex);
+			});
+		}
+	}
+</script>

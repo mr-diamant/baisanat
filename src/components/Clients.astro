@@ -1,0 +1,302 @@
+---
+---
+
+<section class="clients" id="clients">
+	<div class="container clients__container">
+		<div class="clients__inner">
+			<div class="clients__left">
+				<div class="hero__section-label hero__section-label--dark clients__label">
+					<span class="hero__number">03</span>
+					<div class="hero__label-block">
+						<span class="hero__label" typewriter="true" typewriter-delay="150">
+							<span class="split-lines">
+								<span class="split-words">
+									<span class="split-chars">К</span>
+									<span class="split-chars">л</span>
+									<span class="split-chars">и</span>
+									<span class="split-chars">е</span>
+									<span class="split-chars">н</span>
+									<span class="split-chars">т</span>
+									<span class="split-chars">ы</span>
+								</span>
+							</span>
+						</span>
+						<span class="hero__line hero__line--dark"></span>
+					</div>
+				</div>
+
+				<div class="clients__content">
+					<h2 class="clients__title">
+					Нам доверяют лидеры<br />индустрий
+				</h2>
+				
+				<p class="clients__desc">
+					Национальные компании, крупный<br />бизнес, международные бренды<br />и отраслевые организации.
+				</p>
+				
+				<p class="clients__desc">
+					Вместе мы воплощаем в жизнь<br />идеи, которые делают мир лучше
+				</p>
+
+				<a href="#" class="clients__link">
+					<svg width="12" height="12" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
+					</svg>
+					Все клиенты
+				</a>
+				</div>
+			</div>
+
+			<div class="clients__right">
+				<div class="clients__grid">
+					<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client1.png'} alt="Client 1" /></div>
+					<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client2.png'} alt="Client 2" /></div>
+					
+					<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client3.png'} alt="Client 3" /></div>
+					<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client4.png'} alt="Client 4" /></div>
+					
+					<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client5.png'} alt="Client 5" /></div>
+					<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client6.png'} alt="Client 6" /></div>
+					
+					<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client7.png'} alt="Client 7" /></div>
+					<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client8.png'} alt="Client 8" /></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.clients {
+		padding: 100px 0;
+		background-color: #ffffff;
+		position: relative;
+		z-index: 2;
+	}
+
+	.clients__inner {
+		display: flex;
+		gap: 60px;
+		justify-content: space-between;
+	}
+
+	.clients__left {
+		flex: 0 0 45%;
+		max-width: 550px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.clients__label {
+		margin-bottom: 40px;
+	}
+	
+	.hero__section-label {
+		display: flex;
+		align-items: flex-start;
+		gap: 80px;
+		color: var(--color-white);
+	}
+
+	.hero__section-label--dark {
+		color: #000000;
+	}
+
+	.hero__number {
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1;
+		opacity: 0.8;
+		min-width: 30px;
+		padding-top: 4px;
+	}
+
+	.hero__label-block {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.hero__label {
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.hero__line {
+		display: block;
+		width: 50px;
+		height: 1px;
+		background: var(--color-accent);
+	}
+
+	.hero__line--dark {
+		background: #000000;
+	}
+	
+	.clients__content {
+		margin-left: 110px;
+	}
+
+	.clients__title {
+		font-family: var(--font-main);
+		font-size: 2.5vw;
+		font-weight: 500;
+		line-height: 1.1;
+		color: #000000;
+		letter-spacing: -0.02em;
+		margin-bottom: 40px;
+	}
+
+	.clients__desc {
+		font-family: var(--font-main);
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 1.4;
+		color: rgba(0, 0, 0, 0.85);
+		margin-bottom: 24px;
+	}
+
+	.clients__link {
+		margin-top: 20px;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--font-main);
+		font-size: 16px;
+		font-weight: 500;
+		color: #000000;
+		text-decoration: none;
+		border-bottom: 1px solid #000000;
+		padding-bottom: 4px;
+		transition: opacity 0.2s ease;
+	}
+
+	.clients__link:hover {
+		opacity: 0.7;
+	}
+
+	.clients__link svg {
+		transition: transform 0.2s ease;
+	}
+
+	.clients__link:hover svg {
+		transform: translate(2px, -2px);
+	}
+
+	.clients__right {
+		flex: 1;
+		display: flex;
+		justify-content: flex-end;
+		padding-top: 60px;
+	}
+
+	.clients__grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px 30px;
+		width: 100%;
+		max-width: 500px;
+	}
+
+	.clients__logo {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+
+	.clients__logo img {
+		max-width: 60%;
+		height: auto;
+		object-fit: contain;
+	}
+
+	@media (max-width: 1024px) {
+		.clients__title {
+			font-size: 32px;
+		}
+		
+		.clients__grid {
+			gap: 30px 40px;
+		}
+
+		.clients__content {
+			margin-left: 40px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.clients {
+			padding: 60px 0;
+		}
+		
+		.clients__inner {
+			flex-direction: column;
+			gap: 40px;
+		}
+		
+		.clients__left {
+			max-width: 100%;
+		}
+
+		.clients__content {
+			margin-left: 0;
+		}
+		
+		.clients__right {
+			justify-content: flex-start;
+			padding-top: 0;
+		}
+		
+		.clients__title {
+			font-size: 28px;
+		}
+		
+		.clients__grid {
+			gap: 24px;
+		}
+	}
+
+	[typewriter="true"] .split-chars {
+		opacity: 0.1;
+	}
+
+	.split-lines {
+		display: inline;
+	}
+	.split-words {
+		display: inline;
+	}
+	.split-chars {
+		display: inline-block;
+	}
+</style>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const clientsTypewriter = document.querySelector('#clients .hero__label[typewriter="true"]') as HTMLElement | null;
+	if (clientsTypewriter) {
+		const chars = clientsTypewriter.querySelectorAll('.split-chars');
+		const delayAttr = clientsTypewriter.getAttribute('typewriter-delay');
+		const delay = delayAttr ? parseInt(delayAttr, 10) / 1000 : 0.15;
+
+		gsap.to(chars, {
+			opacity: 1,
+			duration: 0.002,
+			stagger: {
+				amount: 0.7,
+			},
+			delay: delay,
+			scrollTrigger: {
+				trigger: clientsTypewriter,
+				start: 'top 90%',
+				toggleActions: 'play none none none',
+			}
+		});
+	}
+</script>
