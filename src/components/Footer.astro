@@ -1,0 +1,453 @@
+---
+---
+
+<footer class="footer" id="footer">
+	<canvas id="footer-bg" class="footer__bg-canvas"></canvas>
+	<div class="container footer__container">
+		
+		<div class="footer__top">
+			<h2 class="footer__title">
+				Присоединяйтесь<br/>к Baisanat
+			</h2>
+		</div>
+
+		<div class="footer__middle">
+			<div class="footer__middle-arrow">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
+					<path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z" fill="currentColor"/>
+				</svg>
+			</div>
+			<div class="footer__middle-text">
+				Станьте клиентом, партнером<br/>или частью команды
+			</div>
+			<div class="footer__middle-action">
+				<a href="#" class="footer__link-start">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z" fill="currentColor"/>
+					</svg>
+					Начать сотрудничество
+				</a>
+			</div>
+		</div>
+
+		<div class="footer__bottom">
+			<div class="footer__bottom-left">
+				<a href="mailto:info@bh.kz" class="footer__email">info@bh.kz</a>
+				
+				<div class="footer__socials">
+					<a href="#">Linkedin</a>
+					<a href="#">Instagram</a>
+					<a href="#">Facebook</a>
+					<a href="#">Telegram</a>
+				</div>
+
+				<div class="footer__logo">
+					<img src={import.meta.env.BASE_URL + 'Media/logo_white.svg'} alt="BAISANAT HOLDING" />
+				</div>
+			</div>
+
+			<div class="footer__bottom-right">
+				<div class="footer__nav-grid">
+					<div class="footer__nav-col">
+						<a href="#">На главную</a>
+						<a href="#">О холдинге</a>
+						<a href="#">Сервисы и услуги</a>
+					</div>
+					<div class="footer__nav-col">
+						<a href="#">Клиенты</a>
+						<a href="#">Проекты</a>
+						<a href="#">Контакты</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer__copyright">
+			<a href="#" class="footer__policy">Политика и соглашение</a>
+			<span class="footer__rights">&copy; Baisanat Holding 2026</span>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		padding: 100px 0 40px;
+		position: relative;
+		z-index: 2;
+		overflow: hidden;
+		color: #ffffff;
+	}
+
+	.footer__bg-canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	.footer__top {
+		margin-bottom: 60px;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+	}
+
+	.footer__title {
+		font-family: var(--font-main);
+		font-size: 4vw;
+		font-weight: 500;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+	}
+
+	.footer__middle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 40px 0;
+		border-top: 1px solid rgba(255, 255, 255, 0.2);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+		margin-bottom: 80px;
+	}
+
+	.footer__middle-arrow {
+		flex: 0 0 100px;
+		display: flex;
+		justify-content: flex-start;
+	}
+
+	.footer__middle-arrow svg {
+		width: 24px;
+		height: 24px;
+	}
+
+	.footer__middle-text {
+		flex: 1;
+		font-family: var(--font-main);
+		font-size: 20px;
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.footer__middle-action {
+		flex: 0 0 auto;
+	}
+
+	.footer__link-start {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--font-main);
+		font-size: 16px;
+		font-weight: 400;
+		color: #ffffff;
+		text-decoration: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+		padding-bottom: 4px;
+		transition: opacity 0.2s ease;
+	}
+
+	.footer__link-start:hover {
+		opacity: 0.7;
+	}
+
+	.footer__link-start svg {
+		transition: transform 0.2s ease;
+	}
+
+	.footer__link-start:hover svg {
+		transform: translate(2px, -2px);
+	}
+
+	.footer__bottom {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 60px;
+	}
+
+	.footer__bottom-left {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	.footer__email {
+		font-family: var(--font-main);
+		font-size: 24px;
+		font-weight: 500;
+		color: #ffffff;
+		text-decoration: none;
+		transition: opacity 0.2s;
+	}
+	.footer__email:hover {
+		opacity: 0.8;
+	}
+
+	.footer__socials {
+		display: flex;
+		gap: 24px;
+		font-family: var(--font-main);
+		font-size: 14px;
+		font-weight: 300;
+	}
+
+	.footer__socials a {
+		color: #ffffff;
+		text-decoration: none;
+		transition: opacity 0.2s;
+	}
+	.footer__socials a:hover {
+		opacity: 0.7;
+	}
+
+	.footer__logo {
+		margin-top: 20px;
+	}
+	.footer__logo img {
+		height: 30px;
+	}
+
+	.footer__bottom-right {
+		display: flex;
+		align-items: flex-end;
+	}
+
+	.footer__nav-grid {
+		display: flex;
+		gap: 80px;
+	}
+
+	.footer__nav-col {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.footer__nav-col a {
+		font-family: var(--font-main);
+		font-size: 14px;
+		font-weight: 300;
+		color: #ffffff;
+		text-decoration: none;
+		transition: opacity 0.2s;
+	}
+	.footer__nav-col a:hover {
+		opacity: 0.7;
+	}
+
+	.footer__copyright {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 40px;
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+		font-family: var(--font-main);
+		font-size: 12px;
+		font-weight: 300;
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.footer__policy {
+		color: rgba(255, 255, 255, 0.7);
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+	.footer__policy:hover {
+		color: #ffffff;
+	}
+
+	.text-orange {
+		color: #ff5000;
+	}
+
+	@media (max-width: 1024px) {
+		.footer__title {
+			font-size: 5vw;
+		}
+		.footer__middle {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 30px;
+		}
+		.footer__middle-arrow {
+			flex: 0 0 auto;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.footer {
+			padding: 60px 0 30px;
+		}
+		.footer__title {
+			font-size: 32px;
+		}
+		.footer__top {
+			text-align: left;
+			justify-content: flex-start;
+		}
+		.footer__bottom {
+			flex-direction: column;
+			gap: 60px;
+		}
+		.footer__bottom-right {
+			align-items: flex-start;
+		}
+		.footer__nav-grid {
+			flex-direction: column;
+			gap: 40px;
+		}
+		.footer__socials {
+			flex-wrap: wrap;
+		}
+		.footer__copyright {
+			flex-direction: column;
+			gap: 20px;
+			align-items: flex-start;
+		}
+	}
+</style>
+
+<script>
+	// WebGL Background (скопировано из предыдущего блока)
+	const canvas = document.getElementById('footer-bg') as HTMLCanvasElement | null;
+	if (canvas) {
+		const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl') as WebGLRenderingContext | null;
+		
+		const hexToGLSL = (hex: string) => {
+			const r = parseInt(hex.slice(1, 3), 16) / 255;
+			const g = parseInt(hex.slice(3, 5), 16) / 255;
+			const b = parseInt(hex.slice(5, 7), 16) / 255;
+			return `vec3(${r.toFixed(4)}, ${g.toFixed(4)}, ${b.toFixed(4)})`;
+		};
+
+		if (gl) {
+			const vsSource = `
+				attribute vec2 position;
+				void main() {
+					gl_Position = vec4(position, 0.0, 1.0);
+				}
+			`;
+			const fsSource = `
+				precision highp float;
+				uniform vec2 u_resolution;
+				uniform float u_time;
+
+				void main() {
+					vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+					
+					// ==== НАСТРОЙКИ ФОНОВОГО ГРАДИЕНТА ====
+					vec3 c_bottom = ${hexToGLSL('#0d1479')};
+					vec3 c_mid =    ${hexToGLSL('#080e5b')};
+					vec3 c_top =    ${hexToGLSL('#02021f')};
+
+					vec3 baseColor = mix(c_bottom, c_mid, smoothstep(0.0, 0.6, uv.y));
+					baseColor = mix(baseColor, c_top, smoothstep(0.6, 1.0, uv.y));
+
+					float aspect = u_resolution.x / u_resolution.y;
+
+					// ==== НАСТРОЙКИ ПЯТЕН (ОВАЛОВ) С АНИМАЦИЕЙ ====
+					float t1 = u_time * 0.4;
+					vec2 pos1 = vec2(0.1, 0.0 + sin(t1) * 0.05);
+					vec2 p1 = uv - pos1;
+					p1.x *= aspect;
+					p1.y *= 2.0 + cos(t1 * 1.3) * 0.15;
+					p1.x *= 1.0 + sin(t1 * 0.8) * 0.1;
+					vec3 color1 = ${hexToGLSL('#2a329f')};
+					float size1 = 1.2 + sin(t1 * 1.1) * 0.15;
+					float w1 = smoothstep(size1, size1 - 0.3, length(p1));
+
+					float t2 = u_time * 0.3 + 2.0;
+					vec2 pos2 = vec2(1.1, 0.0 + cos(t2) * 0.05);
+					vec2 p2 = uv - pos2;
+					p2.x *= aspect;
+					p2.y *= 2.2 + sin(t2 * 1.2) * 0.15;
+					p2.x *= 1.0 + cos(t2 * 0.9) * 0.1;
+					vec3 color2 = ${hexToGLSL('#2a329f')};
+					float size2 = 1.2 + cos(t2 * 1.4) * 0.15;
+					float w2 = smoothstep(size2, size2 - 0.3, length(p2));
+
+					vec2 p3 = uv - vec2(0.5, 0.0);
+					p3.x *= aspect;
+					p3.y *= 4.5;
+					vec3 color3 = ${hexToGLSL('#0d1479')};
+					float w3 = smoothstep(1.2, 0.7, length(p3));
+
+					vec2 p4 = uv - vec2(0.8, 0.9);
+					p4.x *= aspect;
+					p4.y *= 1.8;
+					vec3 color4 = ${hexToGLSL('#ffffff')};
+					float w4 = smoothstep(0.7, 0.1, length(p4));
+
+					vec3 finalColor = baseColor;
+					finalColor = mix(finalColor, color2, w2 * 0.7);
+					finalColor = mix(finalColor, color1, w1 * 0.7);
+					finalColor = mix(finalColor, color3, w3 * 1.0);
+					finalColor = mix(finalColor, color4, w4 * 0.0);
+
+					gl_FragColor = vec4(finalColor, 1.0);
+				}
+			`;
+
+			const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
+				const shader = gl.createShader(type);
+				if (!shader) return null;
+				gl.shaderSource(shader, source);
+				gl.compileShader(shader);
+				return shader;
+			};
+
+			const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+			const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+			if (vertexShader && fragmentShader) {
+				const program = gl.createProgram();
+				if (program) {
+					gl.attachShader(program, vertexShader);
+					gl.attachShader(program, fragmentShader);
+					gl.linkProgram(program);
+					gl.useProgram(program);
+
+					const positionLocation = gl.getAttribLocation(program, 'position');
+					const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+					const timeLocation = gl.getUniformLocation(program, 'u_time');
+
+					const buffer = gl.createBuffer();
+					gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+					gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+						-1.0, -1.0,
+						 1.0, -1.0,
+						-1.0,  1.0,
+						-1.0,  1.0,
+						 1.0, -1.0,
+						 1.0,  1.0
+					]), gl.STATIC_DRAW);
+
+					gl.enableVertexAttribArray(positionLocation);
+					gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+					const resizeCanvas = () => {
+						const width = window.innerWidth;
+						const height = canvas.parentElement?.clientHeight || window.innerHeight;
+						canvas.width = width;
+						canvas.height = height;
+						gl.viewport(0, 0, width, height);
+						gl.uniform2f(resolutionLocation, width, height);
+					};
+
+					window.addEventListener('resize', resizeCanvas);
+					setTimeout(resizeCanvas, 0);
+
+					const render = (time: number) => {
+						gl.uniform1f(timeLocation, time * 0.001);
+						gl.drawArrays(gl.TRIANGLES, 0, 6);
+						requestAnimationFrame(render);
+					};
+					requestAnimationFrame(render);
+				}
+			}
+		}
+	}
+</script>
