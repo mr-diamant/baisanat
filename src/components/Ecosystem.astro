@@ -985,6 +985,9 @@ import HeroCard from './HeroCard.astro';
 			const phase3Distance = viewHeight * 1.5;
 			const totalScrollDistance = maxHorizontalScroll + phase2Distance + phase3Distance;
 
+			// Сдвиг старта скролла карточек на 400px до прилипания
+			const scrollOffset = 400;
+
 			// Анимация уменьшения верхнего отступа при прилипании
 			if (stickyContent) {
 				if (scrolled < 0) {
@@ -996,7 +999,7 @@ import HeroCard from './HeroCard.astro';
 				}
 			}
 
-			if (scrolled < 0) {
+			if (scrolled < -scrollOffset) {
 				cardsInner.scrollLeft = 0;
 				cardsBlock.style.opacity = '1';
 				cardsBlock.style.transform = 'translateY(0)';
@@ -1066,7 +1069,7 @@ import HeroCard from './HeroCard.astro';
 
 			// Фаза 1: Горизонтальная прокрутка карточек
 			if (scrolled <= maxHorizontalScroll) {
-				const progress1 = scrolled / maxHorizontalScroll;
+				const progress1 = (scrolled + scrollOffset) / (maxHorizontalScroll + scrollOffset);
 				cardsInner.scrollLeft = progress1 * maxHorizontalScroll;
 
 				// Сброс фазы 2 и 3
