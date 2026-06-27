@@ -1,0 +1,206 @@
+---
+---
+
+<section class="services" id="services">
+	<div class="container services__inner">
+		<div class="services__left">
+			<h2 class="services__title">
+				Подразделения предоставляют сервисы в рамках своей экспертизы
+			</h2>
+			<p class="services__desc">
+				Единое пространство для управления проектами любой сложности
+			</p>
+		</div>
+
+		<div class="services__right">
+			<div class="services__table">
+				<div class="services__row">
+					<div class="services__col">
+						<span class="services__num">01/</span>
+						<span class="services__text">Research</span>
+					</div>
+					<div class="services__col">
+						<span class="services__num">07/</span>
+						<span class="services__text">Media Production</span>
+					</div>
+				</div>
+
+				<div class="services__row">
+					<div class="services__col">
+						<span class="services__num">02/</span>
+						<span class="services__text">Project office</span>
+					</div>
+					<div class="services__col">
+						<span class="services__num">08/</span>
+						<span class="services__text">Design</span>
+					</div>
+				</div>
+
+				<div class="services__row">
+					<div class="services__col">
+						<span class="services__num">03/</span>
+						<span class="services__text">Due diligence</span>
+					</div>
+					<div class="services__col">
+						<span class="services__num">09/</span>
+						<span class="services__text">Web & App Dev</span>
+					</div>
+				</div>
+
+				<div class="services__row">
+					<div class="services__col">
+						<span class="services__num">04/</span>
+						<span class="services__text">PR</span>
+					</div>
+					<div class="services__col">
+						<span class="services__num">10/</span>
+						<span class="services__text">Tech</span>
+					</div>
+				</div>
+
+				<div class="services__row">
+					<div class="services__col">
+						<span class="services__num">05/</span>
+						<span class="services__text">Marketing</span>
+					</div>
+					<div class="services__col">
+						<span class="services__num">11/</span>
+						<span class="services__text">Event</span>
+					</div>
+				</div>
+
+				<div class="services__row">
+					<div class="services__col">
+						<span class="services__num">06/</span>
+						<span class="services__text">Buying</span>
+					</div>
+					<div class="services__col">
+						<span class="services__num">12/</span>
+						<span class="services__text">Education</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+.services {
+	position: relative;
+	z-index: 1;
+	background: linear-gradient(180deg, #ff5000 20%, #ffffff 90%, #ffffff 100%);
+	padding: 160px 0;
+	color: #000000;
+	overflow: hidden;
+}
+
+.services__inner {
+	display: flex;
+	gap: 10px;
+	align-items: flex-start;
+}
+
+.services__left {
+	flex: 0 0 42%;
+	max-width: 480px;
+	margin-left: 110px;
+}
+
+.services__title {
+	font-family: var(--font-main);
+	font-size: clamp(28px, 3.2vw, 44px);
+	font-weight: 500;
+	line-height: 1;
+	color: #000000;
+	letter-spacing: -0.02em;
+	margin-bottom: 24px;
+}
+
+.services__desc {
+	font-family: var(--font-main);
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.4;
+	color: rgba(0, 0, 0, 0.65);
+	max-width: 320px;
+}
+
+.services__right {
+	flex: 1;
+}
+
+.services__table {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.services__row {
+	display: flex;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.services__col {
+	flex: 1;
+	display: flex;
+	align-items: baseline;
+	gap: 12px;
+	padding: 13px 0;
+}
+
+.services__col:first-child {
+	padding-right: 40px;
+}
+
+.services__num {
+	font-family: var(--font-main);
+	font-size: 13px;
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.4);
+	font-feature-settings: "tnum";
+	position: relative;
+	top: -4px;
+}
+
+.services__text {
+	font-family: var(--font-main);
+	font-size: 1.5vw;
+	font-weight: 500;
+	color: #000000;
+}
+
+@media (max-width: 1024px) {
+	.services__inner {
+		gap: 40px;
+	}
+	.services__left {
+		margin-left: 40px;
+	}
+}
+
+@media (max-width: 768px) {
+	.services__inner {
+		flex-direction: column;
+		gap: 48px;
+	}
+
+	.services__left {
+		margin-left: 0;
+		max-width: 100%;
+	}
+
+	.services__row {
+		flex-direction: column;
+	}
+
+	.services__col {
+		padding: 16px 0;
+	}
+
+	.services__col:first-child {
+		padding-right: 0;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+	}
+}
+</style>

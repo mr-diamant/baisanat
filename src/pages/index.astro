@@ -2,17 +2,31 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Ecosystem from '../components/Ecosystem.astro';
 ---
 
 <html lang="ru">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href={import.meta.env.BASE_URL + 'favicon.svg'} />
-		<link rel="icon" href={import.meta.env.BASE_URL + 'favicon.ico'} />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/png" href={import.meta.env.BASE_URL + 'Media/favicon.png'} />
+		<meta name="viewport" content="width=1440" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Baisanat Holding — Центр экспертизы и проектных решений</title>
 		<meta name="description" content="Центр экспертизы и проектных решений в медиа, коммуникациях и креативных индустриях" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://me-qr.kz/baisanat/" />
+		<meta property="og:title" content="Baisanat Holding — Центр экспертизы и проектных решений" />
+		<meta property="og:description" content="Центр экспертизы и проектных решений в медиа, коммуникациях и креативных индустриях" />
+		<meta property="og:image" content="https://me-qr.kz/baisanat/preview.webp" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://me-qr.kz/baisanat/" />
+		<meta property="twitter:title" content="Baisanat Holding — Центр экспертизы и проектных решений" />
+		<meta property="twitter:description" content="Центр экспертизы и проектных решений в медиа, коммуникациях и креативных индустриях" />
+		<meta property="twitter:image" content="https://me-qr.kz/baisanat/preview.webp" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -21,6 +35,7 @@ import Hero from '../components/Hero.astro';
 		<Header />
 		<main>
 			<Hero />
+			<Ecosystem />
 		</main>
 	</body>
 </html>

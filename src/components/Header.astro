@@ -4,22 +4,59 @@
 <header class="site-header">
 	<div class="container header__inner">
 		<a href={import.meta.env.BASE_URL} class="header__logo" aria-label="Baisanat Holding">
-			<img src={import.meta.env.BASE_URL + 'logo.png'} alt="Baisanat Holding" width="300" height="59" />
+			<img src={import.meta.env.BASE_URL + 'Media/logo.png'} alt="Baisanat Holding" width="220" height="43" />
 		</a>
 
 		<nav class="header__nav">
-			<a href="#" class="header__lang">EN</a>
-			<button class="header__menu" type="button" aria-label="Открыть меню">
+			<!-- Выпадающий список языков -->
+			<div class="header__lang-dropdown">
+				<button class="header__lang-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+					RU
+					<svg class="header__lang-arrow" width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
+				<ul class="header__lang-list" role="listbox">
+					<li><a href="#" class="header__lang-item">EN</a></li>
+					<li><a href="#" class="header__lang-item">KZ</a></li>
+				</ul>
+			</div>
+
+			<!-- Кнопка меню -->
+			<button class="header__menu" type="button" aria-label="Открыть меню" aria-expanded="false">
 				<span class="header__menu-label">MENU</span>
-				<span class="header__menu-dots">
-					<span></span>
-					<span></span>
-					<span></span>
+				<span class="header__menu-burger">
+					<span class="dot-1"></span>
+					<span class="dot-2"></span>
+					<span class="dot-3"></span>
 				</span>
 			</button>
 		</nav>
 	</div>
 </header>
+
+<!-- Боковое выезжающее меню -->
+<div class="side-menu" id="side-menu">
+	<div class="side-menu__backdrop"></div>
+	<div class="side-menu__content">
+		<nav class="side-menu__nav">
+			<ul class="side-menu__list">
+				<li style="--idx: 1;"><a href="#formula" class="side-menu__link"><span class="side-menu__link-num">01</span><span class="side-menu__link-text">Формула</span></a></li>
+				<li style="--idx: 2;"><a href="#ecosystem" class="side-menu__link"><span class="side-menu__link-num">02</span><span class="side-menu__link-text">Экосистема</span></a></li>
+				<li style="--idx: 3;"><a href="#clients" class="side-menu__link"><span class="side-menu__link-num">03</span><span class="side-menu__link-text">Клиенты</span></a></li>
+				<li style="--idx: 4;"><a href="#projects" class="side-menu__link"><span class="side-menu__link-num">04</span><span class="side-menu__link-text">Проекты</span></a></li>
+				<li style="--idx: 5;"><a href="#principles" class="side-menu__link"><span class="side-menu__link-num">05</span><span class="side-menu__link-text">Принципы</span></a></li>
+				<li style="--idx: 6;"><a href="#cooperation" class="side-menu__link"><span class="side-menu__link-num">06</span><span class="side-menu__link-text">Сотрудничество</span></a></li>
+				<li style="--idx: 7;"><a href="#contacts" class="side-menu__link"><span class="side-menu__link-num">07</span><span class="side-menu__link-text">Контакты</span></a></li>
+			</ul>
+		</nav>
+
+		<div class="side-menu__footer">
+			<div class="side-menu__contact-title">Связаться с нами</div>
+			<a href="mailto:info@baisanat.kz" class="side-menu__email">info@baisanat.kz</a>
+		</div>
+	</div>
+</div>
 
 <style>
 .site-header {
@@ -27,6 +64,11 @@
 	inset: 0 0 auto;
 	z-index: 100;
 	padding-top: 45px;
+	transition: z-index 0s;
+}
+
+:global(body.menu-open) .site-header {
+	z-index: 210;
 }
 
 .header__inner {
@@ -37,8 +79,14 @@
 
 .header__logo {
 	display: block;
-	width: 300px;
+	width: 220px;
 	line-height: 0;
+	transition: opacity 0.4s ease;
+}
+
+:global(body.menu-open) .header__logo {
+	opacity: 0;
+	pointer-events: none;
 }
 
 .header__logo img {
@@ -52,47 +100,329 @@
 	gap: 40px;
 }
 
-.header__lang {
-	font-size: 14px;
+.header__lang-dropdown {
+	position: relative;
+	transition: opacity 0.4s ease;
+}
+
+:global(body.menu-open) .header__lang-dropdown {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.header__lang-trigger {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 8px 0;
+	font-family: var(--font-main);
+	font-size: 13px;
 	font-weight: 500;
 	color: var(--color-white);
 	letter-spacing: 0.05em;
+	transition: color 0.3s ease;
 }
 
+.header__lang-trigger:hover {
+	color: var(--color-accent);
+}
+
+.header__lang-arrow {
+	transition: transform 0.3s ease;
+	opacity: 0.7;
+}
+
+.header__lang-dropdown:hover .header__lang-arrow,
+.header__lang-dropdown.is-active .header__lang-arrow {
+	transform: rotate(180deg);
+	color: var(--color-accent);
+}
+
+.header__lang-list {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%) translateY(10px);
+	background: rgba(14, 20, 63, 0.95);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 4px;
+	padding: 8px 0;
+	list-style: none;
+	min-width: 60px;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+	z-index: 10;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(10px);
+}
+
+.header__lang-dropdown:hover .header__lang-list,
+.header__lang-dropdown.is-active .header__lang-list {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(-50%) translateY(0);
+}
+
+.header__lang-item {
+	display: block;
+	padding: 6px 16px;
+	font-size: 12px;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 0.7);
+	text-align: center;
+	transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.header__lang-item:hover {
+	color: var(--color-white);
+	background: rgba(255, 80, 0, 0.15);
+}
+
+/* Кнопка меню */
 .header__menu {
 	display: flex;
 	align-items: center;
-	gap: 16px;
+	gap: 12px;
 	background: transparent;
 	border: none;
 	cursor: pointer;
 	padding: 0;
 	color: var(--color-accent);
+	position: relative;
+	z-index: 210;
 }
 
 .header__menu-label {
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: 500;
 	letter-spacing: 0.05em;
+	color: var(--color-white);
+	transition: color 0.3s ease;
 }
 
-.header__menu-dots {
-	display: inline-flex;
-	flex-direction: column;
-	gap: 8px;
-	width: 52px;
-	height: 52px;
-	border: 1px solid rgba(255, 255, 255, 0.5);
+.header__menu:hover .header__menu-label {
+	color: var(--color-accent);
+}
+
+.header__menu-burger {
+	position: relative;
+	width: 42px;
+	height: 42px;
+	border: 1px solid rgba(255, 255, 255, 0.25);
 	border-radius: 50%;
+	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-.header__menu-dots span {
+.header__menu:hover .header__menu-burger {
+	border-color: var(--color-accent);
+	background: rgba(255, 80, 0, 0.05);
+}
+
+.header__menu-burger span {
+	position: absolute;
+	left: 50%;
 	width: 4px;
 	height: 4px;
 	background: var(--color-white);
 	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Позиционирование точек */
+.header__menu-burger .dot-1 {
+	top: 15px;
+}
+
+.header__menu-burger .dot-2 {
+	top: 21px;
+}
+
+.header__menu-burger .dot-3 {
+	top: 27px;
+}
+
+/* Блокировка прокрутки */
+:global(body.menu-open) {
+	overflow: hidden;
+}
+
+/* Анимация превращения в крестик при открытом меню */
+:global(body.menu-open) .header__menu-burger {
+	border-color: var(--color-accent);
+	background: transparent;
+}
+
+:global(body.menu-open) .header__menu-label {
+	color: var(--color-accent);
+}
+
+:global(body.menu-open) .header__menu-burger .dot-2 {
+	opacity: 0;
+	transform: translate(-50%, -50%) scale(0);
+}
+
+:global(body.menu-open) .header__menu-burger .dot-1 {
+	top: 21px;
+	width: 16px;
+	height: 1.5px;
+	border-radius: 0;
+	background: var(--color-accent);
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+:global(body.menu-open) .header__menu-burger .dot-3 {
+	top: 21px;
+	width: 16px;
+	height: 1.5px;
+	border-radius: 0;
+	background: var(--color-accent);
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Боковое меню */
+.side-menu {
+	position: fixed;
+	inset: 0;
+	z-index: 200;
+	visibility: hidden;
+	transition: visibility 0.5s;
+}
+
+.side-menu.is-active {
+	visibility: visible;
+}
+
+.side-menu__backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(7, 7, 15, 0.4);
+	backdrop-filter: blur(8px);
+	opacity: 0;
+	transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+	pointer-events: none;
+}
+
+.side-menu.is-active .side-menu__backdrop {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.side-menu__content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 540px;
+	max-width: 100%;
+	background: #080914;
+	border-left: 1px solid rgba(255, 255, 255, 0.08);
+	padding: 140px 80px 80px;
+	transform: translateX(100%);
+	transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+	box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.side-menu.is-active .side-menu__content {
+	transform: translateX(0);
+}
+
+.side-menu__nav {
+	margin-top: 20px;
+}
+
+.side-menu__list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.side-menu__link {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 24px;
+	font-family: var(--font-main);
+	color: rgba(255, 255, 255, 0.6);
+	transition: color 0.3s ease, transform 0.3s ease;
+	transform: translateY(20px);
+	opacity: 0;
+	transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
+
+.side-menu.is-active .side-menu__link {
+	transform: translateY(0);
+	opacity: 1;
+	transition-delay: calc(var(--idx) * 0.06s + 0.1s);
+}
+
+.side-menu__link-num {
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--color-accent);
+	opacity: 0.8;
+	font-feature-settings: "tnum";
+}
+
+.side-menu__link-text {
+	font-size: 32px;
+	font-weight: 300;
+	letter-spacing: -0.01em;
+	transition: transform 0.3s ease;
+}
+
+.side-menu__link:hover {
+	color: var(--color-white);
+}
+
+.side-menu__link:hover .side-menu__link-text {
+	transform: translateX(10px);
+	color: var(--color-accent);
+	font-weight: 400;
+}
+
+.side-menu__footer {
+	margin-top: auto;
+	padding-top: 40px;
+	border-top: 1px solid rgba(255, 255, 255, 0.08);
+	transform: translateY(20px);
+	opacity: 0;
+	transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, opacity 0.5s ease 0.5s;
+}
+
+.side-menu.is-active .side-menu__footer {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.side-menu__contact-title {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: rgba(255, 255, 255, 0.3);
+	margin-bottom: 12px;
+}
+
+.side-menu__email {
+	font-size: 18px;
+	color: var(--color-white);
+	transition: color 0.3s ease;
+}
+
+.side-menu__email:hover {
+	color: var(--color-accent);
 }
 
 @media (max-width: 768px) {
@@ -100,12 +430,76 @@
 		padding-top: 24px;
 	}
 
-	.header__logo {
-		width: 200px;
-	}
-
 	.header__nav {
 		gap: 20px;
 	}
+
+	.side-menu__content {
+		padding: 100px 40px 40px;
+	}
+	
+	.side-menu__link-text {
+		font-size: 26px;
+	}
+	
+	.side-menu__list {
+		gap: 16px;
+	}
 }
 </style>
+
+<script>
+	const menuBtn = document.querySelector('.header__menu');
+	const sideMenu = document.getElementById('side-menu');
+	const backdrop = document.querySelector('.side-menu__backdrop');
+	const menuLinks = document.querySelectorAll('.side-menu__link');
+
+	function toggleMenu() {
+		const isOpen = document.body.classList.toggle('menu-open');
+		if (sideMenu) {
+			sideMenu.classList.toggle('is-active', isOpen);
+		}
+		if (menuBtn) {
+			menuBtn.setAttribute('aria-expanded', String(isOpen));
+		}
+	}
+
+	function closeMenu() {
+		document.body.classList.remove('menu-open');
+		if (sideMenu) {
+			sideMenu.classList.remove('is-active');
+		}
+		if (menuBtn) {
+			menuBtn.setAttribute('aria-expanded', 'false');
+		}
+	}
+
+	if (menuBtn) {
+		menuBtn.addEventListener('click', toggleMenu);
+	}
+
+	if (backdrop) {
+		backdrop.addEventListener('click', closeMenu);
+	}
+
+	menuLinks.forEach(link => {
+		link.addEventListener('click', closeMenu);
+	});
+
+	// Обработка клика по языковому переключателю (для touch-устройств)
+	const langDropdown = document.querySelector('.header__lang-dropdown');
+	const langTrigger = document.querySelector('.header__lang-trigger');
+
+	if (langTrigger && langDropdown) {
+		langTrigger.addEventListener('click', (e) => {
+			e.stopPropagation();
+			langDropdown.classList.toggle('is-active');
+			langTrigger.setAttribute('aria-expanded', String(langDropdown.classList.contains('is-active')));
+		});
+
+		document.addEventListener('click', () => {
+			langDropdown.classList.remove('is-active');
+			langTrigger.setAttribute('aria-expanded', 'false');
+		});
+	}
+</script>

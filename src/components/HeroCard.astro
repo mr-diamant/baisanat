@@ -4,12 +4,13 @@ export interface Props {
   ru: string;
   items: string;
   logo: string;
+  theme?: string;
 }
 
-const { en, ru, items, logo } = Astro.props;
+const { en, ru, items, logo, theme } = Astro.props;
 ---
 
-<article class="hero-card">
+<article class={`hero-card hero-card--${theme}`}>
 	<div class="hero-card__top">
 		<img class="hero-card__logo" src={logo} alt={en} width="280" height="28" loading="lazy" />
 		<p class="hero-card__en">{en}</p>
@@ -24,17 +25,18 @@ const { en, ru, items, logo } = Astro.props;
 <style>
 .hero-card {
 	position: relative;
-	background: rgba(255, 255, 255, 0.04);
-	border: 1px solid rgba(255, 255, 255, 0.12);
-	border-radius: 2px;
-	padding: 36px 32px 40px;
-	min-height: 360px;
+	border: none;
+	border-radius: 0;
+	padding: 32px 24px;
+	min-height: 340px;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-end;
 	color: var(--color-white);
 	backdrop-filter: blur(6px);
 	overflow: hidden;
+	clip-path: polygon(0 0, calc(100% - 36px) 0, 100% 36px, 100% 100%, 0 100%);
+	flex: 0 0 290px;
 }
 
 .hero-card::before {
@@ -56,11 +58,11 @@ const { en, ru, items, logo } = Astro.props;
 	height: auto;
 	object-fit: contain;
 	object-position: left center;
-	margin-bottom: 16px;
+	margin-bottom: 6px;
 }
 
 .hero-card__en {
-	font-size: 18px;
+	font-size: 15px;
 	font-weight: 300;
 	opacity: 0.8;
 }
@@ -68,14 +70,14 @@ const { en, ru, items, logo } = Astro.props;
 .hero-card__body {
 	position: relative;
 	z-index: 1;
-	margin-top: auto;
+	margin-top: 28px;
 }
 
 .hero-card__title {
-	font-size: 26px;
+	font-size: 22px;
 	font-weight: 600;
 	line-height: 1.2;
-	margin-bottom: 16px;
+	margin-bottom: 12px;
 }
 
 .hero-card__line {
@@ -83,21 +85,42 @@ const { en, ru, items, logo } = Astro.props;
 	width: 50px;
 	height: 1px;
 	background: var(--color-white);
-	margin-bottom: 16px;
+	margin-bottom: 12px;
 }
 
 .hero-card__items {
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: 400;
 	line-height: 1.4;
 	opacity: 0.85;
 	white-space: pre-line;
 }
 
+.hero-card--expert {
+	background: linear-gradient(45deg, #15162a 0%, #284ea4 100%);
+}
+
+.hero-card--communications {
+	background: linear-gradient(45deg, #20091d 0%, #812f8b 100%);
+}
+
+.hero-card--media {
+	background: linear-gradient(45deg, #09190f 0%, #049280 100%);
+}
+
+.hero-card--events {
+	background: linear-gradient(45deg, #701f0d 0%, #f16d26 100%);
+}
+
+.hero-card--academy {
+	background: linear-gradient(45deg, #2d0b0a 0%, #9a163b 100%);
+}
+
 @media (max-width: 768px) {
 	.hero-card {
 		min-height: auto;
 		padding: 28px 24px;
+		flex: 0 0 290px;
 	}
 }
 </style>

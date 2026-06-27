@@ -2,8 +2,41 @@
 
 @font-face {
   font-family: 'SFT Schrifted Sans';
-  src: local('SFT Schrifted Sans'), local('SFTSchriftedSansTRIALVar');
-  font-weight: 100 900;
+  src: url('../fonts/SFTSchriftedSansTRIAL-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SFT Schrifted Sans';
+  src: url('../fonts/SFTSchriftedSansTRIAL-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SFT Schrifted Sans';
+  src: url('../fonts/SFTSchriftedSansTRIAL-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SFT Schrifted Sans';
+  src: url('../fonts/SFTSchriftedSansTRIAL-DemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SFT Schrifted Sans';
+  src: url('../fonts/SFTSchriftedSansTRIAL-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -23,7 +56,7 @@
 
   --font-main: 'SFT Schrifted Sans', 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --container: 1520px;
-  --gutter: 48px;
+  --gutter: 80px;
 }
 
 * {
@@ -36,7 +69,7 @@ html,
 body {
   font-family: var(--font-main);
   color: var(--color-white);
-  background: var(--color-navy);
+  background: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

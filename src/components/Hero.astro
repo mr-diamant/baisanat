@@ -1,8 +1,15 @@
 ---
-import HeroCard from './HeroCard.astro';
 ---
 
 <section class="hero">
+	<div class="hero__bg">
+		<video class="hero__video" autoplay loop muted playsinline aria-hidden="true">
+			<source src={import.meta.env.BASE_URL + 'Media/blur-transcode.webm'} type="video/webm" />
+			<source src={import.meta.env.BASE_URL + 'Media/blur-transcode.mp4'} type="video/mp4" />
+		</video>
+		<div class="hero__video-overlay"></div>
+	</div>
+
 	<div class="container hero__inner">
 		<div class="hero__content">
 			<h1 class="hero__title">
@@ -17,7 +24,28 @@ import HeroCard from './HeroCard.astro';
 			<div class="hero__section-label">
 				<span class="hero__number">01</span>
 				<div class="hero__label-block">
-					<span class="hero__label">Формула Baisanat</span>
+					<span class="hero__label" typewriter="true" typewriter-delay="150">
+						<span class="split-lines">
+							<span class="split-words">
+								<span class="split-chars">Ф</span>
+								<span class="split-chars">о</span>
+								<span class="split-chars">р</span>
+								<span class="split-chars">м</span>
+								<span class="split-chars">у</span>
+								<span class="split-chars">л</span>
+								<span class="split-chars">а</span>
+								<span class="split-space">&nbsp;</span>
+								<span class="split-chars">B</span>
+								<span class="split-chars">a</span>
+								<span class="split-chars">i</span>
+								<span class="split-chars">s</span>
+								<span class="split-chars">a</span>
+								<span class="split-chars">n</span>
+								<span class="split-chars">a</span>
+								<span class="split-chars">t</span>
+							</span>
+						</span>
+					</span>
 					<span class="hero__line"></span>
 				</div>
 			</div>
@@ -28,80 +56,66 @@ import HeroCard from './HeroCard.astro';
 				<p>Воплощаем идеи,<br />контролируем результат</p>
 			</div>
 		</div>
-
-		<div class="hero__ecosystem">
-			<div class="hero__section-label hero__section-label--dark">
-				<span class="hero__number">02</span>
-				<div class="hero__label-block">
-					<span class="hero__label">Экосистема</span>
-					<span class="hero__line hero__line--dark"></span>
-				</div>
-			</div>
-
-			<div class="hero__stats">
-				<div class="hero__stat">
-					<span class="hero__stat-value hero__stat-value--filled">5</span>
-					<span class="hero__stat-caption hero__stat-caption--filled">подразделений</span>
-				</div>
-				<div class="hero__stat">
-					<span class="hero__stat-value hero__stat-value--outlined">12</span>
-					<span class="hero__stat-caption hero__stat-caption--outlined">сервисов</span>
-				</div>
-				<div class="hero__stat">
-					<span class="hero__stat-value hero__stat-value--outlined">70</span>
-					<span class="hero__stat-caption hero__stat-caption--outlined">услуг</span>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Bottom cards are part of the full design but outside the first visible viewport for now -->
-	<div class="hero__cards">
-		<div class="container hero__cards-inner">
-			<HeroCard
-				en="Expert"
-				ru="Управление"
-				items="Reserch /PMO /Due diligence"
-				logo={import.meta.env.BASE_URL + 'logo1.png'}
-			/>
-			<HeroCard
-				en="Communications"
-				ru="Продвижение"
-				items="PR /Marketing /Buying"
-				logo={import.meta.env.BASE_URL + 'logo2.png'}
-			/>
-			<HeroCard
-				en="Media"
-				ru="Креатив"
-				items="Media Production /Design /Web & App"
-				logo={import.meta.env.BASE_URL + 'logo3.png'}
-			/>
-			<HeroCard
-				en="Events"
-				ru="События"
-				items="Technical solutions /Event"
-				logo={import.meta.env.BASE_URL + 'logo4.png'}
-			/>
-		</div>
 	</div>
 </section>
 
 <style>
 .hero {
 	position: relative;
-	min-height: 1180px;
-	background:
-		linear-gradient(
-			180deg,
-			#07070f 0%,
-			#0e143f 22%,
-			#1e2b86 48%,
-			#2b3fa3 72%,
-			#4154b8 100%
-		);
-	overflow: hidden;
-	padding-bottom: 80px;
+	z-index: 1;
+	min-height: 100vh;
+	padding-bottom: 140px;
 }
+
+@media (max-width: 768px) {
+	.hero {
+		overflow: hidden;
+		padding-bottom: 80px;
+	}
+}
+
+.hero__bg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+	z-index: -1;
+	overflow: hidden;
+}
+
+.hero__video {
+	position: absolute;
+	top: -250px; /* подняли на 200px + 50px запас на размытие краев */
+	left: -5%;
+	width: 110%;
+	height: calc(100% + 250px);
+	object-fit: cover;
+	pointer-events: none;
+	z-index: 0;
+	filter: blur(65px);
+	transform: scale(1.06); /* компенсирует полупрозрачные края от размытия */
+}
+
+.hero__video-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, transparent 40%, #ffffff 100%);
+	pointer-events: none;
+	z-index: 1;
+}
+
+@media (max-width: 768px) {
+	.hero__video {
+		top: -150px;
+		height: calc(100% + 150px);
+		filter: blur(40px);
+	}
+	.hero__video-overlay {
+		background: linear-gradient(180deg, transparent 40%, #ffffff 100%);
+	}
+}
+
 
 .hero__inner {
 	position: relative;
@@ -110,17 +124,18 @@ import HeroCard from './HeroCard.astro';
 }
 
 .hero__title {
-	font-size: clamp(42px, 5.5vw, 72px);
-	font-weight: 400;
+	font-size: clamp(34px, 4.5vw, 60px);
+	font-weight: 700;
 	line-height: 1.03;
 	letter-spacing: -0.02em;
 	max-width: 1100px;
+	margin-left: 110px;
 }
 
 .hero__title-accent {
 	display: block;
-	color: #8ea4e0;
-	font-weight: 500;
+	color: #85a0ff;
+	font-weight: 700;
 }
 
 .hero__title-base {
@@ -141,11 +156,11 @@ import HeroCard from './HeroCard.astro';
 }
 
 .hero__section-label--dark {
-	color: #ffffff;
+	color: #000000;
 }
 
 .hero__number {
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: 400;
 	line-height: 1;
 	opacity: 0.8;
@@ -160,7 +175,7 @@ import HeroCard from './HeroCard.astro';
 }
 
 .hero__label {
-	font-size: 18px;
+	font-size: 15px;
 	font-weight: 400;
 	line-height: 1;
 }
@@ -173,7 +188,7 @@ import HeroCard from './HeroCard.astro';
 }
 
 .hero__line--dark {
-	background: rgba(255, 255, 255, 0.5);
+	background: #000000;
 }
 
 .hero__columns {
@@ -186,75 +201,10 @@ import HeroCard from './HeroCard.astro';
 }
 
 .hero__columns p {
-	font-size: clamp(22px, 2.2vw, 34px);
+	font-size: clamp(18px, 1.8vw, 28px);
 	font-weight: 400;
 	line-height: 1.1;
 	color: var(--color-white);
-}
-
-.hero__ecosystem {
-	margin-top: 120px;
-}
-
-.hero__stats {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 40px;
-	margin-top: 36px;
-	margin-left: 110px;
-	max-width: 1200px;
-}
-
-.hero__stat {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-}
-
-.hero__stat-value {
-	font-size: clamp(120px, 14vw, 200px);
-	font-weight: 600;
-	line-height: 0.82;
-}
-
-.hero__stat-value--filled {
-	color: #ffffff;
-}
-
-.hero__stat-value--outlined {
-	color: transparent;
-	-webkit-text-stroke: 2px rgba(255, 255, 255, 0.55);
-	text-stroke: 2px rgba(255, 255, 255, 0.55);
-}
-
-.hero__stat-caption {
-	font-size: clamp(22px, 2.2vw, 34px);
-	font-weight: 400;
-	line-height: 1;
-}
-
-.hero__stat-caption--filled {
-	color: #ffffff;
-}
-
-.hero__stat-caption--outlined {
-	color: rgba(255, 255, 255, 0.55);
-}
-
-.hero__cards {
-	margin-top: 80px;
-}
-
-.hero__cards-inner {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 24px;
-}
-
-@media (max-width: 1200px) {
-	.hero__cards-inner {
-		grid-template-columns: repeat(2, 1fr);
-	}
 }
 
 @media (max-width: 768px) {
@@ -262,14 +212,77 @@ import HeroCard from './HeroCard.astro';
 		padding-top: 160px;
 	}
 
-	.hero__columns,
-	.hero__stats {
-		grid-template-columns: 1fr;
+	.hero__title {
 		margin-left: 0;
 	}
 
-	.hero__cards-inner {
+	.hero__columns {
 		grid-template-columns: 1fr;
+		margin-left: 0;
 	}
 }
+
+[typewriter="true"] .split-chars {
+  opacity: 0.1;  /* изначально символы почти прозрачные */
+}
+
+.split-lines {
+	display: inline;
+}
+.split-words {
+	display: inline;
+}
+.split-chars {
+	display: inline-block;
+}
+.split-space {
+	display: inline-block;
+}
 </style>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	// 1. Эффект печатной машинки для заголовка "Формула Baisanat"
+	const typewriterElement = document.querySelector('.hero__label[typewriter="true"]') as HTMLElement | null;
+	if (typewriterElement) {
+		const chars = typewriterElement.querySelectorAll('.split-chars');
+		const delayAttr = typewriterElement.getAttribute('typewriter-delay');
+		const delay = delayAttr ? parseInt(delayAttr, 10) / 1000 : 0.15;
+
+		gsap.to(chars, {
+			opacity: 1,
+			duration: 0.002,
+			stagger: {
+				amount: 0.7,
+			},
+			delay: delay,
+			scrollTrigger: {
+				trigger: typewriterElement,
+				start: 'top 90%', // Запускается, когда заголовок входит в область видимости
+				toggleActions: 'play none none none',
+			}
+		});
+	}
+
+	// 2. Поочередное появление трех колонок с текстом
+	const columns = document.querySelector('.hero__columns') as HTMLElement | null;
+	if (columns) {
+		const paragraphs = columns.querySelectorAll('p');
+		gsap.from(paragraphs, {
+			opacity: 0,
+			y: 30,
+			duration: 0.8,
+			stagger: 0.25,
+			ease: 'power2.out',
+			scrollTrigger: {
+				trigger: columns,
+				start: 'top 85%',
+				toggleActions: 'play none none none'
+			}
+		});
+	}
+</script>
