@@ -37,5 +37,20 @@ import Ecosystem from '../components/Ecosystem.astro';
 			<Hero />
 			<Ecosystem />
 		</main>
+
+		<script>
+			import Lenis from 'lenis';
+			import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+			// Инициализируем Lenis для плавного скролла
+			const lenis = new Lenis({
+				duration: 1.2,
+				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+				autoRaf: true,
+			});
+
+			// Синхронизируем GSAP ScrollTrigger с событиями скролла Lenis
+			lenis.on('scroll', ScrollTrigger.update);
+		</script>
 	</body>
 </html>
