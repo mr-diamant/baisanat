@@ -10,7 +10,11 @@
 					Присоединяйтесь<br/>к Baisanat
 				</h2>
 			</div>
+		</div>
+	</div>
 
+	<div class="footer__middle-wrapper">
+		<div class="container footer__container">
 			<div class="footer__middle">
 				<div class="footer__middle-arrow">
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
@@ -29,6 +33,11 @@
 					</a>
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<div class="container footer__container">
+		<div class="footer__content">
 
 			<div class="footer__bottom">
 				<div class="footer__bottom-left">
@@ -104,9 +113,15 @@
 	.footer__title {
 		font-family: var(--font-main);
 		font-size: clamp(34px, 4.5vw, 60px);
-		font-weight: 700;
+		font-weight: 500;
 		line-height: 1.03;
 		letter-spacing: -0.02em;
+	}
+
+	.footer__middle-wrapper {
+		border-top: 1px solid rgba(255, 255, 255, 0.2);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+		margin-bottom: 80px;
 	}
 
 	.footer__middle {
@@ -114,13 +129,10 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 40px 0;
-		border-top: 1px solid rgba(255, 255, 255, 0.2);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-		margin-bottom: 80px;
 	}
 
 	.footer__middle-arrow {
-		flex: 0 0 100px;
+		flex: 0 0 110px;
 		display: flex;
 		justify-content: flex-start;
 	}
@@ -249,7 +261,6 @@
 		justify-content: space-between;
 		align-items: center;
 		padding-top: 40px;
-		border-top: 1px solid rgba(255, 255, 255, 0.1);
 		font-family: var(--font-main);
 		font-size: 12px;
 		font-weight: 300;
