@@ -2,7 +2,7 @@
 import HeroCard from './HeroCard.astro';
 ---
 
-<section class="ecosystem hero__sticky-wrapper" id="ecosystem-sticky-wrapper">
+<section class="ecosystem hero__sticky-wrapper" id="ecosystem">
 	<div class="hero__sticky-content">
 		<!-- Фоновый оранжевый градиентный слой -->
 		<div class="hero__sticky-bg-orange"></div>
@@ -188,36 +188,10 @@ import HeroCard from './HeroCard.astro';
 					</div>
 
 					<div class="actions__content">
-						<div class="actions__rows">
-							<div class="actions__row-pills actions__row-pills--1">
-								<span class="actions__pill">PR</span>
-								<span class="actions__pill">Marketing</span>
-								<span class="actions__pill">Buying</span>
-								<span class="actions__pill">Tech</span>
-								<span class="actions__pill">Media Production</span>
-								<span class="actions__pill">Design</span>
-								<span class="actions__pill">Education</span>
-							</div>
-
-							<div class="actions__row-pills actions__row-pills--2">
-								<span class="actions__pill">PR</span>
-								<span class="actions__pill">Marketing</span>
-								<span class="actions__pill">Buying</span>
-								<span class="actions__pill">Tech</span>
-								<span class="actions__pill">Media Production</span>
-								<span class="actions__pill">Design</span>
-								<span class="actions__pill">Education</span>
-							</div>
-
-							<div class="actions__row-pills actions__row-pills--3">
-								<span class="actions__pill">PR</span>
-								<span class="actions__pill">Marketing</span>
-								<span class="actions__pill">Buying</span>
-								<span class="actions__pill">Tech</span>
-								<span class="actions__pill">Media Production</span>
-								<span class="actions__pill">Design</span>
-								<span class="actions__pill">Education</span>
-							</div>
+						<div class="actions__rows" data-base-url={import.meta.env.BASE_URL}>
+							<div class="actions__row-pills actions__row-pills--1"></div>
+							<div class="actions__row-pills actions__row-pills--2"></div>
+							<div class="actions__row-pills actions__row-pills--3"></div>
 						</div>
 						
 						<button class="actions__btn">
@@ -884,7 +858,7 @@ import HeroCard from './HeroCard.astro';
 	gsap.registerPlugin(ScrollTrigger);
 
 	// 1. Эффект печатной машинки для заголовка "Экосистема"
-	const typewriterElement = document.querySelector('#ecosystem-sticky-wrapper .hero__label[typewriter="true"]') as HTMLElement | null;
+	const typewriterElement = document.querySelector('#ecosystem .hero__label[typewriter="true"]') as HTMLElement | null;
 	if (typewriterElement) {
 		const chars = typewriterElement.querySelectorAll('.split-chars');
 		const delayAttr = typewriterElement.getAttribute('typewriter-delay');
@@ -906,7 +880,7 @@ import HeroCard from './HeroCard.astro';
 	}
 
 	// Sticky горизонтальный скролл и появление сервисов/услуг
-	const stickyWrapper = document.getElementById('ecosystem-sticky-wrapper') as HTMLElement | null;
+	const stickyWrapper = document.getElementById('ecosystem') as HTMLElement | null;
 	const cardsInner = document.querySelector('.hero__cards-inner') as HTMLElement | null;
 	const bgOrange = document.querySelector('.hero__sticky-bg-orange') as HTMLElement | null;
 	const bgGray = document.querySelector('.hero__sticky-bg-gray') as HTMLElement | null;
@@ -1259,5 +1233,42 @@ import HeroCard from './HeroCard.astro';
 		setTimeout(() => {
 			initOrDestroyScroll();
 		}, 100);
+	}
+
+	// 3. Динамическая загрузка тегов-услуг из JSON
+	const actionsRows = document.querySelector('.actions__rows') as HTMLElement | null;
+	if (actionsRows) {
+		const baseUrl = actionsRows.getAttribute('data-base-url') || '/';
+		const row1 = actionsRows.querySelector('.actions__row-pills--1') as HTMLElement | null;
+		const row2 = actionsRows.querySelector('.actions__row-pills--2') as HTMLElement | null;
+		const row3 = actionsRows.querySelector('.actions__row-pills--3') as HTMLElement | null;
+
+		fetch(`${baseUrl}Media/tags.json`)
+			.then(res => res.json())
+			.then((tagsData: string[]) => {
+				const shuffle = (array: string[]) => {
+					const arr = [...array];
+					for (let i = arr.length - 1; i > 0; i--) {
+						const j = Math.floor(Math.random() * (i + 1));
+						[arr[i], arr[j]] = [arr[j], arr[i]];
+					}
+					return arr;
+				};
+
+				const randomTags = shuffle(tagsData).slice(0, 21);
+				const tags1 = randomTags.slice(0, 7);
+				const tags2 = randomTags.slice(7, 14);
+				const tags3 = randomTags.slice(14, 21);
+
+				const renderPills = (container: HTMLElement | null, tags: string[]) => {
+					if (!container) return;
+					container.innerHTML = tags.map(tag => `<span class="actions__pill">${tag}</span>`).join('');
+				};
+
+				renderPills(row1, tags1);
+				renderPills(row2, tags2);
+				renderPills(row3, tags3);
+			})
+			.catch(err => console.error('Error loading tags:', err));
 	}
 </script>
