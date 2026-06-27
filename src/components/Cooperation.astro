@@ -49,8 +49,8 @@
 					<div class="cooperation__stat-label">профессионалов</div>
 					<div class="cooperation__stat-divider"></div>
 					<div class="cooperation__stat-desc">
-						<svg width="12" height="12" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
-							<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
+						<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
+							<path d="M10 0L8.59 1.41L12.17 5H0V7H12.17L8.59 10.59L10 12L16 6L10 0Z" fill="currentColor"/>
 						</svg>
 						<span>В реализации проектов Baisanat принимают участие казахстанские и зарубежные эксперты</span>
 					</div>
@@ -201,10 +201,22 @@
 	}
 
 	.cooperation__stat-divider {
-		height: 2px;
-		background: linear-gradient(90deg, #ff5000 0%, #ff5000 30px, rgba(255,255,255,0.2) 30px, rgba(255,255,255,0.2) 100%);
+		height: 1px;
+		background: rgba(255,255,255,0.2);
 		margin-bottom: 30px;
 		width: 100%;
+		position: relative;
+	}
+
+	.cooperation__stat-divider::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 50px;
+		height: 4px;
+		background: #ff5000;
 	}
 
 	.cooperation__stat-desc {
