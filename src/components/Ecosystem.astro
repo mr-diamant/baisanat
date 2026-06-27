@@ -765,10 +765,11 @@ import HeroCard from './HeroCard.astro';
 
 .actions__row-pills {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+	flex-wrap: nowrap;
+	width: max-content;
+	justify-content: flex-start;
 	gap: 12px;
-	width: 100%;
+	will-change: transform;
 }
 
 .actions__row-pills--2 {
@@ -818,8 +819,10 @@ import HeroCard from './HeroCard.astro';
 	}
 
 	.actions__row-pills {
+		flex-wrap: wrap;
 		justify-content: center;
 		gap: 8px;
+		width: 100%;
 	}
 
 	.actions__row-pills--2,
@@ -894,6 +897,9 @@ import HeroCard from './HeroCard.astro';
 		const servicesRight = document.querySelector('.services__right') as HTMLElement | null;
 		const actionsLeft = document.querySelector('.actions__header') as HTMLElement | null;
 		const actionsRight = document.querySelector('.actions__content') as HTMLElement | null;
+		const actionRow1 = document.querySelector('.actions__row-pills--1') as HTMLElement | null;
+		const actionRow2 = document.querySelector('.actions__row-pills--2') as HTMLElement | null;
+		const actionRow3 = document.querySelector('.actions__row-pills--3') as HTMLElement | null;
 		
 		const statDivisionsValue = document.querySelector('#stat-divisions .hero__stat-value') as HTMLElement | null;
 		const statDivisionsCaption = document.querySelector('#stat-divisions .hero__stat-caption') as HTMLElement | null;
@@ -957,6 +963,9 @@ import HeroCard from './HeroCard.astro';
 				actionsRight.style.removeProperty('opacity');
 				actionsRight.style.removeProperty('transform');
 			}
+			if (actionRow1) actionRow1.style.removeProperty('transform');
+			if (actionRow2) actionRow2.style.removeProperty('transform');
+			if (actionRow3) actionRow3.style.removeProperty('transform');
 			stickyWrapper.style.removeProperty('height');
 		};
 
@@ -1016,6 +1025,9 @@ import HeroCard from './HeroCard.astro';
 					actionsRight.style.opacity = '0';
 					actionsRight.style.transform = 'translateY(40px)';
 				}
+				if (actionRow1) actionRow1.style.removeProperty('transform');
+				if (actionRow2) actionRow2.style.removeProperty('transform');
+				if (actionRow3) actionRow3.style.removeProperty('transform');
 				return;
 			}
 
@@ -1045,6 +1057,9 @@ import HeroCard from './HeroCard.astro';
 					actionsRight.style.opacity = '1';
 					actionsRight.style.transform = 'translateY(0)';
 				}
+				if (actionRow1) actionRow1.style.transform = 'translateX(0px)';
+				if (actionRow2) actionRow2.style.transform = 'translateX(0px)';
+				if (actionRow3) actionRow3.style.transform = 'translateX(0px)';
 				if (stickyContent) stickyContent.style.paddingTop = '20px';
 				return;
 			}
@@ -1082,6 +1097,9 @@ import HeroCard from './HeroCard.astro';
 					actionsRight.style.opacity = '0';
 					actionsRight.style.transform = 'translateY(40px)';
 				}
+				if (actionRow1) actionRow1.style.removeProperty('transform');
+				if (actionRow2) actionRow2.style.removeProperty('transform');
+				if (actionRow3) actionRow3.style.removeProperty('transform');
 			}
 			// Фаза 2: Скрытие карточек, подъем оранжевого фона и появление сервисов
 			else if (scrolled <= maxHorizontalScroll + phase2Distance) {
@@ -1134,6 +1152,9 @@ import HeroCard from './HeroCard.astro';
 					actionsRight.style.opacity = '0';
 					actionsRight.style.transform = 'translateY(40px)';
 				}
+				if (actionRow1) actionRow1.style.removeProperty('transform');
+				if (actionRow2) actionRow2.style.removeProperty('transform');
+				if (actionRow3) actionRow3.style.removeProperty('transform');
 			}
 			// Фаза 3: Скрытие сервисов, подъем серого фона и появление профильных услуг
 			else {
@@ -1176,6 +1197,17 @@ import HeroCard from './HeroCard.astro';
 					const rightProgress = Math.max(0, Math.min(1, (progress3 - 0.75) / 0.25));
 					actionsRight.style.opacity = rightProgress.toString();
 					actionsRight.style.transform = `translateY(${(1 - rightProgress) * 40}px)`;
+
+					// Горизонтальный сдвиг рядов кнопок (выходят справа на разной скорости)
+					if (actionRow1) {
+						actionRow1.style.transform = `translateX(${(1 - rightProgress) * 800}px)`;
+					}
+					if (actionRow2) {
+						actionRow2.style.transform = `translateX(${(1 - rightProgress) * 1200}px)`;
+					}
+					if (actionRow3) {
+						actionRow3.style.transform = `translateX(${(1 - rightProgress) * 600}px)`;
+					}
 				}
 			}
 		};
