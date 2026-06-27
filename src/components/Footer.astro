@@ -4,74 +4,75 @@
 <footer class="footer" id="footer">
 	<canvas id="footer-bg" class="footer__bg-canvas"></canvas>
 	<div class="container footer__container">
-		
-		<div class="footer__top">
-			<h2 class="footer__title">
-				Присоединяйтесь<br/>к Baisanat
-			</h2>
-		</div>
+		<div class="footer__content">
+			<div class="footer__top">
+				<h2 class="footer__title">
+					Присоединяйтесь<br/>к Baisanat
+				</h2>
+			</div>
 
-		<div class="footer__middle">
-			<div class="footer__middle-arrow">
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
-					<path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z" fill="currentColor"/>
-				</svg>
-			</div>
-			<div class="footer__middle-text">
-				Станьте клиентом, партнером<br/>или частью команды
-			</div>
-			<div class="footer__middle-action">
-				<a href="#" class="footer__link-start">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z" fill="currentColor"/>
+			<div class="footer__middle">
+				<div class="footer__middle-arrow">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
+						<path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z" fill="currentColor"/>
 					</svg>
-					Начать сотрудничество
-				</a>
-			</div>
-		</div>
-
-		<div class="footer__bottom">
-			<div class="footer__bottom-left">
-				<a href="mailto:info@bh.kz" class="footer__email">info@bh.kz</a>
-				
-				<div class="footer__socials">
-					<a href="#">Linkedin</a>
-					<a href="#">Instagram</a>
-					<a href="#">Facebook</a>
-					<a href="#">Telegram</a>
 				</div>
-
-				<div class="footer__logo">
-					<img src={import.meta.env.BASE_URL + 'Media/logo_white.svg'} alt="BAISANAT HOLDING" />
+				<div class="footer__middle-text">
+					Станьте клиентом, партнером<br/>или частью команды
+				</div>
+				<div class="footer__middle-action">
+					<a href="#" class="footer__link-start">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z" fill="currentColor"/>
+						</svg>
+						Начать сотрудничество
+					</a>
 				</div>
 			</div>
 
-			<div class="footer__bottom-right">
-				<div class="footer__nav-grid">
-					<div class="footer__nav-col">
-						<a href="#">На главную</a>
-						<a href="#">О холдинге</a>
-						<a href="#">Сервисы и услуги</a>
+			<div class="footer__bottom">
+				<div class="footer__bottom-left">
+					<a href="mailto:info@bh.kz" class="footer__email">info@bh.kz</a>
+					
+					<div class="footer__socials">
+						<a href="#">Linkedin</a>
+						<a href="#">Instagram</a>
+						<a href="#">Facebook</a>
+						<a href="#">Telegram</a>
 					</div>
-					<div class="footer__nav-col">
-						<a href="#">Клиенты</a>
-						<a href="#">Проекты</a>
-						<a href="#">Контакты</a>
+
+					<div class="footer__logo">
+						<img src={import.meta.env.BASE_URL + 'Media/logo_white.svg'} alt="BAISANAT HOLDING" />
 					</div>
 				</div>
-			</div>
-		</div>
 
-		<div class="footer__copyright">
-			<a href="#" class="footer__policy">Политика и соглашение</a>
-			<span class="footer__rights">&copy; Baisanat Holding 2026</span>
+				<div class="footer__bottom-right">
+					<div class="footer__nav-grid">
+						<div class="footer__nav-col">
+							<a href="#">На главную</a>
+							<a href="#">О холдинге</a>
+							<a href="#">Сервисы и услуги</a>
+						</div>
+						<div class="footer__nav-col">
+							<a href="#">Клиенты</a>
+							<a href="#">Проекты</a>
+							<a href="#">Контакты</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer__copyright">
+				<a href="#" class="footer__policy">Политика и соглашение</a>
+				<span class="footer__rights">&copy; Baisanat Holding 2026</span>
+			</div>
 		</div>
 	</div>
 </footer>
 
 <style>
 	.footer {
-		padding: 100px 0 40px;
+		padding: 150px 0 40px;
 		position: relative;
 		z-index: 2;
 		overflow: hidden;
@@ -88,18 +89,23 @@
 		pointer-events: none;
 	}
 
+	.footer__content {
+		margin-left: 110px;
+		max-width: 1200px;
+	}
+
 	.footer__top {
 		margin-bottom: 60px;
 		display: flex;
-		justify-content: center;
-		text-align: center;
+		justify-content: flex-start;
+		text-align: left;
 	}
 
 	.footer__title {
 		font-family: var(--font-main);
-		font-size: 4vw;
-		font-weight: 500;
-		line-height: 1.1;
+		font-size: clamp(34px, 4.5vw, 60px);
+		font-weight: 700;
+		line-height: 1.03;
 		letter-spacing: -0.02em;
 	}
 
@@ -264,6 +270,9 @@
 	}
 
 	@media (max-width: 1024px) {
+		.footer__content {
+			margin-left: 40px;
+		}
 		.footer__title {
 			font-size: 5vw;
 		}
@@ -278,8 +287,11 @@
 	}
 
 	@media (max-width: 768px) {
+		.footer__content {
+			margin-left: 0;
+		}
 		.footer {
-			padding: 60px 0 30px;
+			padding: 80px 0 30px;
 		}
 		.footer__title {
 			font-size: 32px;
