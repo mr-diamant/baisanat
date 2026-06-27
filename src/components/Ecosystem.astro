@@ -186,14 +186,15 @@ import HeroCard from './HeroCard.astro';
 							</svg>Их сочетание позволяет реализовывать точные и эффективные<br />решения, объединяя экспертизу, креативность и управляемость
 						</p>
 					</div>
+				</div>
 
-					<div class="actions__content">
-						<div class="actions__rows" data-base-url={import.meta.env.BASE_URL}>
-							<div class="actions__row-pills actions__row-pills--1"></div>
-							<div class="actions__row-pills actions__row-pills--2"></div>
-							<div class="actions__row-pills actions__row-pills--3"></div>
-						</div>
-						
+				<div class="actions__content">
+					<div class="actions__rows" data-base-url={import.meta.env.BASE_URL}>
+						<div class="actions__row-pills actions__row-pills--1"></div>
+						<div class="actions__row-pills actions__row-pills--2"></div>
+						<div class="actions__row-pills actions__row-pills--3"></div>
+					</div>
+					<div class="container">
 						<button class="actions__btn">
 							<svg class="actions__btn-icon" width="10" height="10" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
@@ -406,9 +407,15 @@ import HeroCard from './HeroCard.astro';
 		pointer-events: auto;
 		transform: none;
 		background: linear-gradient(180deg, #adb0c1 50%, #ffffff 90%, #ffffff 100%);
-		padding: 60px 20px;
+		padding: 60px 0;
 		margin-left: -20px;
 		margin-right: -20px;
+	}
+
+	.hero__actions-wrapper .actions__inner,
+	.hero__actions-wrapper .container {
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 }
 
@@ -629,7 +636,6 @@ import HeroCard from './HeroCard.astro';
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
-	align-items: center;
 	width: 100%;
 }
 
@@ -674,6 +680,7 @@ import HeroCard from './HeroCard.astro';
 	color: rgba(0, 0, 0, 0.65);
 	text-align: center;
 	width: 100%;
+	margin-bottom: 20px;
 }
 
 .actions__desc-icon {
@@ -760,8 +767,7 @@ import HeroCard from './HeroCard.astro';
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
-	width: 100vw;
-	margin-left: calc(-50vw + 50%);
+	width: 100%;
 	align-items: flex-start;
 	overflow: hidden;
 }
@@ -778,15 +784,15 @@ import HeroCard from './HeroCard.astro';
 }
 
 .actions__row-pills--1 {
-	animation: marquee-left 25s linear infinite;
+	animation: marquee-left 120s linear infinite;
 }
 
 .actions__row-pills--2 {
-	animation: marquee-right 30s linear infinite;
+	animation: marquee-right 150s linear infinite;
 }
 
 .actions__row-pills--3 {
-	animation: marquee-left 20s linear infinite;
+	animation: marquee-left 100s linear infinite;
 }
 
 :global(.actions__pill) {
@@ -818,13 +824,13 @@ import HeroCard from './HeroCard.astro';
 		transform: translateX(0);
 	}
 	100% {
-		transform: translateX(-33.333%);
+		transform: translateX(-50%);
 	}
 }
 
 @keyframes marquee-right {
 	0% {
-		transform: translateX(-33.333%);
+		transform: translateX(-50%);
 	}
 	100% {
 		transform: translateX(0);
@@ -1117,8 +1123,9 @@ import HeroCard from './HeroCard.astro';
 				const progress2 = (scrolled - maxHorizontalScroll) / phase2Distance;
 
 				// 1. Скрываем карточки (не используем opacity, чтобы они не исчезали плавно)
+				// Добавляем translateX, чтобы они продолжали движение влево
 				cardsBlock.style.opacity = '1';
-				cardsBlock.style.transform = `translateY(${-progress2 * 40}px)`;
+				cardsBlock.style.transform = `translateY(${-progress2 * 40}px) translateX(${-progress2 * 500}px)`;
 
 				// 2. Поднимаем оранжевый фон (на отрезке progress2 от 0 до 0.5)
 				const bgProgress = Math.min(1, progress2 / 0.5);
@@ -1277,14 +1284,19 @@ import HeroCard from './HeroCard.astro';
 					return arr;
 				};
 
-				const randomTags = shuffle(tagsData).slice(0, 21);
-				const tags1 = randomTags.slice(0, 7);
-				const tags2 = randomTags.slice(7, 14);
-				const tags3 = randomTags.slice(14, 21);
+				// Используем все теги без ограничения по количеству
+				const allTags = shuffle(tagsData);
+				const third = Math.ceil(allTags.length / 3);
+				const tags1 = allTags.slice(0, third);
+				const tags2 = allTags.slice(third, third * 2);
+				const tags3 = allTags.slice(third * 2);
 
+				// Дублируем теги для бесконечного seamless loop (как в слайдере галереи)
 				const renderPills = (container: HTMLElement | null, tags: string[]) => {
 					if (!container) return;
-					container.innerHTML = tags.map(tag => `<span class="actions__pill">${tag}</span>`).join('');
+					// Создаём 2 копии — анимация translateX(-50%) создаёт бесконечную прокрутку без прыжков
+					const pillsHtml = tags.map(tag => `<span class="actions__pill">${tag}</span>`).join('');
+					container.innerHTML = pillsHtml + pillsHtml;
 				};
 
 				renderPills(row1, tags1);
