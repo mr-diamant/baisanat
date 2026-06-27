@@ -1111,9 +1111,8 @@ import HeroCard from './HeroCard.astro';
 
 				const progress2 = (scrolled - maxHorizontalScroll) / phase2Distance;
 
-				// 1. Скрываем карточки (на отрезке progress2 от 0 до 0.3)
-				const cardsOpacity = Math.max(0, 1 - progress2 / 0.3);
-				cardsBlock.style.opacity = cardsOpacity.toString();
+				// 1. Скрываем карточки (не используем opacity, чтобы они не исчезали плавно)
+				cardsBlock.style.opacity = '1';
 				cardsBlock.style.transform = `translateY(${-progress2 * 40}px)`;
 
 				// 2. Поднимаем оранжевый фон (на отрезке progress2 от 0 до 0.5)
