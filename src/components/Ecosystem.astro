@@ -519,12 +519,27 @@ import HeroCard from './HeroCard.astro';
 	gap: 12px;
 	padding: 13px 20px;
 	cursor: pointer;
-	border-radius: 12px;
-	transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
-	            transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
-	            box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	position: relative;
 	background-color: transparent;
-	will-change: transform, background-color;
+	overflow: hidden;
+}
+
+:global(.services__col::before) {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--hover-bg, transparent);
+	z-index: -1;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+:global(.services__col:hover::before) {
+	transform: scaleX(1);
 }
 
 :global(.services__col:first-child) {
@@ -541,6 +556,7 @@ import HeroCard from './HeroCard.astro';
 	position: relative;
 	top: -4px;
 	transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	z-index: 1;
 }
 
 :global(.services__text) {
@@ -549,6 +565,7 @@ import HeroCard from './HeroCard.astro';
 	font-weight: 500;
 	color: #000000;
 	transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	z-index: 1;
 }
 
 @media (max-width: 1024px) {
@@ -1272,9 +1289,7 @@ import HeroCard from './HeroCard.astro';
 								const num = col.querySelector('.services__num') as HTMLElement;
 								const text = col.querySelector('.services__text') as HTMLElement;
 								
-								col.style.backgroundColor = group.color;
-								col.style.transform = 'translate(4px, -2px)';
-								col.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.15)';
+								col.style.setProperty('--hover-bg', group.color);
 								
 								if (num) num.style.color = '#ffffff';
 								if (text) text.style.color = '#ffffff';
@@ -1283,10 +1298,6 @@ import HeroCard from './HeroCard.astro';
 							col.addEventListener('mouseleave', () => {
 								const num = col.querySelector('.services__num') as HTMLElement;
 								const text = col.querySelector('.services__text') as HTMLElement;
-								
-								col.style.backgroundColor = 'transparent';
-								col.style.transform = 'none';
-								col.style.boxShadow = 'none';
 								
 								if (num) num.style.color = 'rgba(0, 0, 0, 0.4)';
 								if (text) text.style.color = '#000000';
