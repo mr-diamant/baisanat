@@ -100,7 +100,6 @@
 	}
 
 	.footer__content {
-		margin-left: 110px;
 		max-width: 1200px;
 	}
 
@@ -117,6 +116,7 @@
 		font-weight: 500;
 		line-height: 1.03;
 		letter-spacing: -0.02em;
+		margin-left: 260px;
 	}
 
 	.footer__middle-wrapper {
@@ -133,7 +133,7 @@
 	}
 
 	.footer__middle-arrow {
-		flex: 0 0 110px;
+		flex: 0 0 260px;
 		display: flex;
 		justify-content: flex-start;
 	}
@@ -162,9 +162,9 @@
 		font-family: var(--font-main);
 		font-size: 16px;
 		font-weight: 400;
-		color: #ffffff;
+		color: #85A0FF;
 		text-decoration: none;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+		border-bottom: 1px solid #85A0FF;
 		padding-bottom: 4px;
 		transition: opacity 0.2s ease;
 	}
@@ -229,6 +229,7 @@
 	.footer__bottom-right {
 		display: flex;
 		align-items: flex-end;
+		flex: 0 0 450px;
 	}
 
 	.footer__nav-grid {
@@ -269,6 +270,8 @@
 		display: flex;
 		gap: 60px;
 		align-items: center;
+		flex: 0 0 450px;
+		justify-content: flex-start;
 	}
 
 	.footer__policy {
@@ -285,9 +288,6 @@
 	}
 
 	@media (max-width: 1024px) {
-		.footer__content {
-			margin-left: 40px;
-		}
 		.footer__title {
 			font-size: 5vw;
 		}
@@ -302,9 +302,6 @@
 	}
 
 	@media (max-width: 768px) {
-		.footer__content {
-			margin-left: 0;
-		}
 		.footer {
 			padding: 80px 0 30px;
 		}
@@ -321,6 +318,8 @@
 		}
 		.footer__bottom-right {
 			align-items: flex-start;
+			flex: 1 1 auto;
+			width: 100%;
 		}
 		.footer__nav-grid {
 			flex-direction: column;
@@ -333,6 +332,10 @@
 			flex-direction: column;
 			gap: 20px;
 			align-items: flex-start;
+		}
+		.footer__copyright-text {
+			flex: 1 1 auto;
+			width: 100%;
 		}
 	}
 </style>
@@ -366,9 +369,9 @@
 					vec2 uv = gl_FragCoord.xy / u_resolution.xy;
 					
 					// ==== НАСТРОЙКИ ФОНОВОГО ГРАДИЕНТА ====
-					vec3 c_bottom = ${hexToGLSL('#0d1479')};
+					vec3 c_bottom = ${hexToGLSL('#02021f')};
 					vec3 c_mid =    ${hexToGLSL('#080e5b')};
-					vec3 c_top =    ${hexToGLSL('#02021f')};
+					vec3 c_top =    ${hexToGLSL('#0d1479')};
 
 					vec3 baseColor = mix(c_bottom, c_mid, smoothstep(0.0, 0.6, uv.y));
 					baseColor = mix(baseColor, c_top, smoothstep(0.6, 1.0, uv.y));
@@ -409,9 +412,9 @@
 					float w4 = smoothstep(0.7, 0.1, length(p4));
 
 					vec3 finalColor = baseColor;
-					finalColor = mix(finalColor, color2, w2 * 0.7);
-					finalColor = mix(finalColor, color1, w1 * 0.7);
-					finalColor = mix(finalColor, color3, w3 * 1.0);
+					finalColor = mix(finalColor, color2, w2 * 0.0);
+					finalColor = mix(finalColor, color1, w1 * 0.0);
+					finalColor = mix(finalColor, color3, w3 * 0.0);
 					finalColor = mix(finalColor, color4, w4 * 0.0);
 
 					gl_FragColor = vec4(finalColor, 1.0);
