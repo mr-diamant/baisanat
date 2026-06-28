@@ -517,7 +517,7 @@ import HeroCard from './HeroCard.astro';
 	display: flex;
 	align-items: baseline;
 	gap: 12px;
-	padding: 13px 20px;
+	padding: 10px 10px;
 	cursor: pointer;
 	position: relative;
 	background-color: transparent;
@@ -526,24 +526,24 @@ import HeroCard from './HeroCard.astro';
 :global(.services__col::before) {
 	content: "";
 	position: absolute;
-	left: 2%;
+	left: -1%;
 	top: -1px;
-	width: 92%;
+	width: 102%;
 	height: calc(100% + 2px);
 	background-color: var(--hover-bg, transparent);
 	z-index: -1;
-	transform: skewX(-10deg) scaleX(0);
+	transform: skewX(-23deg) scaleX(0);
 	transform-origin: left;
 	transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 :global(.services__col:hover::before) {
-	transform: skewX(-10deg) scaleX(1);
+	transform: skewX(-23deg) scaleX(1);
 }
 
 :global(.services__col:first-child) {
 	/* Сохраняем отступ справа, компенсируя новые padding */
-	margin-right: 20px;
+	margin-right: 10px;
 }
 
 :global(.services__num) {
