@@ -419,27 +419,26 @@ import HeroCard from './HeroCard.astro';
 .hero__stats {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 40px;
-	margin-top: 36px;
-	margin-left: 110px;
-	max-width: 1200px;
+	gap: 30px;
+	margin: 36px auto 0;
+	max-width: 1000px;
 	background-color: #ffffff;
 	border: 1px solid #e1e3e6;
-	border-radius: 20px;
-	padding: 40px 50px;
+	border-radius: 30px;
+	padding: 30px 40px;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 .hero__stat {
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: 12px;
 	align-items: center;
 	text-align: center;
 }
 
 .hero__stat-value {
-	font-size: clamp(90px, 10vw, 150px);
+	font-size: clamp(80px, 8vw, 120px);
 	font-weight: 600;
 	line-height: 0.82;
 	transition: color 0.4s ease, -webkit-text-stroke 0.4s ease, text-stroke 0.4s ease;
