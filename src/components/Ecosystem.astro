@@ -958,11 +958,12 @@ import HeroCard from './HeroCard.astro';
 
 			const rect = stickyWrapper.getBoundingClientRect();
 			const viewHeight = window.innerHeight;
-			const wrapperHeight = rect.height;
 
 			const scrolled = -rect.top;
 			const maxHorizontalScroll = cardsInner.scrollWidth - cardsInner.clientWidth;
-			const phase2Distance = viewHeight * 1.5;
+			
+			// Увеличиваем расстояние Phase 2 до 2.2 * viewHeight, чтобы задержать просмотр оранжевого блока
+			const phase2Distance = viewHeight * 2.2;
 			const phase3Distance = viewHeight * 1.5;
 			const totalScrollDistance = maxHorizontalScroll + phase2Distance + phase3Distance;
 
@@ -1136,10 +1137,11 @@ import HeroCard from './HeroCard.astro';
 
 				const progress3 = (scrolled - maxHorizontalScroll - phase2Distance) / phase3Distance;
 
-				// 1. Скрываем контент Фазы 2 (на отрезке progress3 от 0 до 0.3)
-				const servicesOpacity = Math.max(0, 1 - progress3 / 0.3);
-				if (servicesLeft) servicesLeft.style.opacity = servicesOpacity.toString();
-				if (servicesRight) servicesRight.style.opacity = servicesOpacity.toString();
+				// 1. УБРАНО скрытие контента Фазы 2 (убрана анимация opacity к 0).
+				// Сервисы теперь остаются видимыми с полной непрозрачностью opacity = 1
+				// и просто перекрываются поднимающимся снизу серым фоном.
+				if (servicesLeft) servicesLeft.style.opacity = '1';
+				if (servicesRight) servicesRight.style.opacity = '1';
 				servicesWrapper.style.pointerEvents = progress3 > 0.3 ? 'none' : 'auto';
 
 				// 2. Поднимаем серый фон (на отрезке progress3 от 0 до 0.5)
@@ -1176,7 +1178,7 @@ import HeroCard from './HeroCard.astro';
 		const updateWrapperHeight = () => {
 			if (window.innerWidth > 768) {
 				const maxHorizontalScroll = cardsInner.scrollWidth - cardsInner.clientWidth;
-				const phase2Distance = window.innerHeight * 1.5;
+				const phase2Distance = window.innerHeight * 2.2;
 				const phase3Distance = window.innerHeight * 1.5;
 				// Высота = высота экрана + горизонтальный скролл + Фаза 2 + Фаза 3
 				stickyWrapper.style.height = `${window.innerHeight + maxHorizontalScroll + phase2Distance + phase3Distance}px`;
