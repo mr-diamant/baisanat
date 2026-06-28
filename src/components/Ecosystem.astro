@@ -500,19 +500,19 @@ import HeroCard from './HeroCard.astro';
 	flex: 1;
 }
 
-.services__table {
+:global(.services__table) {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.services__row {
+:global(.services__row) {
 	display: flex;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.services__col {
+:global(.services__col) {
 	flex: 1;
 	display: flex;
 	align-items: baseline;
@@ -521,11 +521,11 @@ import HeroCard from './HeroCard.astro';
 	cursor: pointer;
 }
 
-.services__col:first-child {
+:global(.services__col:first-child) {
 	padding-right: 40px;
 }
 
-.services__num {
+:global(.services__num) {
 	font-family: var(--font-main);
 	font-size: 13px;
 	font-weight: 500;
@@ -536,7 +536,7 @@ import HeroCard from './HeroCard.astro';
 	transition: color 0.2s ease;
 }
 
-.services__text {
+:global(.services__text) {
 	font-family: var(--font-main);
 	font-size: 1.5vw;
 	font-weight: 500;
@@ -564,15 +564,15 @@ import HeroCard from './HeroCard.astro';
 		max-width: 100%;
 	}
 
-	.services__row {
+	:global(.services__row) {
 		flex-direction: column;
 	}
 
-	.services__col {
+	:global(.services__col) {
 		padding: 16px 0;
 	}
 
-	.services__col:first-child {
+	:global(.services__col:first-child) {
 		padding-right: 0;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 	}
