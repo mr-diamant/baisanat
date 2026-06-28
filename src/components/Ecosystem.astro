@@ -821,12 +821,6 @@ import HeroCard from './HeroCard.astro';
 	margin-right: 12px;
 }
 
-:global(.actions__pill:hover) {
-	background: #000000;
-	color: #ffffff;
-	border-color: #000000;
-}
-
 @keyframes marquee-left {
 	0% {
 		transform: translateX(0);
@@ -1280,10 +1274,34 @@ import HeroCard from './HeroCard.astro';
 		const row2 = actionsRows.querySelector('.actions__row-pills--2') as HTMLElement | null;
 		const row3 = actionsRows.querySelector('.actions__row-pills--3') as HTMLElement | null;
 
-		fetch(`${baseUrl}Media/tags.json`)
+		interface ServiceGroup {
+			name: string;
+			color: string;
+			tags: string[];
+		}
+
+		interface TagItem {
+			text: string;
+			color: string;
+		}
+
+		fetch(`${baseUrl}Media/tags12.json`)
 			.then(res => res.json())
-			.then((tagsData: string[]) => {
-				const shuffle = (array: string[]) => {
+			.then((data: ServiceGroup[]) => {
+				// Извлекаем все теги со своими цветами
+				let allTagItems: TagItem[] = [];
+				data.forEach(group => {
+					if (Array.isArray(group.tags)) {
+						group.tags.forEach(tag => {
+							allTagItems.push({
+								text: tag,
+								color: group.color || '#000000'
+							});
+						});
+					}
+				});
+
+				const shuffle = (array: TagItem[]) => {
 					const arr = [...array];
 					for (let i = arr.length - 1; i > 0; i--) {
 						const j = Math.floor(Math.random() * (i + 1));
@@ -1292,19 +1310,36 @@ import HeroCard from './HeroCard.astro';
 					return arr;
 				};
 
-				// Используем все теги без ограничения по количеству
-				const allTags = shuffle(tagsData);
-				const third = Math.ceil(allTags.length / 3);
-				const tags1 = allTags.slice(0, third);
-				const tags2 = allTags.slice(third, third * 2);
-				const tags3 = allTags.slice(third * 2);
+				const shuffledTags = shuffle(allTagItems);
+				const third = Math.ceil(shuffledTags.length / 3);
+				const tags1 = shuffledTags.slice(0, third);
+				const tags2 = shuffledTags.slice(third, third * 2);
+				const tags3 = shuffledTags.slice(third * 2);
 
-				// Дублируем теги для бесконечного seamless loop (как в слайдере галереи)
-				const renderPills = (container: HTMLElement | null, tags: string[]) => {
+				const renderPills = (container: HTMLElement | null, tags: TagItem[]) => {
 					if (!container) return;
-					// Создаём 2 копии — анимация translateX(-50%) создаёт бесконечную прокрутку без прыжков
-					const pillsHtml = tags.map(tag => `<span class="actions__pill">${tag}</span>`).join('');
+					// Генерируем HTML для тегов с data-hover-color
+					const pillsHtml = tags.map(tag => 
+						`<span class="actions__pill" data-hover-color="${tag.color}">${tag.text}</span>`
+					).join('');
+					
 					container.innerHTML = pillsHtml + pillsHtml;
+
+					// Добавляем обработчики hover для изменения цвета
+					const pills = container.querySelectorAll('.actions__pill') as NodeListOf<HTMLElement>;
+					pills.forEach(pill => {
+						const hoverColor = pill.getAttribute('data-hover-color') || '#000000';
+						pill.addEventListener('mouseenter', () => {
+							pill.style.backgroundColor = hoverColor;
+							pill.style.borderColor = hoverColor;
+							pill.style.color = '#ffffff';
+						});
+						pill.addEventListener('mouseleave', () => {
+							pill.style.backgroundColor = 'transparent';
+							pill.style.borderColor = 'rgba(0, 0, 0, 0.2)';
+							pill.style.color = '#000000';
+						});
+					});
 				};
 
 				renderPills(row1, tags1);
