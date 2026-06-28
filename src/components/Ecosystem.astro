@@ -95,71 +95,7 @@ import HeroCard from './HeroCard.astro';
 
 					<div class="services__right">
 						<div class="services__table">
-							<div class="services__row">
-								<div class="services__col">
-									<span class="services__num">01/</span>
-									<span class="services__text">Research</span>
-								</div>
-								<div class="services__col">
-									<span class="services__num">07/</span>
-									<span class="services__text">Media Production</span>
-								</div>
-							</div>
-
-							<div class="services__row">
-								<div class="services__col">
-									<span class="services__num">02/</span>
-									<span class="services__text">Project office</span>
-								</div>
-								<div class="services__col">
-									<span class="services__num">08/</span>
-									<span class="services__text">Design</span>
-								</div>
-							</div>
-
-							<div class="services__row">
-								<div class="services__col">
-									<span class="services__num">03/</span>
-									<span class="services__text">Due diligence</span>
-								</div>
-								<div class="services__col">
-									<span class="services__num">09/</span>
-									<span class="services__text">Web & App Dev</span>
-								</div>
-							</div>
-
-							<div class="services__row">
-								<div class="services__col">
-									<span class="services__num">04/</span>
-									<span class="services__text">PR</span>
-								</div>
-								<div class="services__col">
-									<span class="services__num">10/</span>
-									<span class="services__text">Tech</span>
-								</div>
-							</div>
-
-							<div class="services__row">
-								<div class="services__col">
-									<span class="services__num">05/</span>
-									<span class="services__text">Marketing</span>
-								</div>
-								<div class="services__col">
-									<span class="services__num">11/</span>
-									<span class="services__text">Event</span>
-								</div>
-							</div>
-
-							<div class="services__row">
-								<div class="services__col">
-									<span class="services__num">06/</span>
-									<span class="services__text">Buying</span>
-								</div>
-								<div class="services__col">
-									<span class="services__num">12/</span>
-									<span class="services__text">Education</span>
-								</div>
-							</div>
+							<!-- Заполняется динамически из JS -->
 						</div>
 					</div>
 				</div>
@@ -582,6 +518,7 @@ import HeroCard from './HeroCard.astro';
 	align-items: baseline;
 	gap: 12px;
 	padding: 13px 0;
+	cursor: pointer;
 }
 
 .services__col:first-child {
@@ -596,6 +533,7 @@ import HeroCard from './HeroCard.astro';
 	font-feature-settings: "tnum";
 	position: relative;
 	top: -4px;
+	transition: color 0.2s ease;
 }
 
 .services__text {
@@ -603,6 +541,7 @@ import HeroCard from './HeroCard.astro';
 	font-size: 1.5vw;
 	font-weight: 500;
 	color: #000000;
+	transition: color 0.2s ease;
 }
 
 @media (max-width: 1024px) {
@@ -1268,6 +1207,8 @@ import HeroCard from './HeroCard.astro';
 
 	// 3. Динамическая загрузка тегов-услуг из JSON
 	const actionsRows = document.querySelector('.actions__rows') as HTMLElement | null;
+	const servicesTable = document.querySelector('.services__table') as HTMLElement | null;
+
 	if (actionsRows) {
 		const baseUrl = actionsRows.getAttribute('data-base-url') || '/';
 		const row1 = actionsRows.querySelector('.actions__row-pills--1') as HTMLElement | null;
@@ -1288,6 +1229,55 @@ import HeroCard from './HeroCard.astro';
 		fetch(`${baseUrl}Media/tags12.json`)
 			.then(res => res.json())
 			.then((data: ServiceGroup[]) => {
+				// --- Заполнение таблицы сервисов (предыдущий блок) ---
+				if (servicesTable) {
+					servicesTable.innerHTML = '';
+					// Группируем по 2 элемента в строку
+					for (let i = 0; i < data.length; i += 2) {
+						const row = document.createElement('div');
+						row.className = 'services__row';
+
+						const firstGroup = data[i];
+						const secondGroup = data[i + 1];
+
+						const renderCol = (group: ServiceGroup, index: number) => {
+							const col = document.createElement('div');
+							col.className = 'services__col';
+							col.setAttribute('data-hover-color', group.color);
+
+							const numStr = (index + 1).toString().padStart(2, '0') + '/';
+							col.innerHTML = `
+								<span class="services__num">${numStr}</span>
+								<span class="services__text">${group.name}</span>
+							`;
+
+							col.addEventListener('mouseenter', () => {
+								const num = col.querySelector('.services__num') as HTMLElement;
+								const text = col.querySelector('.services__text') as HTMLElement;
+								if (num) num.style.color = group.color;
+								if (text) text.style.color = group.color;
+							});
+
+							col.addEventListener('mouseleave', () => {
+								const num = col.querySelector('.services__num') as HTMLElement;
+								const text = col.querySelector('.services__text') as HTMLElement;
+								if (num) num.style.color = 'rgba(0, 0, 0, 0.4)';
+								if (text) text.style.color = '#000000';
+							});
+
+							return col;
+						};
+
+						row.appendChild(renderCol(firstGroup, i));
+						if (secondGroup) {
+							row.appendChild(renderCol(secondGroup, i + 1));
+						}
+
+						servicesTable.appendChild(row);
+					}
+				}
+
+				// --- Заполнение бегущих строк с тегами ---
 				// Извлекаем все теги со своими цветами
 				let allTagItems: TagItem[] = [];
 				data.forEach(group => {
