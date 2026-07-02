@@ -25,23 +25,6 @@
 
 			<div class="projects__inner">
 				<div class="projects__left">
-					<div class="projects__slider-nav">
-						<button class="projects__nav-btn projects__nav-btn--prev">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-						</button>
-						<button class="projects__nav-btn projects__nav-btn--next">
-							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-							</svg>
-						</button>
-					</div>
-
-					<div class="projects__category">
-						<!-- Заполняется динамически -->
-					</div>
-
 					<ul class="projects__list">
 						<!-- Заполняется динамически -->
 					</ul>
@@ -146,7 +129,7 @@
 
 	.projects__inner {
 		display: flex;
-		gap: 40px;
+		gap: 80px;
 		justify-content: space-between;
 	}
 
@@ -279,7 +262,7 @@
 	}
 
 	.projects__image {
-		width: 100%;
+		width: 90%;
 		height: 100%;
 		object-fit: cover;
 		display: block;
@@ -325,6 +308,15 @@
 
 	gsap.registerPlugin(ScrollTrigger);
 
+	// Добавляем стоп-точку (pin) для секции Projects
+	ScrollTrigger.create({
+		trigger: '#projects',
+		start: 'top top',
+		end: '+=500px',
+		pin: true,
+		pinSpacing: true,
+	});
+
 	const projectsTypewriter = document.querySelector('#projects .hero__label[typewriter="true"]') as HTMLElement | null;
 	if (projectsTypewriter) {
 		const chars = projectsTypewriter.querySelectorAll('.split-chars');
@@ -359,17 +351,13 @@
 
 	const initProjects = () => {
 		const projectsSection = document.getElementById('projects') as HTMLElement | null;
-		const categoryTitle = document.querySelector('#projects .projects__category') as HTMLElement | null;
 		const projectsList = document.querySelector('#projects .projects__list') as HTMLElement | null;
 		const projectImage = document.querySelector('#projects .projects__image') as HTMLImageElement | null;
-		const btnPrev = document.querySelector('#projects .projects__nav-btn--prev') as HTMLButtonElement | null;
-		const btnNext = document.querySelector('#projects .projects__nav-btn--next') as HTMLButtonElement | null;
 
-		if (projectsSection && categoryTitle && projectsList && projectImage && btnPrev && btnNext) {
+		if (projectsSection && projectsList && projectImage) {
 			const baseUrl = projectsSection.getAttribute('data-base-url') || '/';
 			
-			let categories: ProjectCategory[] = [];
-			let currentCategoryIndex = 0;
+			let cases: ProjectCase[] = [];
 			let autoplayInterval: number | undefined;
 			
 			const startAutoplay = () => {
@@ -383,21 +371,14 @@
 					
 					const nextIndex = (currentIndex + 1) % items.length;
 					updateSlider(items[nextIndex] as HTMLElement);
-				}, 4000); // переключение каждые 4 секунды
+				}, 4000);
 			};
 			
-			const renderCategory = (catIndex: number) => {
-				if (!categories[catIndex]) return;
-				const currentCat = categories[catIndex];
-				
-				// Render category title
-				categoryTitle.innerHTML = currentCat.category;
-				
-				// Render cases list
+			const renderCases = (projectCases: ProjectCase[]) => {
 				projectsList.innerHTML = '';
-				currentCat.cases.forEach((item, index) => {
+				projectCases.forEach((item, index) => {
 					const li = document.createElement('li');
-					li.className = `projects__item${index === 2 ? ' projects__item--active' : ''}`;
+					li.className = `projects__item${index === 0 ? ' projects__item--active' : ''}`;
 					li.setAttribute('data-image', item.image);
 					
 					li.innerHTML = `
@@ -407,7 +388,7 @@
 					
 					li.addEventListener('click', () => {
 						updateSlider(li);
-						startAutoplay(); // перезапуск таймера при ручном переключении
+						startAutoplay();
 					});
 					
 					projectsList.appendChild(li);
@@ -447,31 +428,12 @@
 			fetch(`${baseUrl}Media/projects.json`)
 				.then(res => res.json())
 				.then((data: ProjectCategory[]) => {
-					categories = data;
-					// Start with "Продвижение" or fallback to 0
-					const promoIndex = categories.findIndex(c => c.category === 'Продвижение');
-					currentCategoryIndex = promoIndex !== -1 ? promoIndex : 0;
-					renderCategory(currentCategoryIndex);
+					if (data.length > 0) {
+						cases = data[0].cases;
+						renderCases(cases);
+					}
 				})
 				.catch(err => console.error('Error loading projects:', err));
-				
-			// Rebind button event listeners by cloning to avoid duplicates on page-load
-			const newBtnPrev = btnPrev.cloneNode(true) as HTMLButtonElement;
-			const newBtnNext = btnNext.cloneNode(true) as HTMLButtonElement;
-			btnPrev.parentNode?.replaceChild(newBtnPrev, btnPrev);
-			btnNext.parentNode?.replaceChild(newBtnNext, btnNext);
-
-			newBtnPrev.addEventListener('click', () => {
-				if (categories.length === 0) return;
-				currentCategoryIndex = currentCategoryIndex === 0 ? categories.length - 1 : currentCategoryIndex - 1;
-				renderCategory(currentCategoryIndex);
-			});
-			
-			newBtnNext.addEventListener('click', () => {
-				if (categories.length === 0) return;
-				currentCategoryIndex = currentCategoryIndex === categories.length - 1 ? 0 : currentCategoryIndex + 1;
-				renderCategory(currentCategoryIndex);
-			});
 		}
 	};
 

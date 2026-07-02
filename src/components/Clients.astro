@@ -273,6 +273,15 @@
 
 	gsap.registerPlugin(ScrollTrigger);
 
+	// Добавляем стоп-точку (pin) для секции Clients
+	ScrollTrigger.create({
+		trigger: '#clients',
+		start: 'top top',
+		end: '+=500px',
+		pin: true,
+		pinSpacing: true,
+	});
+
 	const clientsTypewriter = document.querySelector('#clients .hero__label[typewriter="true"]') as HTMLElement | null;
 	if (clientsTypewriter) {
 		const chars = clientsTypewriter.querySelectorAll('.split-chars');
