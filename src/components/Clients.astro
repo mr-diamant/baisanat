@@ -62,7 +62,7 @@
 
 <style>
 	.clients {
-		padding: 100px 0;
+		padding: 60px 0;
 		background-color: #ffffff;
 		position: relative;
 		z-index: 2;
@@ -206,6 +206,15 @@
 		object-fit: contain;
 	}
 
+	@media (min-width: 769px) {
+		.clients {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			padding-top: 30px;
+		}
+	}
+
 	@media (max-width: 1024px) {
 		.clients__title {
 			font-size: 32px;
@@ -273,14 +282,16 @@
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	// Добавляем стоп-точку (pin) для секции Clients
-	ScrollTrigger.create({
-		trigger: '#clients',
-		start: 'top top',
-		end: '+=500px',
-		pin: true,
-		pinSpacing: true,
-	});
+	// Добавляем стоп-точку (pin) для секции Clients только на десктопе
+	if (window.innerWidth > 768) {
+		ScrollTrigger.create({
+			trigger: '#clients',
+			start: 'top top',
+			end: '+=500px',
+			pin: true,
+			pinSpacing: true,
+		});
+	}
 
 	const clientsTypewriter = document.querySelector('#clients .hero__label[typewriter="true"]') as HTMLElement | null;
 	if (clientsTypewriter) {

@@ -289,62 +289,58 @@
 				void main() {
 					vec2 uv = gl_FragCoord.xy / u_resolution.xy;
 					
+					// ==========================================
+					// НАСТРОЙКИ ЦВЕТОВ (HEX-коды)
+					// ==========================================
 					
-					// ==== НАСТРОЙКИ ФОНОВОГО ГРАДИЕНТА ====
-					vec3 c_bottom = ${hexToGLSL('#ffffff')}; // Самый низ (теперь он наверху из-за переворота)
-					vec3 c_mid =    ${hexToGLSL('#24166f')}; // Середина
-					vec3 c_top =    ${hexToGLSL('#02021f')}; // Самый верх (теперь он внизу)
-
-					vec3 baseColor = mix(c_bottom, c_mid, smoothstep(0.0, 0.4, uv.y));
-					baseColor = mix(baseColor, c_top, smoothstep(0.6, 1.0, uv.y));
-
-					float aspect = u_resolution.x / u_resolution.y;
-
-					// ==== НАСТРОЙКИ ПЯТЕН (ОВАЛОВ) С АНИМАЦИЕЙ ====
-					// Теперь все координаты (1.0 по Y) будут рисоваться в самом низу экрана
+					// Цвета заднего фона (градиент сверху вниз)
+					vec3 bg_top = ${hexToGLSL('#02021f')};    // Темно-синий верх
+					vec3 bg_bottom = ${hexToGLSL('#24166f')}; // Синий низ
 					
-					// 1. Левое пятно
-					float t1 = u_time * 0.4;
-					vec2 pos1 = vec2(0.1, 1.0 + sin(t1) * 0.05);
-					vec2 p1 = uv - pos1;
-					p1.x *= aspect;
-					p1.y *= 1.4 + cos(t1 * 1.3) * 0.15;
-					p1.x *= 1.0 + sin(t1 * 0.8) * 0.1;
-					vec3 color1 = ${hexToGLSL('#3c6eff')};
-					float size1 = 1.2 + sin(t1 * 1.1) * 0.15;
-					float w1 = smoothstep(size1, size1 - 0.3, length(p1));
+					// Цвета волны (градиент сверху вниз)
+					vec3 wave_top = ${hexToGLSL('#3c6eff')};    // Светло-синий гребень волны
+					vec3 wave_bottom = ${hexToGLSL('#ffffff')}; // Белый низ (переходит в следующий блок)
 
-					// 2. Правое пятно
-					float t2 = u_time * 0.3 + 2.0;
-					vec2 pos2 = vec2(1.1, 1.0 + cos(t2) * 0.05);
-					vec2 p2 = uv - pos2;
-					p2.x *= aspect;
-					p2.y *= 1.5 + sin(t2 * 1.2) * 0.15;
-					p2.x *= 1.0 + cos(t2 * 0.9) * 0.1;
-					vec3 color2 = ${hexToGLSL('#3071ff')};
-					float size2 = 1.2 + cos(t2 * 1.4) * 0.15;
-					float w2 = smoothstep(size2, size2 - 0.3, length(p2));
+					// ==========================================
+					// НАСТРОЙКИ ПАРАМЕТРОВ ВОЛНЫ
+					// ==========================================
+					
+					float height = 0.45;        // Базовая высота волны (от 0.0 до 1.0)
+					float amplitude = 0.09;     // Амплитуда колебаний (высота волны)
+					float frequency = 4.5;      // Частота изгибов (количество волн по горизонтали)
+					float speed = 0.5;          // Скорость горизонтального движения волны
+					float vertical_speed = 0.2; // Скорость колебаний волны вверх-вниз
+					float blur = 0.08;          // Размытие края волны (0.01 - четкая грань, 0.2 - очень мягкая)
 
-					// 3. Центральное белое пятно
-					vec2 p3 = uv - vec2(0.5, 1.1);
-					p3.x *= aspect;
-					p3.y *= 2.5;
-					vec3 color3 = ${hexToGLSL('#ffffff')};
-					float w3 = smoothstep(1.1, 0.7, length(p3));
+					// ==========================================
+					// МАТЕМАТИКА ВОЛНЫ (ЖИДКИЙ ЭФФЕКТ)
+					// ==========================================
+					
+					// Основное синусоидальное движение
+					float w1 = sin(uv.x * frequency + u_time * speed) * amplitude;
+					// Вторичная волна с более высокой частотой для естественности
+					float w2 = cos(uv.x * (frequency * 1.7) - u_time * (speed * 0.8)) * (amplitude * 0.35);
+					// Медленное вертикальное покачивание (подъем / опускание)
+					float w3 = sin(u_time * vertical_speed) * 0.03;
 
-					// 4. Дополнительное темное пятно
-					vec2 p4 = uv - vec2(0.5, 1.0);
-					p4.x *= aspect;
-					p4.y *= 2.0;
-					vec3 color4 = ${hexToGLSL('#02021f')};
-					float w4 = smoothstep(1.3, 0.5, length(p4));
+					// Суммарная высота волны в точке X
+					float wave_height = height + w1 + w2 + w3;
 
-					// СМЕШИВАНИЕ (как в Principles)
-					vec3 finalColor = baseColor;
-					finalColor = mix(finalColor, color2, w2 * 0.9);
-					finalColor = mix(finalColor, color1, w1 * 0.9);
-					finalColor = mix(finalColor, color4, w4 * 0.8);
-					finalColor = mix(finalColor, color3, w3 * 0.0);
+					// Расстояние пикселя до волны по оси Y
+					float dist = uv.y - wave_height;
+
+					// Маска волны (1.0 — внутри волны, 0.0 — фон)
+					float wave_mask = smoothstep(blur, -blur, dist);
+
+					// Градиент заднего фона (сверху вниз)
+					vec3 bgColor = mix(bg_bottom, bg_top, uv.y);
+					
+					// Градиент самой волны (сверху вниз)
+					float normalized_wave_y = clamp(uv.y / wave_height, 0.0, 1.0);
+					vec3 waveColor = mix(wave_bottom, wave_top, normalized_wave_y);
+
+					// Финальный цвет
+					vec3 finalColor = mix(bgColor, waveColor, wave_mask);
 
 					gl_FragColor = vec4(finalColor, 1.0);
 				}

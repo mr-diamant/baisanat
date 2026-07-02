@@ -63,10 +63,21 @@
 
 <style>
 	.principles {
-		padding: 200px 0;
+		padding: 60px 0;
 		position: relative;
 		z-index: 2;
 		overflow: hidden;
+		background-color: #02021f;
+	}
+
+	@media (min-width: 769px) {
+		.principles {
+			min-height: 100vh;
+			display: flex;
+			align-items: flex-start;
+			padding-top: 140px;
+			padding-bottom: 25px;
+		}
 	}
 
 	.principles__bg-canvas {
@@ -292,7 +303,7 @@
 		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: principlesSection,
-				start: 'top -150px',
+				start: 'top top',
 				end: '+=180%',
 				pin: true,
 				scrub: 1,
@@ -344,68 +355,67 @@
 				void main() {
 					vec2 uv = gl_FragCoord.xy / u_resolution.xy;
 					
-					// ==== НАСТРОЙКИ ФОНОВОГО ГРАДИЕНТА ====
-					vec3 c_bottom = ${hexToGLSL('#02021f')}; // Самый низ
-					vec3 c_mid =    ${hexToGLSL('#080e5b')}; // Середина
-					vec3 c_top =    ${hexToGLSL('#ffffff')}; // Самый верх
-
-					vec3 baseColor = mix(c_bottom, c_mid, smoothstep(0.0, 0.6, uv.y));
-					baseColor = mix(baseColor, c_top, smoothstep(0.6, 1.0, uv.y));
-
-					float aspect = u_resolution.x / u_resolution.y;
-
-					// ==== НАСТРОЙКИ ПЯТЕН (ОВАЛОВ) С АНИМАЦИЕЙ ====
+					// ==========================================
+					// НАСТРОЙКИ ЦВЕТОВ (HEX-коды)
+					// ==========================================
 					
-					// 1. Левое верхнее пятно
-					float t1 = u_time * 0.4; // Скорость анимации левого пятна
-					vec2 pos1 = vec2(0.1, 1.0 + sin(t1) * 0.05); // Плавное движение вверх-вниз
-					vec2 p1 = uv - pos1;
-					p1.x *= aspect;
-					p1.y *= 1.4 + cos(t1 * 1.3) * 0.15; // Сжимается и растягивается по вертикали
-					p1.x *= 1.0 + sin(t1 * 0.8) * 0.1;  // Дышит по горизонтали
-					vec3 color1 = ${hexToGLSL('#693cff')};
-					float size1 = 1.2 + sin(t1 * 1.1) * 0.15; // Увеличивается и уменьшается
-					float w1 = smoothstep(size1, size1 - 0.3, length(p1));
-
-					// 2. Правое верхнее пятно
-					float t2 = u_time * 0.3 + 2.0; // Скорость и смещение фазы (чтобы не двигались одинаково)
-					vec2 pos2 = vec2(1.1, 1.0 + cos(t2) * 0.05); // Движение вверх-вниз
-					vec2 p2 = uv - pos2;
-					p2.x *= aspect;
-					p2.y *= 1.5 + sin(t2 * 1.2) * 0.15; // Сжимается и растягивается
-					p2.x *= 1.0 + cos(t2 * 0.9) * 0.1;  // Дышит
-					vec3 color2 = ${hexToGLSL('#4830ff')};
-					float size2 = 1.2 + cos(t2 * 1.4) * 0.15; // Увеличивается и уменьшается
-					float w2 = smoothstep(size2, size2 - 0.3, length(p2));
-
-					// 3. Центральное белое пятно
-					vec2 p3 = uv - vec2(0.5, 1.1); // Позиция (0.5 = центр по горизонтали)
-					p3.x *= aspect;
-					p3.y *= 3.5;
-					vec3 color3 = ${hexToGLSL('#ffffff')}; // Цвет (белый)
-					float w3 = smoothstep(2.2, 0.7, length(p3));
-
-					// 4. Дополнительное темное пятно сверху
-					vec2 p4 = uv - vec2(0.8, 0.9); // Позиция (сверху по центру)
-					p4.x *= aspect;
-					p4.y *= 1.8;
-					vec3 color4 = ${hexToGLSL('#ffffff')}; // Темный цвет
-					float w4 = smoothstep(0.7, 0.1, length(p4));
-
-					// СМЕШИВАНИЕ (Порядок имеет значение! То, что ниже в коде — рисуется поверх остального)
-					vec3 finalColor = baseColor;
+					// Цвета заднего фона (градиент сверху вниз)
+					vec3 bg_top = ${hexToGLSL('#ffffff')};    // Белый верх (переход от предыдущего блока)
+					vec3 bg_bottom = ${hexToGLSL('#768de6')}; // Сине-фиолетовый низ
 					
-					// Сначала рисуем правое пятно (оно в самом низу из пятен)
-					finalColor = mix(finalColor, color2, w2 * 0.9);
+					// Цвета волны (градиент сверху вниз)
+					vec3 wave_top = ${hexToGLSL('#693cff')};    // Ярко-фиолетовый гребень волны
+					vec3 wave_bottom = ${hexToGLSL('#02021f')}; // Темно-синий/черный низ (переход в следующий блок)
+
+					// ==========================================
+					// НАСТРОЙКИ ПАРАМЕТРОВ ВОЛНЫ
+					// ==========================================
 					
-					// Затем левое пятно (оно перекрывает правое)
-					finalColor = mix(finalColor, color1, w1 * 0.9);
+					float height = 0.55;        // Базовая высота волны (от 0.0 до 1.0)
+					float amplitude = 0.07;     // Амплитуда колебаний (высота волны)
+					float frequency = 5.5;      // Частота изгибов (количество волн по горизонтали)
+					float speed = 0.6;          // Скорость горизонтального движения волны
+					float vertical_speed = 0.05; // Скорость колебаний волны вверх-вниз
+					float blur = 0.08;          // Размытие края волны (0.01 - четкая грань, 0.2 - очень мягкая)
+
+					// ==========================================
+					// МАТЕМАТИКА ВОЛНЫ (ЖИДКИЙ ЭФФЕКТ)
+					// ==========================================
 					
-					// Затем белое центральное пятно
-					finalColor = mix(finalColor, color3, w3 * 1.0);
+					// Основное синусоидальное движение
+					float w1 = sin(uv.x * frequency + u_time * speed) * amplitude;
+					// Вторичная волна с более высокой частотой для естественности
+					float w2 = cos(uv.x * (frequency * 1.7) - u_time * (speed * 0.8)) * (amplitude * 0.35);
+					// Медленное вертикальное покачивание (подъем / опускание)
+					float w3 = sin(u_time * vertical_speed) * 0.03;
+
+					// Суммарная высота волны в точке X
+					float wave_height = height + w1 + w2 + w3;
+
+					// Расстояние пикселя до волны по оси Y
+					float dist = uv.y - wave_height;
+
+					// Маска волны (1.0 — внутри волны, 0.0 — фон)
+					float wave_mask = smoothstep(blur, -blur, dist);
+
+					// Смещение фонового градиента в процентах от верха экрана (как в CSS linear-gradient)
+					// Например, белый цвет (#ffffff) идет до 80% высоты, а затем переходит в сине-фиолетовый на 100%
+					float bg_top_percent = 0.02;    // Граница верхнего цвета (80% от верха)
+					float bg_bottom_percent = 0.40; // Граница нижнего цвета (100% от верха)
+
+					// Переводим проценты (от верха) в WebGL координаты uv.y (1.0 - верх, 0.0 - низ)
+					float bg_top_y = 1.0 - bg_top_percent;
+					float bg_bottom_y = 1.0 - bg_bottom_percent;
+
+					float bg_factor = smoothstep(bg_bottom_y, bg_top_y, uv.y);
+					vec3 bgColor = mix(bg_bottom, bg_top, bg_factor);
 					
-					// В самом конце рисуем темное пятно (теперь оно на самом верху и перекрывает всё, включая белое)
-					finalColor = mix(finalColor, color4, w4 * 1.0);
+					// Градиент самой волны (сверху вниз)
+					float normalized_wave_y = clamp(uv.y / wave_height, 0.0, 1.0);
+					vec3 waveColor = mix(wave_bottom, wave_top, normalized_wave_y);
+
+					// Финальный цвет
+					vec3 finalColor = mix(bgColor, waveColor, wave_mask);
 
 					gl_FragColor = vec4(finalColor, 1.0);
 				}
@@ -458,6 +468,7 @@
 					};
 
 					window.addEventListener('resize', resizeCanvas);
+					ScrollTrigger.addEventListener("refresh", resizeCanvas);
 					// Set timeout to ensure parent has rendered correctly for height calculation
 					setTimeout(resizeCanvas, 0);
 

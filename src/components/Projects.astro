@@ -49,7 +49,7 @@
 
 <style>
 	.projects {
-		padding: 100px 0;
+		padding: 60px 0;
 		background-color: #ffffff;
 		position: relative;
 		z-index: 2;
@@ -268,6 +268,14 @@
 		display: block;
 	}
 
+	@media (min-width: 769px) {
+		.projects {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+		}
+	}
+
 	@media (max-width: 1024px) {
 		.projects__title {
 			font-size: 32px;
@@ -308,14 +316,16 @@
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	// Добавляем стоп-точку (pin) для секции Projects
-	ScrollTrigger.create({
-		trigger: '#projects',
-		start: 'top top',
-		end: '+=500px',
-		pin: true,
-		pinSpacing: true,
-	});
+	// Добавляем стоп-точку (pin) для секции Projects только на десктопе
+	if (window.innerWidth > 768) {
+		ScrollTrigger.create({
+			trigger: '#projects',
+			start: 'top top',
+			end: '+=500px',
+			pin: true,
+			pinSpacing: true,
+		});
+	}
 
 	const projectsTypewriter = document.querySelector('#projects .hero__label[typewriter="true"]') as HTMLElement | null;
 	if (projectsTypewriter) {
