@@ -1,7 +1,7 @@
 ---
 ---
 
-<section class="projects" id="projects">
+<section class="projects" id="projects" data-base-url={import.meta.env.BASE_URL}>
 	<div class="container projects__container">
 		
 		<div class="hero__section-label hero__section-label--dark projects__label">
@@ -39,34 +39,11 @@
 					</div>
 
 					<div class="projects__category">
-						Продвижение
+						<!-- Заполняется динамически -->
 					</div>
 
 					<ul class="projects__list">
-						<li class="projects__item" data-image="Media/project1.webp">
-							<span class="projects__item-icon">→</span>
-							<span class="projects__item-text">Международная<br/>конференция<br/>Digital Tanba</span>
-						</li>
-						<li class="projects__item" data-image="Media/project1.webp">
-							<span class="projects__item-icon">→</span>
-							<span class="projects__item-text">Конкурс Талантов<br/>Samruk Kazyna</span>
-						</li>
-						<li class="projects__item projects__item--active" data-image="Media/project1.webp">
-							<span class="projects__item-icon">→</span>
-							<span class="projects__item-text">Таунхолл<br/>Kazatomprom</span>
-						</li>
-						<li class="projects__item" data-image="Media/project1.webp">
-							<span class="projects__item-icon">→</span>
-							<span class="projects__item-text">Фестиваль<br/>The Spirit of Tengri</span>
-						</li>
-						<li class="projects__item" data-image="Media/project1.webp">
-							<span class="projects__item-icon">→</span>
-							<span class="projects__item-text">Экспомаркет<br/>Eurasia Music Hub</span>
-						</li>
-						<li class="projects__item" data-image="Media/project1.webp">
-							<span class="projects__item-icon">→</span>
-							<span class="projects__item-text">Энергетический<br/>форум ШОС</span>
-						</li>
+						<!-- Заполняется динамически -->
 					</ul>
 
 					<a href="#" class="projects__link">
@@ -79,7 +56,7 @@
 
 				<div class="projects__right">
 					<div class="projects__image-wrapper">
-						<img src={import.meta.env.BASE_URL + 'Media/project1.webp'} alt="Project Image" class="projects__image" />
+						<img src="https://me-qr.kz/baisanat/Media/project1.webp" alt="Project Image" class="projects__image" />
 					</div>
 				</div>
 			</div>
@@ -174,7 +151,7 @@
 	}
 
 	.projects__left {
-		flex: 0 0 250px;
+		flex: 0 0 200px;
 		display: flex;
 		flex-direction: column;
 	}
@@ -225,7 +202,8 @@
 		gap: 16px;
 	}
 
-	.projects__item {
+	:global(.projects__item) {
+		position: relative;
 		display: flex;
 		align-items: flex-start;
 		font-family: var(--font-main);
@@ -234,31 +212,31 @@
 		line-height: 1.3;
 		color: rgba(0, 0, 0, 0.6);
 		cursor: pointer;
-		transition: color 0.2s ease;
+		padding-left: 20px;
+		transition: color 0.2s ease, transform 0.2s ease;
 	}
 
-	.projects__item:hover {
+	:global(.projects__item:hover) {
 		color: #000000;
 	}
 
-	.projects__item--active {
+	:global(.projects__item--active) {
 		color: #000000;
 		font-weight: 500;
+		transform: translateX(8px);
 	}
 
-	.projects__item-icon {
-		margin-right: 8px;
+	:global(.projects__item-icon) {
+		position: absolute;
+		left: 0;
+		top: 1px;
 		font-weight: 400;
 		opacity: 0;
-		width: 0;
-		overflow: hidden;
-		display: inline-block;
-		transition: all 0.2s ease;
+		transition: opacity 0.2s ease;
 	}
 
-	.projects__item--active .projects__item-icon {
+	:global(.projects__item--active .projects__item-icon) {
 		opacity: 1;
-		width: 16px;
 	}
 
 	.projects__link {
@@ -369,50 +347,134 @@
 	}
 
 	// Slider logic
-	const projectItems = document.querySelectorAll('.projects__item');
-	const projectImage = document.querySelector('.projects__image') as HTMLImageElement | null;
-	const btnPrev = document.querySelector('.projects__nav-btn--prev');
-	const btnNext = document.querySelector('.projects__nav-btn--next');
+	interface ProjectCase {
+		title: string;
+		image: string;
+	}
 
-	if (projectItems.length > 0 && projectImage) {
-		const updateSlider = (index: number) => {
-			projectItems.forEach(el => el.classList.remove('projects__item--active'));
-			const activeItem = projectItems[index];
-			activeItem.classList.add('projects__item--active');
+	interface ProjectCategory {
+		category: string;
+		cases: ProjectCase[];
+	}
+
+	const initProjects = () => {
+		const projectsSection = document.getElementById('projects') as HTMLElement | null;
+		const categoryTitle = document.querySelector('#projects .projects__category') as HTMLElement | null;
+		const projectsList = document.querySelector('#projects .projects__list') as HTMLElement | null;
+		const projectImage = document.querySelector('#projects .projects__image') as HTMLImageElement | null;
+		const btnPrev = document.querySelector('#projects .projects__nav-btn--prev') as HTMLButtonElement | null;
+		const btnNext = document.querySelector('#projects .projects__nav-btn--next') as HTMLButtonElement | null;
+
+		if (projectsSection && categoryTitle && projectsList && projectImage && btnPrev && btnNext) {
+			const baseUrl = projectsSection.getAttribute('data-base-url') || '/';
 			
-			const newImageSrc = activeItem.getAttribute('data-image');
-			if (newImageSrc) {
-				gsap.to(projectImage, {
-					opacity: 0,
-					duration: 0.2,
-					onComplete: () => {
-						projectImage.src = newImageSrc;
-						gsap.to(projectImage, { opacity: 1, duration: 0.2 });
-					}
+			let categories: ProjectCategory[] = [];
+			let currentCategoryIndex = 0;
+			let autoplayInterval: number | undefined;
+			
+			const startAutoplay = () => {
+				if (autoplayInterval) clearInterval(autoplayInterval);
+				autoplayInterval = window.setInterval(() => {
+					const items = projectsList.querySelectorAll('.projects__item');
+					if (items.length === 0) return;
+					
+					let currentIndex = Array.from(items).findIndex(item => item.classList.contains('projects__item--active'));
+					if (currentIndex === -1) currentIndex = 0;
+					
+					const nextIndex = (currentIndex + 1) % items.length;
+					updateSlider(items[nextIndex] as HTMLElement);
+				}, 4000); // переключение каждые 4 секунды
+			};
+			
+			const renderCategory = (catIndex: number) => {
+				if (!categories[catIndex]) return;
+				const currentCat = categories[catIndex];
+				
+				// Render category title
+				categoryTitle.innerHTML = currentCat.category;
+				
+				// Render cases list
+				projectsList.innerHTML = '';
+				currentCat.cases.forEach((item, index) => {
+					const li = document.createElement('li');
+					li.className = `projects__item${index === 2 ? ' projects__item--active' : ''}`;
+					li.setAttribute('data-image', item.image);
+					
+					li.innerHTML = `
+						<span class="projects__item-icon">→</span>
+						<span class="projects__item-text">${item.title}</span>
+					`;
+					
+					li.addEventListener('click', () => {
+						updateSlider(li);
+						startAutoplay(); // перезапуск таймера при ручном переключении
+					});
+					
+					projectsList.appendChild(li);
 				});
-			}
-		};
+				
+				// Set initial image
+				const activeItem = projectsList.querySelector('.projects__item--active') || projectsList.querySelector('.projects__item') as HTMLElement | null;
+				if (activeItem) {
+					activeItem.classList.add('projects__item--active');
+					const imageSrc = activeItem.getAttribute('data-image');
+					if (imageSrc) {
+						projectImage.src = imageSrc;
+					}
+				}
 
-		projectItems.forEach((item, index) => {
-			item.addEventListener('click', () => {
-				updateSlider(index);
+				startAutoplay();
+			};
+			
+			const updateSlider = (activeItem: HTMLElement) => {
+				const items = projectsList.querySelectorAll('.projects__item');
+				items.forEach(el => el.classList.remove('projects__item--active'));
+				activeItem.classList.add('projects__item--active');
+				
+				const newImageSrc = activeItem.getAttribute('data-image');
+				if (newImageSrc) {
+					gsap.to(projectImage, {
+						opacity: 0,
+						duration: 0.2,
+						onComplete: () => {
+							projectImage.src = newImageSrc;
+							gsap.to(projectImage, { opacity: 1, duration: 0.2 });
+						}
+					});
+				}
+			};
+			
+			fetch(`${baseUrl}Media/projects.json`)
+				.then(res => res.json())
+				.then((data: ProjectCategory[]) => {
+					categories = data;
+					// Start with "Продвижение" or fallback to 0
+					const promoIndex = categories.findIndex(c => c.category === 'Продвижение');
+					currentCategoryIndex = promoIndex !== -1 ? promoIndex : 0;
+					renderCategory(currentCategoryIndex);
+				})
+				.catch(err => console.error('Error loading projects:', err));
+				
+			// Rebind button event listeners by cloning to avoid duplicates on page-load
+			const newBtnPrev = btnPrev.cloneNode(true) as HTMLButtonElement;
+			const newBtnNext = btnNext.cloneNode(true) as HTMLButtonElement;
+			btnPrev.parentNode?.replaceChild(newBtnPrev, btnPrev);
+			btnNext.parentNode?.replaceChild(newBtnNext, btnNext);
+
+			newBtnPrev.addEventListener('click', () => {
+				if (categories.length === 0) return;
+				currentCategoryIndex = currentCategoryIndex === 0 ? categories.length - 1 : currentCategoryIndex - 1;
+				renderCategory(currentCategoryIndex);
 			});
-		});
-
-		if (btnPrev && btnNext) {
-			btnPrev.addEventListener('click', () => {
-				let currentIndex = Array.from(projectItems).findIndex(item => item.classList.contains('projects__item--active'));
-				if (currentIndex === -1) currentIndex = 0;
-				const newIndex = currentIndex === 0 ? projectItems.length - 1 : currentIndex - 1;
-				updateSlider(newIndex);
-			});
-
-			btnNext.addEventListener('click', () => {
-				let currentIndex = Array.from(projectItems).findIndex(item => item.classList.contains('projects__item--active'));
-				if (currentIndex === -1) currentIndex = 0;
-				const newIndex = currentIndex === projectItems.length - 1 ? 0 : currentIndex + 1;
-				updateSlider(newIndex);
+			
+			newBtnNext.addEventListener('click', () => {
+				if (categories.length === 0) return;
+				currentCategoryIndex = currentCategoryIndex === categories.length - 1 ? 0 : currentCategoryIndex + 1;
+				renderCategory(currentCategoryIndex);
 			});
 		}
-	}
+	};
+
+	initProjects();
+	document.addEventListener('astro:page-load', initProjects);
 </script>

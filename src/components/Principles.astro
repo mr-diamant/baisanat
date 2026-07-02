@@ -279,6 +279,45 @@
 		});
 	}
 
+	// Accordion scroll effect for principles
+	const principlesSection = document.querySelector('.principles');
+	const principlesItems = document.querySelectorAll('.principles__item');
+	if (principlesSection && principlesItems.length > 0) {
+		// Set overflow hidden for descriptions initially
+		principlesItems.forEach(item => {
+			const desc = item.querySelector('.principles__item-desc') as HTMLElement | null;
+			if (desc) {
+				desc.style.overflow = 'hidden';
+			}
+		});
+
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: principlesSection,
+				start: 'top -150px',
+				end: '+=180%',
+				pin: true,
+				scrub: 1,
+			}
+		});
+
+		// Scroll buffer at the beginning
+		tl.to({}, { duration: 0.5 });
+
+		principlesItems.forEach((item, index) => {
+			const desc = item.querySelector('.principles__item-desc') as HTMLElement | null;
+			if (desc) {
+				tl.to(desc, {
+					height: 0,
+					opacity: 0,
+					marginTop: -12, // offsets the gap in flex container
+					duration: 1,
+					ease: 'power1.inOut'
+				}, index > 0 ? '+=0.2' : '+=0.2');
+			}
+		});
+	}
+
 	// WebGL Background
 	const canvas = document.getElementById('principles-bg') as HTMLCanvasElement | null;
 	if (canvas) {
@@ -344,9 +383,9 @@
 					// 3. Центральное белое пятно
 					vec2 p3 = uv - vec2(0.5, 1.1); // Позиция (0.5 = центр по горизонтали)
 					p3.x *= aspect;
-					p3.y *= 2.5;
+					p3.y *= 3.5;
 					vec3 color3 = ${hexToGLSL('#ffffff')}; // Цвет (белый)
-					float w3 = smoothstep(1.2, 0.7, length(p3));
+					float w3 = smoothstep(2.2, 0.7, length(p3));
 
 					// 4. Дополнительное темное пятно сверху
 					vec2 p4 = uv - vec2(0.8, 0.9); // Позиция (сверху по центру)

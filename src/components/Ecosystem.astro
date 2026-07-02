@@ -119,7 +119,6 @@ import HeroCard from './HeroCard.astro';
 					<div class="actions__rows" data-base-url={import.meta.env.BASE_URL}>
 						<div class="actions__row-pills actions__row-pills--1"></div>
 						<div class="actions__row-pills actions__row-pills--2"></div>
-						<div class="actions__row-pills actions__row-pills--3"></div>
 					</div>
 					<div class="container">
 						<button class="actions__btn">
@@ -251,7 +250,7 @@ import HeroCard from './HeroCard.astro';
 	.hero__sticky-dynamic {
 		position: relative;
 		width: 100%;
-		margin-top: 60px;
+		margin-top: 0px;
 		display: flex;
 		align-items: center;
 		height: 380px;
@@ -761,9 +760,6 @@ import HeroCard from './HeroCard.astro';
 	animation: marquee-right 150s linear infinite;
 }
 
-.actions__row-pills--3 {
-	animation: marquee-left 100s linear infinite;
-}
 
 :global(.actions__pill) {
 	display: inline-flex;
@@ -883,7 +879,8 @@ import HeroCard from './HeroCard.astro';
 		const servicesLeft = document.querySelector('.services__left') as HTMLElement | null;
 		const servicesRight = document.querySelector('.services__right') as HTMLElement | null;
 		const actionsLeft = document.querySelector('.actions__header') as HTMLElement | null;
-		const actionsRight = document.querySelector('.actions__content') as HTMLElement | null;
+		const actionsPills = document.querySelector('.actions__rows') as HTMLElement | null;
+		const actionsBtn = document.querySelector('.actions__btn') as HTMLElement | null;
 		
 		const statDivisionsValue = document.querySelector('#stat-divisions .hero__stat-value') as HTMLElement | null;
 		const statDivisionsCaption = document.querySelector('#stat-divisions .hero__stat-caption') as HTMLElement | null;
@@ -943,9 +940,13 @@ import HeroCard from './HeroCard.astro';
 				actionsLeft.style.removeProperty('opacity');
 				actionsLeft.style.removeProperty('transform');
 			}
-			if (actionsRight) {
-				actionsRight.style.removeProperty('opacity');
-				actionsRight.style.removeProperty('transform');
+			if (actionsPills) {
+				actionsPills.style.removeProperty('opacity');
+				actionsPills.style.removeProperty('transform');
+			}
+			if (actionsBtn) {
+				actionsBtn.style.removeProperty('opacity');
+				actionsBtn.style.removeProperty('transform');
 			}
 			stickyWrapper.style.removeProperty('height');
 		};
@@ -961,11 +962,14 @@ import HeroCard from './HeroCard.astro';
 
 			const scrolled = -rect.top;
 			const maxHorizontalScroll = cardsInner.scrollWidth - cardsInner.clientWidth;
+			const phase1Distance = maxHorizontalScroll * 1.8;
+			const travelDistance = viewHeight - 150;
+			const grayTravelDistance = viewHeight - 200;
 			
 			// Увеличиваем расстояние Phase 2 до 2.2 * viewHeight, чтобы задержать просмотр оранжевого блока
 			const phase2Distance = viewHeight * 2.2;
-			const phase3Distance = viewHeight * 1.5;
-			const totalScrollDistance = maxHorizontalScroll + phase2Distance + phase3Distance;
+			const phase3Distance = viewHeight * 2.5;
+			const totalScrollDistance = phase1Distance + phase2Distance + phase3Distance;
 
 			// Сдвиг старта скролла карточек на 400px до прилипания
 			const scrollOffset = 400;
@@ -987,16 +991,16 @@ import HeroCard from './HeroCard.astro';
 				cardsBlock.style.transform = 'translateY(0)';
 				servicesWrapper.style.opacity = '0';
 				servicesWrapper.style.pointerEvents = 'none';
-				servicesWrapper.style.transform = 'translateY(40px)';
+				servicesWrapper.style.transform = 'none';
 				actionsWrapper.style.opacity = '0';
 				actionsWrapper.style.pointerEvents = 'none';
 				actionsWrapper.style.transform = 'translateY(40px)';
-				bgOrange.style.transform = 'translateY(100%)';
-				bgGray.style.transform = 'translateY(100%)';
+				bgOrange.style.transform = `translateY(${travelDistance}px)`;
+				bgGray.style.transform = `translateY(${grayTravelDistance}px)`;
 				updateStatsStyles(1);
 				if (servicesLeft) {
 					servicesLeft.style.opacity = '0';
-					servicesLeft.style.transform = 'translateY(40px)';
+					servicesLeft.style.transform = `translateY(${travelDistance}px)`;
 				}
 				if (servicesRight) {
 					servicesRight.style.opacity = '0';
@@ -1004,11 +1008,15 @@ import HeroCard from './HeroCard.astro';
 				}
 				if (actionsLeft) {
 					actionsLeft.style.opacity = '0';
-					actionsLeft.style.transform = 'translateY(40px)';
+					actionsLeft.style.transform = `translateY(${grayTravelDistance}px)`;
 				}
-				if (actionsRight) {
-					actionsRight.style.opacity = '0';
-					actionsRight.style.transform = 'translateY(40px)';
+				if (actionsPills) {
+					actionsPills.style.opacity = '0';
+					actionsPills.style.transform = 'translateY(40px)';
+				}
+				if (actionsBtn) {
+					actionsBtn.style.opacity = '0';
+					actionsBtn.style.transform = 'translateY(40px)';
 				}
 				return;
 			}
@@ -1022,47 +1030,63 @@ import HeroCard from './HeroCard.astro';
 				actionsWrapper.style.opacity = '1';
 				actionsWrapper.style.pointerEvents = 'auto';
 				actionsWrapper.style.transform = 'translateY(0)';
-				bgOrange.style.transform = 'translateY(0%)';
-				bgGray.style.transform = 'translateY(0%)';
+				bgOrange.style.transform = 'translateY(0px)';
+				bgGray.style.transform = 'translateY(0px)';
 				updateStatsStyles(3);
 				if (servicesLeft) {
 					servicesLeft.style.opacity = '0';
+					servicesLeft.style.transform = 'none';
 				}
 				if (servicesRight) {
 					servicesRight.style.opacity = '0';
 				}
 				if (actionsLeft) {
 					actionsLeft.style.opacity = '1';
-					actionsLeft.style.transform = 'translateY(0)';
+					actionsLeft.style.transform = 'none';
 				}
-				if (actionsRight) {
-					actionsRight.style.opacity = '1';
-					actionsRight.style.transform = 'translateY(0)';
+				if (actionsPills) {
+					actionsPills.style.opacity = '1';
+					actionsPills.style.transform = 'none';
+				}
+				if (actionsBtn) {
+					actionsBtn.style.opacity = '1';
+					actionsBtn.style.transform = 'none';
 				}
 				if (stickyContent) stickyContent.style.paddingTop = '20px';
 				return;
 			}
 
 			// Фаза 1: Горизонтальная прокрутка карточек
-			if (scrolled <= maxHorizontalScroll) {
-				const progress1 = (scrolled + scrollOffset) / (maxHorizontalScroll + scrollOffset);
+			if (scrolled <= phase1Distance) {
+				const progress1 = (scrolled + scrollOffset) / (phase1Distance + scrollOffset);
 				cardsInner.scrollLeft = progress1 * maxHorizontalScroll;
 
 				// Сброс фазы 2 и 3
 				cardsBlock.style.opacity = '1';
 				cardsBlock.style.transform = 'translateY(0)';
-				servicesWrapper.style.opacity = '0';
+				servicesWrapper.style.opacity = '1';
 				servicesWrapper.style.pointerEvents = 'none';
-				servicesWrapper.style.transform = 'translateY(40px)';
+				servicesWrapper.style.transform = 'none';
 				actionsWrapper.style.opacity = '0';
 				actionsWrapper.style.pointerEvents = 'none';
 				actionsWrapper.style.transform = 'translateY(40px)';
-				bgOrange.style.transform = 'translateY(100%)';
-				bgGray.style.transform = 'translateY(100%)';
+				bgGray.style.transform = `translateY(${grayTravelDistance}px)`;
 				updateStatsStyles(1);
+
+				// Оранжевый фон начинает подниматься за viewHeight * 0.75 до окончания горизонтального скролла (так же плавно, как и серый фон)
+				const orangeRiseDistance = viewHeight * 0.75;
+				const bgStart = phase1Distance - orangeRiseDistance;
+				let bgTranslateY = travelDistance;
+				let bgProgress = 0;
+				if (scrolled > bgStart) {
+					bgProgress = Math.min(1, (scrolled - bgStart) / orangeRiseDistance);
+					bgTranslateY = travelDistance - bgProgress * travelDistance;
+				}
+				bgOrange.style.transform = `translateY(${bgTranslateY}px)`;
+
 				if (servicesLeft) {
-					servicesLeft.style.opacity = '0';
-					servicesLeft.style.transform = 'translateY(40px)';
+					servicesLeft.style.opacity = bgProgress > 0 ? '1' : '0';
+					servicesLeft.style.transform = `translateY(${bgTranslateY}px)`;
 				}
 				if (servicesRight) {
 					servicesRight.style.opacity = '0';
@@ -1070,72 +1094,71 @@ import HeroCard from './HeroCard.astro';
 				}
 				if (actionsLeft) {
 					actionsLeft.style.opacity = '0';
-					actionsLeft.style.transform = 'translateY(40px)';
+					actionsLeft.style.transform = `translateY(${grayTravelDistance}px)`;
 				}
-				if (actionsRight) {
-					actionsRight.style.opacity = '0';
-					actionsRight.style.transform = 'translateY(40px)';
+				if (actionsPills) {
+					actionsPills.style.opacity = '0';
+					actionsPills.style.transform = 'translateY(40px)';
+				}
+				if (actionsBtn) {
+					actionsBtn.style.opacity = '0';
+					actionsBtn.style.transform = 'translateY(40px)';
 				}
 			}
 			// Фаза 2: Скрытие карточек, подъем оранжевого фона и появление сервисов
-			else if (scrolled <= maxHorizontalScroll + phase2Distance) {
+			else if (scrolled <= phase1Distance + phase2Distance) {
 				cardsInner.scrollLeft = maxHorizontalScroll;
-				bgGray.style.transform = 'translateY(100%)';
+				bgGray.style.transform = `translateY(${grayTravelDistance}px)`;
+				bgOrange.style.transform = 'translateY(0px)';
 				actionsWrapper.style.opacity = '0';
 				actionsWrapper.style.pointerEvents = 'none';
 				actionsWrapper.style.transform = 'translateY(40px)';
 
-				const progress2 = (scrolled - maxHorizontalScroll) / phase2Distance;
+				const progress2 = (scrolled - phase1Distance) / phase2Distance;
 
 				// 1. Скрываем карточки (не используем opacity, чтобы они не исчезали плавно)
 				// Добавляем translateX, чтобы они продолжали движение влево
 				cardsBlock.style.opacity = '1';
 				cardsBlock.style.transform = `translateY(${-progress2 * 40}px) translateX(${-progress2 * 500}px)`;
 
-				// 2. Поднимаем оранжевый фон (на отрезке progress2 от 0 до 0.5)
-				const bgProgress = Math.min(1, progress2 / 0.5);
-				const bgTranslateY = 100 - bgProgress * 100;
-				bgOrange.style.transform = `translateY(${bgTranslateY}%)`;
-
-				// 3. Переключение активной цифры на 12 (происходит после полного подъема оранжевого фона, т.е. progress2 > 0.5)
-				if (progress2 > 0.5) {
-					updateStatsStyles(2);
-				} else {
-					updateStatsStyles(1);
-				}
+				// 3. Переключение активной цифры на 12
+				updateStatsStyles(2);
 
 				// 4. Появление услуг (сервисов)
 				servicesWrapper.style.opacity = '1';
 				servicesWrapper.style.transform = 'none';
-				servicesWrapper.style.pointerEvents = progress2 > 0.8 ? 'auto' : 'none';
+				servicesWrapper.style.pointerEvents = progress2 > 0.6 ? 'auto' : 'none';
 
 				if (servicesLeft && servicesRight) {
-					// Левый блок появляется на отрезке progress2 от 0.5 до 0.8
-					const leftProgress = Math.max(0, Math.min(1, (progress2 - 0.5) / 0.3));
-					servicesLeft.style.opacity = leftProgress.toString();
-					servicesLeft.style.transform = `translateY(${(1 - leftProgress) * 40}px)`;
+					// Левый блок остается полностью видимым (он поднялся с оранжевым фоном на фазе 1)
+					servicesLeft.style.opacity = '1';
+					servicesLeft.style.transform = 'none';
 
-					// Правый блок с таблицей появляется на отрезке progress2 от 0.75 до 1.0
-					const rightProgress = Math.max(0, Math.min(1, (progress2 - 0.75) / 0.25));
+					// Правый блок с таблицей появляется на отрезке progress2 от 0.3 до 0.7 (после того как поднялся фон)
+					const rightProgress = Math.max(0, Math.min(1, (progress2 - 0.3) / 0.4));
 					servicesRight.style.opacity = rightProgress.toString();
 					servicesRight.style.transform = `translateY(${(1 - rightProgress) * 40}px)`;
 				}
 				if (actionsLeft) {
 					actionsLeft.style.opacity = '0';
-					actionsLeft.style.transform = 'translateY(40px)';
+					actionsLeft.style.transform = `translateY(${grayTravelDistance}px)`;
 				}
-				if (actionsRight) {
-					actionsRight.style.opacity = '0';
-					actionsRight.style.transform = 'translateY(40px)';
+				if (actionsPills) {
+					actionsPills.style.opacity = '0';
+					actionsPills.style.transform = 'translateY(40px)';
+				}
+				if (actionsBtn) {
+					actionsBtn.style.opacity = '0';
+					actionsBtn.style.transform = 'translateY(40px)';
 				}
 			}
 			// Фаза 3: Скрытие сервисов, подъем серого фона и появление профильных услуг
 			else {
 				cardsInner.scrollLeft = maxHorizontalScroll;
 				cardsBlock.style.opacity = '0';
-				bgOrange.style.transform = 'translateY(0%)';
+				bgOrange.style.transform = 'translateY(0px)';
 
-				const progress3 = (scrolled - maxHorizontalScroll - phase2Distance) / phase3Distance;
+				const progress3 = (scrolled - phase1Distance - phase2Distance) / phase3Distance;
 
 				// 1. УБРАНО скрытие контента Фазы 2 (убрана анимация opacity к 0).
 				// Сервисы теперь остаются видимыми с полной непрозрачностью opacity = 1
@@ -1144,13 +1167,13 @@ import HeroCard from './HeroCard.astro';
 				if (servicesRight) servicesRight.style.opacity = '1';
 				servicesWrapper.style.pointerEvents = progress3 > 0.3 ? 'none' : 'auto';
 
-				// 2. Поднимаем серый фон (на отрезке progress3 от 0 до 0.5)
-				const bgProgress = Math.min(1, progress3 / 0.5);
-				const bgTranslateY = 100 - bgProgress * 100;
-				bgGray.style.transform = `translateY(${bgTranslateY}%)`;
+				// 2. Поднимаем серый фон (на отрезке progress3 от 0 до 0.35)
+				const bgProgress = Math.min(1, progress3 / 0.35);
+				const bgTranslateY = grayTravelDistance - bgProgress * grayTravelDistance;
+				bgGray.style.transform = `translateY(${bgTranslateY}px)`;
 
-				// 3. Переключение активной цифры на 70 (происходит после полного подъема серого фона, т.е. progress3 > 0.5)
-				if (progress3 > 0.5) {
+				// 3. Переключение активной цифры на 70 (происходит после полного подъема серого фона, т.е. progress3 > 0.35)
+				if (progress3 > 0.35) {
 					updateStatsStyles(3);
 				} else {
 					updateStatsStyles(2);
@@ -1159,18 +1182,26 @@ import HeroCard from './HeroCard.astro';
 				// 4. Появление профильных услуг
 				actionsWrapper.style.opacity = '1';
 				actionsWrapper.style.transform = 'none';
-				actionsWrapper.style.pointerEvents = progress3 > 0.8 ? 'auto' : 'none';
+				actionsWrapper.style.pointerEvents = progress3 > 0.75 ? 'auto' : 'none';
 
-				if (actionsLeft && actionsRight) {
-					// Левый блок услуг всплывает на отрезке progress3 от 0.5 до 0.8
-					const leftProgress = Math.max(0, Math.min(1, (progress3 - 0.5) / 0.3));
-					actionsLeft.style.opacity = leftProgress.toString();
-					actionsLeft.style.transform = `translateY(${(1 - leftProgress) * 40}px)`;
+				// Левый блок (заголовок и подзаголовок) поднимается синхронно с серым фоном
+				if (actionsLeft) {
+					actionsLeft.style.opacity = bgProgress > 0 ? '1' : '0';
+					actionsLeft.style.transform = `translateY(${bgTranslateY}px)`;
+				}
 
-					// Правая Grid-сетка кнопок всплывает на отрезке progress3 от 0.75 до 1.0 (после левого блока)
-					const rightProgress = Math.max(0, Math.min(1, (progress3 - 0.75) / 0.25));
-					actionsRight.style.opacity = rightProgress.toString();
-					actionsRight.style.transform = `translateY(${(1 - rightProgress) * 40}px)`;
+				// Появление 2 рядов кнопок (от progress3 = 0.35 до 0.6)
+				if (actionsPills) {
+					const pillsProgress = Math.max(0, Math.min(1, (progress3 - 0.35) / 0.25));
+					actionsPills.style.opacity = pillsProgress.toString();
+					actionsPills.style.transform = `translateY(${(1 - pillsProgress) * 40}px)`;
+				}
+
+				// Появление кнопки Выбрать сервис (от progress3 = 0.55 до 0.75)
+				if (actionsBtn) {
+					const btnProgress = Math.max(0, Math.min(1, (progress3 - 0.55) / 0.2));
+					actionsBtn.style.opacity = btnProgress.toString();
+					actionsBtn.style.transform = `translateY(${(1 - btnProgress) * 40}px)`;
 				}
 			}
 		};
@@ -1178,10 +1209,11 @@ import HeroCard from './HeroCard.astro';
 		const updateWrapperHeight = () => {
 			if (window.innerWidth > 768) {
 				const maxHorizontalScroll = cardsInner.scrollWidth - cardsInner.clientWidth;
+				const phase1Distance = maxHorizontalScroll * 1.8;
 				const phase2Distance = window.innerHeight * 2.2;
-				const phase3Distance = window.innerHeight * 1.5;
+				const phase3Distance = window.innerHeight * 2.5;
 				// Высота = высота экрана + горизонтальный скролл + Фаза 2 + Фаза 3
-				stickyWrapper.style.height = `${window.innerHeight + maxHorizontalScroll + phase2Distance + phase3Distance}px`;
+				stickyWrapper.style.height = `${window.innerHeight + phase1Distance + phase2Distance + phase3Distance}px`;
 			} else {
 				stickyWrapper.style.removeProperty('height');
 			}
@@ -1338,10 +1370,9 @@ import HeroCard from './HeroCard.astro';
 				};
 
 				const shuffledTags = shuffle(allTagItems);
-				const third = Math.ceil(shuffledTags.length / 3);
-				const tags1 = shuffledTags.slice(0, third);
-				const tags2 = shuffledTags.slice(third, third * 2);
-				const tags3 = shuffledTags.slice(third * 2);
+				const half = Math.ceil(shuffledTags.length / 2);
+				const tags1 = shuffledTags.slice(0, half);
+				const tags2 = shuffledTags.slice(half);
 
 				const renderPills = (container: HTMLElement | null, tags: TagItem[]) => {
 					if (!container) return;
@@ -1371,7 +1402,6 @@ import HeroCard from './HeroCard.astro';
 
 				renderPills(row1, tags1);
 				renderPills(row2, tags2);
-				renderPills(row3, tags3);
 			})
 			.catch(err => console.error('Error loading tags:', err));
 	}

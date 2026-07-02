@@ -213,6 +213,15 @@
 
 	gsap.registerPlugin(ScrollTrigger);
 
+	// Добавляем стоп-точку (pin) для секции Hero после прокрутки шапки (на 200px)
+	ScrollTrigger.create({
+		trigger: '.hero',
+		start: 'top -200px',
+		end: '+=500px',
+		pin: true,
+		pinSpacing: true,
+	});
+
 	// 1. Эффект печатной машинки для заголовка "Формула Baisanat"
 	const typewriterElement = document.querySelector('.hero__label[typewriter="true"]') as HTMLElement | null;
 	if (typewriterElement) {
