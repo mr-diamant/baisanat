@@ -1,7 +1,12 @@
 ---
+interface Props {
+	theme?: 'dark' | 'light';
+}
+
+const { theme = 'dark' } = Astro.props;
 ---
 
-<footer class="footer" id="footer">
+<footer class={`footer ${theme === 'light' ? 'footer--light' : ''}`} id="footer">
 	<canvas id="footer-bg" class="footer__bg-canvas"></canvas>
 	<div class="container footer__container">
 		<div class="footer__content">
@@ -69,10 +74,10 @@
 
 			<div class="footer__copyright">
 				<div class="footer__logo">
-					<img src={import.meta.env.BASE_URL + 'Media/logo.png'} alt="BAISANAT HOLDING" style="filter: brightness(0) invert(1);" />
+					<img src={import.meta.env.BASE_URL + (theme === 'light' ? 'Media/logo_black.png' : 'Media/logo.png')} alt="BAISANAT HOLDING" class={theme === 'light' ? 'logo--light' : 'logo--dark'} />
 				</div>
 				<div class="footer__copyright-text">
-					<a href="#" class="footer__policy">Политика и соглашение</a>
+					<a href={import.meta.env.BASE_URL + 'terms'} class="footer__policy">Политика и соглашение</a>
 					<span class="footer__rights">&copy; Baisanat Holding 2026</span>
 				</div>
 			</div>
@@ -337,6 +342,67 @@
 			flex: 1 1 auto;
 			width: 100%;
 		}
+	}
+
+	/* Light theme overrides */
+	.logo--dark {
+		filter: brightness(0) invert(1);
+	}
+	.logo--light {
+		filter: none;
+	}
+
+	.footer--light {
+		background: #ffffff;
+		color: var(--color-text);
+		padding: 80px 0 40px;
+	}
+	.footer--light > .footer__container:first-of-type {
+		display: none;
+	}
+	.footer--light .footer__bg-canvas {
+		display: none;
+	}
+	.footer--light .footer__middle-wrapper {
+		display: none;
+	}
+	.footer--light .footer__title {
+		color: var(--color-text);
+	}
+	.footer--light .footer__middle-text {
+		color: var(--color-text);
+	}
+	.footer--light .footer__link-start {
+		color: var(--color-blue);
+		border-color: var(--color-blue);
+	}
+	.footer--light .footer__email {
+		color: #FE5000;
+	}
+	.footer--light .footer__socials a {
+		color: var(--color-text);
+		opacity: 0.7;
+	}
+	.footer--light .footer__socials a:hover {
+		opacity: 1;
+		color: var(--color-accent);
+	}
+	.footer--light .footer__nav-col a {
+		color: var(--color-text);
+		opacity: 0.7;
+	}
+	.footer--light .footer__nav-col a:hover {
+		opacity: 1;
+		color: var(--color-accent);
+	}
+	.footer--light .footer__copyright {
+		color: rgba(18, 27, 61, 0.6);
+	}
+	.footer--light .footer__policy {
+		color: rgba(18, 27, 61, 0.6);
+	}
+	.footer--light .footer__policy:hover {
+		color: var(--color-accent);
 	}
 </style>
 

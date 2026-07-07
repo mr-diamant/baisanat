@@ -1,10 +1,15 @@
 ---
+interface Props {
+	theme?: 'dark' | 'light';
+}
+
+const { theme = 'dark' } = Astro.props;
 ---
 
-<header class="site-header">
+<header class={`site-header ${theme === 'light' ? 'site-header--light' : ''}`}>
 	<div class="container header__inner">
 		<a href={import.meta.env.BASE_URL} class="header__logo" aria-label="Baisanat Holding">
-			<img src={import.meta.env.BASE_URL + 'Media/logo.png'} alt="Baisanat Holding" width="220" height="43" />
+			<img src={import.meta.env.BASE_URL + (theme === 'light' ? 'Media/logo_black.png' : 'Media/logo.png')} alt="Baisanat Holding" width="220" height="43" />
 		</a>
 
 		<nav class="header__nav">
@@ -444,6 +449,30 @@
 	.side-menu__list {
 		gap: 16px;
 	}
+}
+
+/* Light theme overrides */
+.site-header--light .header__lang-trigger {
+	color: var(--color-text);
+}
+.site-header--light .header__lang-trigger:hover {
+	color: var(--color-accent);
+}
+.site-header--light .header__menu-label {
+	color: var(--color-text);
+}
+.site-header--light .header__menu:hover .header__menu-label {
+	color: var(--color-accent);
+}
+.site-header--light .header__menu-burger {
+	border-color: rgba(18, 27, 61, 0.25);
+}
+.site-header--light .header__menu-burger span {
+	background: var(--color-text);
+}
+.site-header--light .header__menu:hover .header__menu-burger {
+	border-color: var(--color-accent);
+	background: rgba(255, 80, 0, 0.05);
 }
 </style>
 
