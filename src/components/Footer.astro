@@ -59,14 +59,14 @@ const { theme = 'dark' } = Astro.props;
 				<div class="footer__bottom-right">
 					<div class="footer__nav-grid">
 						<div class="footer__nav-col">
-							<a href="#">На главную</a>
-							<a href="#">О холдинге</a>
-							<a href="#">Сервисы и услуги</a>
+							<a href={import.meta.env.BASE_URL + '#hero'}>На главную</a>
+							<a href={import.meta.env.BASE_URL + '#formula'}>О холдинге</a>
+							<a href={import.meta.env.BASE_URL + '#ecosystem'}>Сервисы и услуги</a>
 						</div>
 						<div class="footer__nav-col">
-							<a href="#">Клиенты</a>
-							<a href="#">Проекты</a>
-							<a href="#">Контакты</a>
+							<a href={import.meta.env.BASE_URL + '#clients'}>Клиенты</a>
+							<a href={import.meta.env.BASE_URL + '#projects'}>Проекты</a>
+							<a href={import.meta.env.BASE_URL + 'contacts'}>Контакты</a>
 						</div>
 					</div>
 				</div>
