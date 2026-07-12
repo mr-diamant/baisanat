@@ -68,8 +68,8 @@
 
 @media (min-width: 1728px) {
   :root {
-    --container: 1600px;
-    --gutter: 100px;
+    --container: 1360px;
+    --gutter: 180px;
   }
 }
 
@@ -110,6 +110,11 @@ img {
   .container {
     max-width: calc(var(--container) + var(--gutter) * 2);
   }
+}
+
+/* Position section numbers dynamically relative to current gutter width */
+.hero__number {
+  left: calc(-1 * var(--gutter) + 30px) !important;
 }
 
 /* Lenis smooth scrolling styles */

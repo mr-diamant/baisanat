@@ -119,10 +119,11 @@ import HeroCard from './HeroCard.astro';
 					<div class="actions__rows" data-base-url={import.meta.env.BASE_URL}>
 						<div class="actions__row-pills actions__row-pills--1"></div>
 						<div class="actions__row-pills actions__row-pills--2"></div>
+						<div class="actions__row-pills actions__row-pills--3"></div>
 					</div>
 					<div class="container">
 						<button class="actions__btn">
-							<svg class="actions__btn-icon" width="10" height="10" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<svg class="actions__btn-icon" width="15" height="15" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
 							</svg>
 							<span class="actions__btn-text">Выбрать сервис</span>
@@ -195,7 +196,7 @@ import HeroCard from './HeroCard.astro';
 	right: 0;
 	bottom: 0;
 	width: 100%;
-	background: linear-gradient(180deg, #ff5000 50%, #ffffff 90%, #ffffff 100%);
+	background: linear-gradient(191deg, #ff5000 20%, #ffffff 60%, #ffffff 100%);
 	z-index: 1;
 	pointer-events: none;
 	transform: translateY(100%);
@@ -251,7 +252,13 @@ import HeroCard from './HeroCard.astro';
 		margin-top: 0px;
 		display: flex;
 		align-items: center;
-		height: clamp(380px, 28vw, 480px);
+		height: clamp(400px, 30vw, 520px);
+	}
+
+	@media (min-width: 1728px) {
+		.hero__sticky-dynamic {
+			margin-top: 60px;
+		}
 	}
 
 	.hero__cards {
@@ -354,7 +361,7 @@ import HeroCard from './HeroCard.astro';
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 135px;
-	margin: 36px 0 0;
+	margin: 3vw 0 0;
 }
 
 .hero__stat {
@@ -377,7 +384,7 @@ import HeroCard from './HeroCard.astro';
 }
 
 .hero__stat-value {
-	font-size: 11vw;
+	font-size: 10vw;
 	font-weight: 600;
 	line-height: 0.82;
 	transition: color 0.4s ease, -webkit-text-stroke 0.4s ease, text-stroke 0.4s ease;
@@ -413,6 +420,8 @@ import HeroCard from './HeroCard.astro';
 		margin-right: 8vw;
 	}
 }
+
+
 
 .hero__cards {
 	margin-top: 120px;
@@ -507,11 +516,10 @@ import HeroCard from './HeroCard.astro';
 
 .services__desc {
 	font-family: var(--font-main);
-	font-size: 16px;
+	font-size: 1.3vw;
 	font-weight: 400;
-	line-height: 1.4;
+	line-height: 1;
 	color: rgba(0, 0, 0, 0.65);
-	max-width: 320px;
 }
 
 .services__right {
@@ -566,8 +574,8 @@ import HeroCard from './HeroCard.astro';
 
 :global(.services__num) {
 	font-family: var(--font-main);
-	font-size: 16px;
-	font-weight: 500;
+	font-size: 1.2vw;
+	font-weight: 300;
 	color: #000000;
 	position: relative;
 	top: -4px;
@@ -578,7 +586,7 @@ import HeroCard from './HeroCard.astro';
 :global(.services__text) {
 	font-family: var(--font-main);
 	font-size: 1.7vw;
-	font-weight: 500;
+	font-weight: 400;
 	color: #000000;
 	transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 	z-index: 1;
@@ -637,7 +645,8 @@ import HeroCard from './HeroCard.astro';
 	line-height: 1.1;
 	color: #000000;
 	letter-spacing: -0.02em;
-	margin-bottom: 24px;
+	margin-top: 5vw;
+	margin-bottom: 2vw;
 	text-align: left;
 }
 
@@ -653,13 +662,13 @@ import HeroCard from './HeroCard.astro';
 
 .actions__desc {
 	font-family: var(--font-main);
-	font-size: 22px;
+	font-size: 29px;
 	font-weight: 400;
-	line-height: 1.4;
-	color: rgba(0, 0, 0, 0.65);
+	line-height: 1;
+	color: #000;
 	text-align: center;
 	width: 100%;
-	margin-bottom: 20px;
+	margin-bottom: 2vw;
 }
 
 .actions__desc-icon {
@@ -693,7 +702,7 @@ import HeroCard from './HeroCard.astro';
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 24px;
+	gap: 5vw;
 	margin-left: 0;
 	padding-right: 0;
 }
@@ -710,9 +719,9 @@ import HeroCard from './HeroCard.astro';
 	border-bottom: 1px solid #000000;
 	color: #000000;
 	font-family: var(--font-main);
-	font-size: 16px;
+	font-size: 1.3vw;
 	line-height: 1;
-	font-weight: 500;
+	font-weight: 300;
 	cursor: pointer;
 	transition: opacity 0.2s ease, border-color 0.2s ease;
 }
@@ -765,6 +774,10 @@ import HeroCard from './HeroCard.astro';
 	animation: marquee-right 150s linear infinite;
 }
 
+.actions__row-pills--3 {
+	animation: marquee-left 130s linear infinite;
+}
+
 
 :global(.actions__pill) {
 	display: inline-flex;
@@ -772,16 +785,17 @@ import HeroCard from './HeroCard.astro';
 	justify-content: center;
 	padding: 10px 20px;
 	border-radius: 9999px;
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border: 1px solid #000;
 	background: transparent;
 	color: #000000;
 	font-family: var(--font-main);
-	font-size: 18px;
+	font-size: 1.6vw;
 	font-weight: 100;
 	text-align: center;
 	transition: all 0.2s ease;
 	white-space: nowrap;
 	margin-right: 12px;
+	margin-bottom: 0.3vw;
 }
 
 @keyframes marquee-left {
@@ -978,6 +992,7 @@ import HeroCard from './HeroCard.astro';
 
 			// Сдвиг старта скролла карточек на 400px до прилипания
 			const scrollOffset = 400;
+
 
 			// Анимация уменьшения верхнего отступа при прилипании
 			if (stickyContent) {
@@ -1375,9 +1390,10 @@ import HeroCard from './HeroCard.astro';
 				};
 
 				const shuffledTags = shuffle(allTagItems);
-				const half = Math.ceil(shuffledTags.length / 2);
-				const tags1 = shuffledTags.slice(0, half);
-				const tags2 = shuffledTags.slice(half);
+				const third = Math.ceil(shuffledTags.length / 3);
+				const tags1 = shuffledTags.slice(0, third);
+				const tags2 = shuffledTags.slice(third, third * 2);
+				const tags3 = shuffledTags.slice(third * 2);
 
 				const renderPills = (container: HTMLElement | null, tags: TagItem[]) => {
 					if (!container) return;
@@ -1407,6 +1423,7 @@ import HeroCard from './HeroCard.astro';
 
 				renderPills(row1, tags1);
 				renderPills(row2, tags2);
+				renderPills(row3, tags3);
 			})
 			.catch(err => console.error('Error loading tags:', err));
 	}
