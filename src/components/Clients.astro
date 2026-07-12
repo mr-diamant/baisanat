@@ -83,7 +83,7 @@
 	}
 
 	.clients__label {
-		margin-bottom: 40px;
+		margin-bottom: 5vw;
 	}
 	
 	.hero__section-label {
@@ -152,6 +152,10 @@
 		margin-bottom: 24px;
 	}
 
+	.clients__desc:last-of-type {
+		margin-bottom: 4vw;
+	}
+
 	.clients__link {
 		margin-top: 20px;
 		display: inline-flex;
@@ -208,10 +212,7 @@
 
 	@media (min-width: 769px) {
 		.clients {
-			min-height: 100vh;
-			display: flex;
-			align-items: center;
-			padding-top: 30px;
+			padding: 1vw 0;
 		}
 	}
 
@@ -282,16 +283,7 @@
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	// Добавляем стоп-точку (pin) для секции Clients только на десктопе
-	if (window.innerWidth > 768) {
-		ScrollTrigger.create({
-			trigger: '#clients',
-			start: 'top top',
-			end: '+=500px',
-			pin: true,
-			pinSpacing: true,
-		});
-	}
+
 
 	const clientsTypewriter = document.querySelector('#clients .hero__label[typewriter="true"]') as HTMLElement | null;
 	if (clientsTypewriter) {
