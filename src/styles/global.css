@@ -55,9 +55,24 @@
   --color-muted: #c0c6da;
 
   --font-main: 'SFT Schrifted Sans', 'Montserrat', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --container: 1520px;
+  --container: 1200px;
   --gutter: 80px;
 }
+
+@media (min-width: 1440px) {
+  :root {
+    --container: 1440px;
+    --gutter: 80px;
+  }
+}
+
+@media (min-width: 1728px) {
+  :root {
+    --container: 1600px;
+    --gutter: 100px;
+  }
+}
+
 
 * {
   margin: 0;
@@ -89,6 +104,12 @@ img {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--gutter);
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: calc(var(--container) + var(--gutter) * 2);
+  }
 }
 
 /* Lenis smooth scrolling styles */

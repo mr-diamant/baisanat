@@ -36,8 +36,8 @@
 					<div class="cooperation__stat-label">профессионалов</div>
 					<div class="cooperation__stat-divider"></div>
 					<div class="cooperation__stat-desc">
-						<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
-							<path d="M10 0L8.59 1.41L12.17 5H0V7H12.17L8.59 10.59L10 12L16 6L10 0Z" fill="currentColor"/>
+						<svg width="12" height="12" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
+							<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
 						</svg>
 						<span>В реализации проектов Baisanat<br />принимают участие казахстанские<br />и зарубежные эксперты</span>
 					</div>
@@ -50,8 +50,8 @@
 					<div class="cooperation__stat-label">компаний-партнеров</div>
 					<div class="cooperation__stat-divider"></div>
 					<div class="cooperation__stat-desc">
-						<svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
-							<path d="M10 0L8.59 1.41L12.17 5H0V7H12.17L8.59 10.59L10 12L16 6L10 0Z" fill="currentColor"/>
+						<svg width="12" height="12" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
+							<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
 						</svg>
 						<span>Широкая и надежная<br />инфраструктура для решения<br />задач любой сложности</span>
 					</div>
@@ -71,7 +71,7 @@
 
 	@media (min-width: 769px) {
 		.cooperation {
-			padding-top: 25px;
+			padding-top: 100px;
 		}
 	}
 
@@ -90,19 +90,19 @@
 	}
 
 	.hero__section-label {
-		display: flex;
-		align-items: flex-start;
-		gap: 80px;
+		position: relative;
 		color: #ffffff;
 	}
 
 	.hero__number {
+		position: absolute;
+		left: -80px;
+		top: 4px;
 		font-size: 12px;
 		font-weight: 400;
 		line-height: 1;
 		opacity: 0.8;
 		min-width: 30px;
-		padding-top: 4px;
 	}
 
 	.hero__label-block {
@@ -136,7 +136,7 @@
 	}
 
 	.cooperation__content {
-		margin-left: 260px;
+		margin-left: calc(50px + 15vw);
 	}
 
 	.cooperation__title {
@@ -146,14 +146,14 @@
 		line-height: 1.1;
 		color: #ffffff;
 		letter-spacing: -0.02em;
-		margin-bottom: 20px;
+		margin-bottom: 12px;
 	}
 
 	.cooperation__subtitle {
 		font-family: var(--font-main);
-		font-size: 1.2vw;
+		font-size: 1.8vw;
 		font-weight: 300;
-		line-height: 1.4;
+		line-height: 1;
 		color: rgba(255, 255, 255, 0.8);
 		margin-bottom: 80px;
 	}
@@ -215,7 +215,7 @@
 		font-family: var(--font-main);
 		font-size: 16px;
 		font-weight: 300;
-		line-height: 1.5;
+		line-height: 1;
 		color: rgba(255, 255, 255, 0.9);
 		display: flex;
 		align-items: flex-start;
@@ -248,7 +248,7 @@
 
 	@media (max-width: 1024px) {
 		.cooperation__content {
-			margin-left: 40px;
+			margin-left: 0;
 		}
 		.cooperation__stats {
 			gap: 40px;
@@ -261,7 +261,7 @@
 		}
 		
 		.cooperation__content {
-			margin-left: 0;
+			/* margin-left: 0; removed */
 		}
 
 		.cooperation__title {

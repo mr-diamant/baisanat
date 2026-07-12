@@ -22,8 +22,8 @@ const { theme = 'dark' } = Astro.props;
 		<div class="container footer__container">
 			<div class="footer__middle">
 				<div class="footer__middle-arrow">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
-						<path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8z" fill="currentColor"/>
+					<svg width="26" height="26" viewBox="0 0 36 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-orange">
+						<path d="M20.5098 0.0332031L36.001 14.9775L20.5098 29.9219L14.3477 29.9541V29.7578L27.3525 17.2109H0V12.7441H27.2842L14.3477 0.262695V0L20.5098 0.0332031Z" fill="#FE5000" style="fill:#FE5000;fill:color(display-p3 0.9961 0.3137 0.0000);fill-opacity:1;"/>
 					</svg>
 				</div>
 				<div class="footer__middle-text">
@@ -87,7 +87,7 @@ const { theme = 'dark' } = Astro.props;
 
 <style>
 	.footer {
-		padding: 150px 0 40px;
+		padding: 150px 0 70px;
 		position: relative;
 		z-index: 2;
 		overflow: hidden;
@@ -105,11 +105,11 @@ const { theme = 'dark' } = Astro.props;
 	}
 
 	.footer__content {
-		max-width: 1200px;
+		max-width: var(--container);
 	}
 
 	.footer__top {
-		margin-bottom: 60px;
+		margin-bottom: 30px;
 		display: flex;
 		justify-content: flex-start;
 		text-align: left;
@@ -117,43 +117,43 @@ const { theme = 'dark' } = Astro.props;
 
 	.footer__title {
 		font-family: var(--font-main);
-		font-size: clamp(34px, 4.5vw, 60px);
+		font-size: 4vw;
 		font-weight: 500;
 		line-height: 1.03;
 		letter-spacing: -0.02em;
-		margin-left: 260px;
+		margin-left: calc(50px + 15vw);
 	}
 
 	.footer__middle-wrapper {
-		border-top: 1px solid rgba(255, 255, 255, 0.2);
-		border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-		margin-bottom: 80px;
+		border-top: 1px solid #85A0FF;
+		border-bottom: 1px solid #85A0FF;
+		margin-bottom: 170px;
 	}
 
 	.footer__middle {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 40px 0;
+		padding: 30px 0;
 	}
 
 	.footer__middle-arrow {
-		flex: 0 0 260px;
+		flex: 0 0 calc(50px + 15vw);
 		display: flex;
 		justify-content: flex-start;
 	}
 
 	.footer__middle-arrow svg {
-		width: 24px;
-		height: 24px;
+		width: 26px;
+		height: 26px;
 	}
 
 	.footer__middle-text {
 		flex: 1;
 		font-family: var(--font-main);
-		font-size: 20px;
+		font-size: 1.8vw;
 		font-weight: 400;
-		line-height: 1.4;
+		line-height: 1;
 	}
 
 	.footer__middle-action {
@@ -165,7 +165,7 @@ const { theme = 'dark' } = Astro.props;
 		align-items: center;
 		gap: 8px;
 		font-family: var(--font-main);
-		font-size: 16px;
+		font-size: 1.3vw;
 		font-weight: 400;
 		color: #85A0FF;
 		text-decoration: none;
@@ -212,9 +212,9 @@ const { theme = 'dark' } = Astro.props;
 
 	.footer__socials {
 		display: flex;
-		gap: 24px;
+		gap: 32px;
 		font-family: var(--font-main);
-		font-size: 14px;
+		font-size: 1vw;
 		font-weight: 300;
 	}
 
@@ -234,7 +234,7 @@ const { theme = 'dark' } = Astro.props;
 	.footer__bottom-right {
 		display: flex;
 		align-items: flex-end;
-		flex: 0 0 450px;
+		flex: 0 0 28vw;
 	}
 
 	.footer__nav-grid {
@@ -245,12 +245,12 @@ const { theme = 'dark' } = Astro.props;
 	.footer__nav-col {
 		display: flex;
 		flex-direction: column;
-		gap: 16px;
+		gap: 10px;
 	}
 
 	.footer__nav-col a {
 		font-family: var(--font-main);
-		font-size: 14px;
+		font-size: 1vw;
 		font-weight: 300;
 		color: #ffffff;
 		text-decoration: none;
@@ -264,18 +264,18 @@ const { theme = 'dark' } = Astro.props;
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-end;
-		padding-top: 40px;
+		padding-top: 0;
 		font-family: var(--font-main);
-		font-size: 12px;
+		font-size: 1vw;
 		font-weight: 300;
 		color: rgba(255, 255, 255, 0.7);
 	}
 
 	.footer__copyright-text {
 		display: flex;
-		gap: 60px;
+		gap: 3vw;
 		align-items: center;
-		flex: 0 0 450px;
+		flex: 0 0 28vw;
 		justify-content: flex-start;
 	}
 

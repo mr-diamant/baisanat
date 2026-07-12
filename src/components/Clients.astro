@@ -32,7 +32,7 @@
 					Вместе мы воплощаем в жизнь<br />идеи, которые делают мир лучше
 				</p>
 
-				<a href="#" class="clients__link">
+				<a href={import.meta.env.BASE_URL + 'clients'} class="clients__link">
 					<svg width="12" height="12" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
 					</svg>
@@ -70,7 +70,7 @@
 
 	.clients__inner {
 		display: flex;
-		gap: 60px;
+		gap: 90px;
 		justify-content: space-between;
 	}
 
@@ -87,9 +87,7 @@
 	}
 	
 	.hero__section-label {
-		display: flex;
-		align-items: flex-start;
-		gap: 80px;
+		position: relative;
 		color: var(--color-white);
 	}
 
@@ -98,12 +96,14 @@
 	}
 
 	.hero__number {
+		position: absolute;
+		left: -80px;
+		top: 4px;
 		font-size: 12px;
 		font-weight: 400;
 		line-height: 1;
 		opacity: 0.8;
 		min-width: 30px;
-		padding-top: 4px;
 	}
 
 	.hero__label-block {
@@ -130,7 +130,7 @@
 	}
 	
 	.clients__content {
-		margin-left: 110px;
+		/* margin-left: 110px; removed */
 	}
 
 	.clients__title {
@@ -145,9 +145,9 @@
 
 	.clients__desc {
 		font-family: var(--font-main);
-		font-size: 18px;
+		font-size: 1.7vw;
 		font-weight: 400;
-		line-height: 1.4;
+		line-height: 1;
 		color: rgba(0, 0, 0, 0.85);
 		margin-bottom: 24px;
 	}
@@ -225,7 +225,7 @@
 		}
 
 		.clients__content {
-			margin-left: 40px;
+			/* margin-left: 40px; removed */
 		}
 	}
 

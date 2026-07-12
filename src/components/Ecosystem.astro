@@ -142,9 +142,7 @@ import HeroCard from './HeroCard.astro';
 }
 
 .hero__section-label {
-	display: flex;
-	align-items: flex-start;
-	gap: 80px;
+	position: relative;
 	color: var(--color-white);
 }
 
@@ -153,12 +151,14 @@ import HeroCard from './HeroCard.astro';
 }
 
 .hero__number {
+	position: absolute;
+	left: -80px;
+	top: 4px;
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 1;
 	opacity: 0.8;
 	min-width: 30px;
-	padding-top: 4px;
 }
 
 .hero__label-block {
@@ -190,21 +190,7 @@ import HeroCard from './HeroCard.astro';
 
 .hero__sticky-bg-orange {
 	position: absolute;
-	top: 150px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	width: 100%;
-	background: linear-gradient(180deg, #adb0c1 50%, #ffffff 90%, #ffffff 100%);
-	z-index: 1;
-	pointer-events: none;
-	transform: translateY(100%);
-	border-radius: 40px 40px 0 0;
-}
-
-.hero__sticky-bg-gray {
-	position: absolute;
-	top: 200px;
+	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
@@ -213,7 +199,19 @@ import HeroCard from './HeroCard.astro';
 	z-index: 1;
 	pointer-events: none;
 	transform: translateY(100%);
-	border-radius: 40px 40px 0 0;
+}
+
+.hero__sticky-bg-gray {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	background: linear-gradient(180deg, #adb0c1 50%, #ffffff 90%, #ffffff 100%);
+	z-index: 1;
+	pointer-events: none;
+	transform: translateY(100%);
 }
 
 @media (min-width: 769px) {
@@ -253,7 +251,7 @@ import HeroCard from './HeroCard.astro';
 		margin-top: 0px;
 		display: flex;
 		align-items: center;
-		height: 380px;
+		height: clamp(380px, 28vw, 480px);
 	}
 
 	.hero__cards {
@@ -284,6 +282,7 @@ import HeroCard from './HeroCard.astro';
 		pointer-events: none;
 		transform: translateY(40px);
 		z-index: 6; /* Поверх серого фона */
+		margin-top: 50px;
 	}
 }
 
@@ -354,26 +353,31 @@ import HeroCard from './HeroCard.astro';
 .hero__stats {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 30px;
-	margin: 36px auto 0;
-	max-width: 1000px;
-	background-color: #ffffff;
-	border: 1px solid #e1e3e6;
-	border-radius: 30px;
-	padding: 30px 40px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+	gap: 135px;
+	margin: 36px 0 0;
 }
 
 .hero__stat {
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
-	align-items: center;
-	text-align: center;
+	align-items: flex-start;
+	text-align: left;
+}
+
+@media (min-width: 769px) {
+	.hero__stat:nth-child(2) {
+		align-items: center;
+		text-align: center;
+	}
+	.hero__stat:nth-child(3) {
+		align-items: flex-end;
+		text-align: right;
+	}
 }
 
 .hero__stat-value {
-	font-size: clamp(80px, 8vw, 120px);
+	font-size: 11vw;
 	font-weight: 600;
 	line-height: 0.82;
 	transition: color 0.4s ease, -webkit-text-stroke 0.4s ease, text-stroke 0.4s ease;
@@ -404,14 +408,32 @@ import HeroCard from './HeroCard.astro';
 	color: #5f5f5f;
 }
 
+@media (min-width: 769px) {
+	#stat-actions .hero__stat-caption {
+		margin-right: 8vw;
+	}
+}
+
 .hero__cards {
-	margin-top: 60px;
+	margin-top: 120px;
+}
+
+@media (min-width: 1440px) {
+	.hero__cards {
+		margin-top: 180px;
+	}
+}
+
+@media (min-width: 1728px) {
+	.hero__cards {
+		margin-top: 220px;
+	}
 }
 
 @media (min-width: 769px) {
 	.hero__cards-inner {
 		display: flex;
-		gap: 24px;
+		gap: 16px;
 		overflow-x: scroll;
 		padding-left: calc(50vw - 145px);
 		padding-right: 100vw;
@@ -447,9 +469,7 @@ import HeroCard from './HeroCard.astro';
 		padding-top: 160px;
 	}
 
-	.hero__title {
-		margin-left: 0;
-	}
+	/* .hero__title { margin-left: 0; } removed */
 
 	.hero__columns,
 	.hero__stats {
@@ -466,19 +486,18 @@ import HeroCard from './HeroCard.astro';
 /* Services component integrated styles */
 .services__inner {
 	display: flex;
-	gap: 10px;
+	gap: 40px;
 	align-items: flex-start;
 }
 
 .services__left {
 	flex: 0 0 35%;
 	max-width: 480px;
-	margin-left: 110px;
 }
 
 .services__title {
 	font-family: var(--font-main);
-	font-size: 2.3vw;
+	font-size: 2.7vw;
 	font-weight: 500;
 	line-height: 1;
 	color: #000000;
@@ -503,12 +522,12 @@ import HeroCard from './HeroCard.astro';
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	border-top: 1px solid rgba(0, 0, 0, 0.15);
+	border-top: 1px solid #000000;
 }
 
 :global(.services__row) {
 	display: flex;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+	border-bottom: 1px solid #000000;
 }
 
 :global(.services__col) {
@@ -547,10 +566,9 @@ import HeroCard from './HeroCard.astro';
 
 :global(.services__num) {
 	font-family: var(--font-main);
-	font-size: 13px;
+	font-size: 16px;
 	font-weight: 500;
-	color: rgba(0, 0, 0, 0.4);
-	font-feature-settings: "tnum";
+	color: #000000;
 	position: relative;
 	top: -4px;
 	transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -559,7 +577,7 @@ import HeroCard from './HeroCard.astro';
 
 :global(.services__text) {
 	font-family: var(--font-main);
-	font-size: 1.5vw;
+	font-size: 1.7vw;
 	font-weight: 500;
 	color: #000000;
 	transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -570,9 +588,6 @@ import HeroCard from './HeroCard.astro';
 	.services__inner {
 		gap: 40px;
 	}
-	.services__left {
-		margin-left: 40px;
-	}
 }
 
 @media (max-width: 768px) {
@@ -582,7 +597,6 @@ import HeroCard from './HeroCard.astro';
 	}
 
 	.services__left {
-		margin-left: 0;
 		max-width: 100%;
 	}
 
@@ -618,32 +632,28 @@ import HeroCard from './HeroCard.astro';
 
 .actions__title {
 	font-family: var(--font-main);
-	font-size: 2.3vw;
+	font-size: 2.5vw;
 	font-weight: 500;
 	line-height: 1.1;
 	color: #000000;
 	letter-spacing: -0.02em;
 	margin-bottom: 24px;
 	text-align: left;
-	margin-left: 110px;
 }
 
 @media (max-width: 1024px) {
-	.actions__title {
-		margin-left: 40px;
-	}
+	/* .actions__title margin-left removed */
 }
 
 @media (max-width: 768px) {
 	.actions__title {
-		margin-left: 0;
 		text-align: left;
 	}
 }
 
 .actions__desc {
 	font-family: var(--font-main);
-	font-size: 16px;
+	font-size: 22px;
 	font-weight: 400;
 	line-height: 1.4;
 	color: rgba(0, 0, 0, 0.65);
@@ -666,8 +676,8 @@ import HeroCard from './HeroCard.astro';
 
 @media (min-width: 1025px) {
 	.actions__desc {
-		padding-left: 200px;
-		padding-right: 200px;
+		padding-left: 100px;
+		padding-right: 100px;
 	}
 }
 
@@ -692,7 +702,6 @@ import HeroCard from './HeroCard.astro';
 	display: inline-flex;
 	align-items: center;
 	align-self: flex-start;
-	margin-left: 110px;
 	gap: 8px;
 	background: transparent;
 	border: none;
@@ -709,15 +718,11 @@ import HeroCard from './HeroCard.astro';
 }
 
 @media (max-width: 1024px) {
-	.actions__btn {
-		margin-left: 40px;
-	}
+	/* .actions__btn margin-left removed */
 }
 
 @media (max-width: 768px) {
-	.actions__btn {
-		margin-left: 0;
-	}
+	/* .actions__btn margin-left removed */
 }
 
 .actions__btn:hover {
@@ -765,13 +770,13 @@ import HeroCard from './HeroCard.astro';
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	padding: 15px 20px;
+	padding: 10px 20px;
 	border-radius: 9999px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	background: transparent;
 	color: #000000;
 	font-family: var(--font-main);
-	font-size: 15px;
+	font-size: 18px;
 	font-weight: 100;
 	text-align: center;
 	transition: all 0.2s ease;
@@ -963,8 +968,8 @@ import HeroCard from './HeroCard.astro';
 			const scrolled = -rect.top;
 			const maxHorizontalScroll = cardsInner.scrollWidth - cardsInner.clientWidth;
 			const phase1Distance = maxHorizontalScroll * 1.8;
-			const travelDistance = viewHeight - 150;
-			const grayTravelDistance = viewHeight - 200;
+			const travelDistance = viewHeight;
+			const grayTravelDistance = viewHeight;
 			
 			// Увеличиваем расстояние Phase 2 до 2.2 * viewHeight, чтобы задержать просмотр оранжевого блока
 			const phase2Distance = viewHeight * 2.2;
@@ -1332,7 +1337,7 @@ import HeroCard from './HeroCard.astro';
 								const num = col.querySelector('.services__num') as HTMLElement;
 								const text = col.querySelector('.services__text') as HTMLElement;
 								
-								if (num) num.style.color = 'rgba(0, 0, 0, 0.4)';
+								if (num) num.style.color = '#000000';
 								if (text) text.style.color = '#000000';
 							});
 

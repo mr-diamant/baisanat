@@ -1,0 +1,868 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href={import.meta.env.BASE_URL + 'Media/favicon.png'} />
+		<meta name="viewport" content="width=1440" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Baisanat Holding — Клиенты</title>
+		<meta name="description" content="Клиенты и партнеры Baisanat Holding" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+	<body class="clients-page">
+		<Header theme="light" />
+		
+		<main>
+			<!-- Hero Section -->
+			<section class="clients-hero">
+				<canvas id="hero-bg" class="hero__bg-canvas"></canvas>
+				<div class="container" style="position: relative; z-index: 2;">
+					<div class="clients-hero__top">
+						<div class="hero__section-label hero__section-label--dark">
+							<span class="hero__number">05</span>
+							<div class="hero__label-block">
+								<span class="hero__label" typewriter="true" typewriter-delay="150">
+									<span class="split-lines">
+										<span class="split-words">
+											<span class="split-chars">К</span><span class="split-chars">л</span><span class="split-chars">и</span><span class="split-chars">е</span><span class="split-chars">н</span><span class="split-chars">т</span><span class="split-chars">ы</span>
+										</span>
+									</span>
+								</span>
+								<span class="hero__line hero__line--dark"></span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="clients-hero__content">
+						<h1 class="clients-hero__title">
+							<span class="text-accent">Нам доверяют</span> лидеры<br />индустрий
+						</h1>
+						
+						<div class="clients-hero__text-block">
+							<p>Baisanat работает с компаниями, которые формируют экономику, культуру и инфраструктуру в Казахстане и за его пределами.</p>
+							<p>Мы строим долгосрочное сотрудничество,<br/>основанное на доверии и результате</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Accordion Section -->
+			<section class="clients-accordion">
+				<div class="container">
+					<div class="accordion__list">
+						<!-- Item 1 -->
+						<div class="accordion__item">
+							<button class="accordion__btn">
+								<span class="accordion__title">Банки и финтех</span>
+								<span class="accordion__icon"></span>
+							</button>
+							<div class="accordion__content">
+								<div class="clients__grid">
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client1.png'} alt="Logo" /></div>
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client2.png'} alt="Logo" /></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Item 2 -->
+						<div class="accordion__item">
+							<button class="accordion__btn">
+								<span class="accordion__title">Девелопмент и строительство</span>
+								<span class="accordion__icon"></span>
+							</button>
+							<div class="accordion__content">
+								<div class="clients__grid">
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client3.png'} alt="Logo" /></div>
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client4.png'} alt="Logo" /></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Item 3 (Active) -->
+						<div class="accordion__item active">
+							<button class="accordion__btn">
+								<span class="accordion__title">Госкомпании и государственные проекты</span>
+								<span class="accordion__icon"></span>
+							</button>
+							<div class="accordion__content" style="max-height: 500px;">
+								<div class="clients__grid">
+									<!-- Using existing placeholders/logos for now -->
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client1.png'} alt="Instagram" /></div>
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client2.png'} alt="Wolt" /></div>
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client3.png'} alt="Glovo" /></div>
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client4.png'} alt="Sir Cleansalot" /></div>
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client5.png'} alt="Glovo" /></div>
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client6.png'} alt="Kaspi" /></div>
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client7.png'} alt="Instagram" /></div>
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client8.png'} alt="WhatsApp" /></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Item 4 -->
+						<div class="accordion__item">
+							<button class="accordion__btn">
+								<span class="accordion__title">Медиа, культура и креатив</span>
+								<span class="accordion__icon"></span>
+							</button>
+							<div class="accordion__content">
+								<div class="clients__grid">
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client5.png'} alt="Logo" /></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Item 5 -->
+						<div class="accordion__item">
+							<button class="accordion__btn">
+								<span class="accordion__title">Ритейл и e-commerce</span>
+								<span class="accordion__icon"></span>
+							</button>
+							<div class="accordion__content">
+								<div class="clients__grid">
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client6.png'} alt="Logo" /></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Item 6 -->
+						<div class="accordion__item">
+							<button class="accordion__btn">
+								<span class="accordion__title">Технологии и цифровые продукты</span>
+								<span class="accordion__icon"></span>
+							</button>
+							<div class="accordion__content">
+								<div class="clients__grid">
+									<div class="clients__logo"><img src={import.meta.env.BASE_URL + 'Media/client7.png'} alt="Logo" /></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Testimonial Section -->
+			<section class="testimonial">
+				<div class="container">
+					<div class="testimonial__inner">
+						<div class="hero__section-label hero__section-label--dark testimonial__label">
+							<span class="hero__number">03</span>
+							<div class="hero__label-block">
+								<span class="hero__label" typewriter="true" typewriter-delay="150">
+									<span class="split-lines">
+										<span class="split-words">
+											<span class="split-chars">О</span><span class="split-chars">т</span><span class="split-chars">з</span><span class="split-chars">ы</span><span class="split-chars">в</span><span class="split-chars">ы</span>
+											<span> </span>
+											<span class="split-chars">к</span><span class="split-chars">л</span><span class="split-chars">и</span><span class="split-chars">е</span><span class="split-chars">н</span><span class="split-chars">т</span><span class="split-chars">о</span><span class="split-chars">в</span>
+										</span>
+									</span>
+								</span>
+								<span class="hero__line hero__line--dark"></span>
+							</div>
+						</div>
+						
+						<div class="testimonial__content">
+							<div class="testimonial__quotes">
+								<svg width="100" height="100" viewBox="0 0 147 129" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M145 2V76.0488L112.348 126.662H84.5254L121.956 75.5352L124.285 72.3535H83.7627V2H145ZM64.8105 2V76.0439L31.7715 126.662H3.94238L41.374 75.5352L43.7031 72.3535H3.57422V2H64.8105Z" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="4"/>
+								</svg>
+							</div>
+							<div class="testimonial__text-block">
+								<div class="testimonial__text">
+									Работа с Baisanat изменила нашу стратегию роста.<br/>Надежный партнер и большое открытие для рынка...
+									<span class="testimonial__quotes-end">
+										<svg width="63" height="53" viewBox="0 0 63 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M0.667323 0V30.6285H16.8583L0 53H13.9304L28.3279 31.57V0H0.667323ZM34.6674 0V30.6285H51.0252L34.167 53H48.0973L62.328 31.57V0H34.6674Z" fill="#FE5000" style="fill:#FE5000;fill:color(display-p3 0.9961 0.3137 0.0000);fill-opacity:1;"/>
+										</svg>
+									</span>
+								</div>
+								<div class="testimonial__author">
+									<div class="testimonial__author-name">Канат Сахария</div>
+									<div class="testimonial__author-line"></div>
+									<div class="testimonial__author-pos">CEO, Atameken Business</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- CTA Section -->
+			<section class="clients-cta">
+				<canvas id="cta-bg" class="cta__bg-canvas"></canvas>
+				<div class="container" style="position: relative; z-index: 2;">
+					<h2 class="clients-cta__title">Присоединяйтесь<br/>к Baisanat</h2>
+					
+					<div class="clients-cta__bottom">
+						<div class="clients-cta__desc">
+							Присоединяйтесь к тем,<br/>кто доверяет опыту Baisanat
+						</div>
+						<a href="/contacts" class="clients-cta__link">
+							↗ Стать клиентом
+						</a>
+					</div>
+				</div>
+			</section>
+
+		</main>
+
+		<Footer />
+
+		<style>
+			.clients-page {
+				background-color: #f7f9fb;
+				background: linear-gradient(180deg, #e3e8ee 0%, #ffffff 30%, #f0f4f8 70%, #0d1a8f 100%);
+			}
+
+			/* HERO */
+			.clients-hero {
+				padding-top: 150px;
+				padding-bottom: 150px;
+				position: relative;
+			}
+			.hero__bg-canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: 0;
+				pointer-events: none;
+			}
+			.clients-hero__top {
+				margin-bottom: 60px;
+			}
+			.hero__section-label {
+				display: flex;
+				align-items: flex-start;
+				gap: 40px;
+			}
+			.hero__section-label--dark {
+				color: #000;
+			}
+			.hero__number {
+				font-size: 12px;
+				margin-top: 2px;
+			}
+			.hero__label-block {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.hero__line {
+				width: 50px;
+				height: 1px;
+				background: #000;
+			}
+
+			[typewriter="true"] .split-chars {
+				opacity: 0.1;
+			}
+			.split-lines, .split-words {
+				display: inline;
+			}
+			.split-chars {
+				display: inline-block;
+			}
+			
+			.clients-hero__content {
+				display: flex;
+				flex-direction: column;
+				gap: 60px;
+			}
+			.clients-hero__title {
+				font-family: var(--font-main, 'Montserrat', sans-serif);
+				font-size: clamp(32px, 4vw, 54px);
+				font-weight: 500;
+				line-height: 1.1;
+				letter-spacing: -0.02em;
+				color: #000;
+				margin-left: 110px;
+				max-width: 1100px;
+			}
+			.text-accent {
+				color: #e33a11;
+			}
+			.clients-hero__text-block {
+				max-width: 650px;
+				display: flex;
+				flex-direction: column;
+				gap: 24px;
+				margin-left: 110px;
+			}
+			.clients-hero__text-block p {
+				font-family: var(--font-main, 'Montserrat', sans-serif);
+				font-size: 20px;
+				line-height: 1.1;
+				font-weight: 400;
+				color: #000;
+			}
+
+			/* ACCORDION */
+			.clients-accordion {
+				padding: 40px 0;
+			}
+			.accordion__list {
+				border-top: 1px solid rgba(227, 58, 17, 0.4);
+			}
+			.accordion__item {
+				border-bottom: 1px solid rgba(227, 58, 17, 0.4);
+			}
+			.accordion__btn {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 24px 0 24px calc(15% + 85px);
+				background: none;
+				border: none;
+				cursor: pointer;
+				text-align: left;
+			}
+			.accordion__title {
+				font-family: var(--font-main, 'Montserrat', sans-serif);
+				font-size: 30px;
+				font-weight: 500;
+				color: #000;
+			}
+			.accordion__icon {
+				position: relative;
+				width: 24px;
+				height: 24px;
+			}
+			.accordion__icon::before,
+			.accordion__icon::after {
+				content: '';
+				position: absolute;
+				background-color: #e33a11;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				transition: transform 0.3s ease;
+			}
+			.accordion__icon::before {
+				width: 24px;
+				height: 1px;
+			}
+			.accordion__icon::after {
+				width: 1px;
+				height: 24px;
+			}
+			.accordion__item.active .accordion__icon::after {
+				transform: translate(-50%, -50%) rotate(90deg);
+				opacity: 0;
+			}
+			.accordion__content {
+				max-height: 0;
+				overflow: hidden;
+				transition: max-height 0.4s ease;
+			}
+			.clients__grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 40px;
+				padding-bottom: 40px;
+				padding-top: 20px;
+				padding-left: calc(15% + 85px);
+			}
+			.clients__logo {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				filter: grayscale(100%);
+				opacity: 0.8;
+				transition: all 0.3s ease;
+			}
+			.clients__logo:hover {
+				filter: grayscale(0%);
+				opacity: 1;
+			}
+			.clients__logo img {
+				max-width: 120px;
+				height: auto;
+				object-fit: contain;
+			}
+
+			/* TESTIMONIAL */
+			.testimonial {
+				padding: 100px 0;
+			}
+			.testimonial__inner {
+				display: flex;
+				flex-direction: column;
+				gap: 60px;
+			}
+			.testimonial__content {
+				display: flex;
+				gap: 90px;
+				align-items: flex-start;
+				flex-wrap: nowrap;
+				background: radial-gradient(circle at center, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+				padding: 0 60px;
+				border-radius: 20px;
+			}
+			.testimonial__quotes {
+				flex-shrink: 0;
+				margin-top: 10px;
+			}
+			.testimonial__text-block {
+				display: flex;
+				flex-direction: column;
+				gap: 40px;
+				max-width: 550px;
+			}
+			.testimonial__text {
+				font-family: var(--font-main, 'Montserrat', sans-serif);
+				font-size: 32px;
+				line-height: 1.2;
+				font-weight: 400;
+				color: #000;
+			}
+			.testimonial__quotes-end {
+				display: inline-block;
+				margin-left: 15px;
+				vertical-align: middle;
+				margin-bottom: -50px;
+			}
+			.testimonial__author {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 8px;
+			}
+			.testimonial__author-line {
+				width: 50px;
+				height: 2px;
+				background-color: #FE5000;
+			}
+			.testimonial__author-name {
+				font-family: var(--font-main, 'Montserrat', sans-serif);
+				font-size: 22px;
+				font-weight: 500;
+				color: #000;
+			}
+			.testimonial__author-pos {
+				font-family: var(--font-main, 'Montserrat', sans-serif);
+				font-size: 16px;
+				opacity: 0.8;
+				color: #000;
+			}
+
+			/* CTA */
+			.clients-cta {
+				padding: 100px 0;
+				color: white;
+				position: relative;
+				z-index: 2;
+				overflow: hidden;
+				background-color: #02021f;
+			}
+			.cta__bg-canvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				z-index: -1;
+				pointer-events: none;
+			}
+			.clients-cta__title {
+				font-family: var(--font-main, 'Montserrat', sans-serif);
+				font-size: 4vw;
+				font-weight: 500;
+				margin-bottom: 60px;
+				padding-left: 100px;
+			}
+			.clients-cta__bottom {
+				display: flex;
+				align-items: center;
+				gap: 60px;
+				padding: 40px 100px;
+				border-top: 1px solid rgba(255,255,255,0.2);
+				border-bottom: 1px solid rgba(255,255,255,0.2);
+			}
+			.clients-cta__desc {
+				font-family: var(--font-main, 'Montserrat', sans-serif);
+				font-size: 18px;
+				flex: 1;
+			}
+			.clients-cta__link {
+				color: #e33a11;
+				text-decoration: none;
+				font-family: var(--font-main, 'Montserrat', sans-serif);
+				font-size: 18px;
+				font-weight: 500;
+			}
+			.clients-cta__link:hover {
+				text-decoration: underline;
+			}
+
+			/* Responsive */
+			@media (max-width: 1024px) {
+				.clients-hero__title {
+					font-size: 42px;
+				}
+				.clients__grid {
+					grid-template-columns: repeat(3, 1fr);
+				}
+			}
+			@media (max-width: 768px) {
+				.clients-hero__content {
+					padding-left: 0;
+				}
+				.clients-hero__title {
+					margin-left: 0;
+				}
+				.clients-hero__text-block {
+					margin-left: 0;
+				}
+				.accordion__btn {
+					padding-left: 0;
+				}
+				.clients__grid {
+					grid-template-columns: repeat(2, 1fr);
+					padding-left: 0;
+				}
+				.clients-cta__bottom {
+					flex-direction: column;
+					align-items: flex-start;
+					padding: 40px 0;
+				}
+				.clients-cta__title {
+					padding-left: 0;
+					font-size: 32px;
+				}
+			}
+		</style>
+
+		<script>
+			import Lenis from 'lenis';
+			import { gsap } from 'gsap';
+			import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+			gsap.registerPlugin(ScrollTrigger);
+
+			// Accordion Logic
+			const items = document.querySelectorAll('.accordion__item');
+			
+			items.forEach(item => {
+				const btn = item.querySelector('.accordion__btn');
+				const content = item.querySelector('.accordion__content') as HTMLElement;
+				
+				btn?.addEventListener('click', () => {
+					const isActive = item.classList.contains('active');
+					
+					// Close all
+					items.forEach(otherItem => {
+						otherItem.classList.remove('active');
+						const otherContent = otherItem.querySelector('.accordion__content') as HTMLElement;
+						if (otherContent) otherContent.style.maxHeight = '0';
+					});
+					
+					// Open clicked if not active
+					if (!isActive && content) {
+						item.classList.add('active');
+						content.style.maxHeight = content.scrollHeight + 'px';
+					}
+				});
+			});
+
+			// Lenis smooth scroll
+			const lenis = new Lenis({
+				duration: 1.8,
+				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+				autoRaf: true,
+				smoothWheel: true,
+			});
+
+			lenis.on('scroll', ScrollTrigger.update);
+
+			// Typewriter effect
+			const typewriters = document.querySelectorAll('.hero__label[typewriter="true"]');
+			typewriters.forEach(tw => {
+				const chars = tw.querySelectorAll('.split-chars');
+				const delayAttr = tw.getAttribute('typewriter-delay');
+				const delay = delayAttr ? parseInt(delayAttr, 10) / 1000 : 0.15;
+
+				gsap.to(chars, {
+					opacity: 1,
+					duration: 0.002,
+					stagger: { amount: 0.7 },
+					delay: delay,
+					scrollTrigger: {
+						trigger: tw,
+						start: 'top 90%',
+						toggleActions: 'play none none none',
+					}
+				});
+			});
+
+			// WebGL Background for Hero (Static Radial Gradient)
+			const heroCanvas = document.getElementById('hero-bg') as HTMLCanvasElement | null;
+			if (heroCanvas) {
+				// We need alpha: true so the background of the page shines through
+				const gl = heroCanvas.getContext('webgl', { alpha: true, premultipliedAlpha: false }) || 
+						   heroCanvas.getContext('experimental-webgl', { alpha: true, premultipliedAlpha: false }) as WebGLRenderingContext | null;
+				
+				if (gl) {
+					// Функция для удобной конвертации HEX-цветов в понятный для WebGL формат RGB
+					const hexToGLSL = (hex: string) => {
+						const r = parseInt(hex.slice(1, 3), 16) / 255;
+						const g = parseInt(hex.slice(3, 5), 16) / 255;
+						const b = parseInt(hex.slice(5, 7), 16) / 255;
+						return `vec3(${r.toFixed(4)}, ${g.toFixed(4)}, ${b.toFixed(4)})`;
+					};
+
+					const vsSource = `
+						attribute vec2 position;
+						void main() {
+							gl_Position = vec4(position, 0.0, 1.0);
+						}
+					`;
+					const fsSource = `
+						precision highp float;
+						uniform vec2 u_resolution; // Разрешение экрана
+
+						void main() {
+							// Нормализация координат пикселя от 0.0 до 1.0
+							vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+							
+							// Корректировка пропорций экрана, чтобы изначально градиент был идеальным кругом
+							vec2 p = uv;
+							float aspect = u_resolution.x / u_resolution.y;
+							p.x *= aspect;
+							
+							// --- 1. НАСТРОЙКИ ПОЗИЦИИ ---
+							// Центр градиента: Правый верхний угол (x=1.0, y=1.0 в WebGL)
+							vec2 center = vec2(1.0 * aspect, 1.0);
+							
+							// --- 2. НАСТРОЙКИ ФОРМЫ И РАЗМЕРА ---
+							float radius = 1.0; // Радиус (размер) пятна
+							float stretch = 2.3; // Растяжение по горизонтали (>1.0 делает овал шире, 1.0 = круг)
+							
+							// Вычисляем расстояние от пикселя до центра с учетом растяжения
+							vec2 diff = p - center;
+							diff.x /= stretch; // Растягиваем/сжимаем только по оси X
+							float dist = length(diff);
+							
+							// --- 3. НАСТРОЙКИ ЯРКОСТИ ---
+							// Плавное затухание от центра к краям. 
+							// Умножение на 1.0 — это максимальная яркость (непрозрачность) в центре (70%)
+							float alpha = smoothstep(radius, 0.0, dist) * 1.0;
+							
+							// --- 4. НАСТРОЙКА ЦВЕТА ---
+							// Теперь цвет можно менять, подставляя любой привычный HEX-код (например #697689)
+							vec3 color = ${hexToGLSL('#4E5059')};
+							
+							gl_FragColor = vec4(color, alpha);
+						}
+					`;
+
+					const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
+						const shader = gl.createShader(type);
+						if (!shader) return null;
+						gl.shaderSource(shader, source);
+						gl.compileShader(shader);
+						return shader;
+					};
+
+					const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+					const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+					if (vertexShader && fragmentShader) {
+						const program = gl.createProgram();
+						if (program) {
+							gl.attachShader(program, vertexShader);
+							gl.attachShader(program, fragmentShader);
+							gl.linkProgram(program);
+							gl.useProgram(program);
+
+							const positionLocation = gl.getAttribLocation(program, 'position');
+							const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+
+							const buffer = gl.createBuffer();
+							gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+							gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+								-1.0, -1.0,  1.0, -1.0, -1.0,  1.0,
+								-1.0,  1.0,  1.0, -1.0,  1.0,  1.0
+							]), gl.STATIC_DRAW);
+
+							gl.enableVertexAttribArray(positionLocation);
+							gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+							const render = () => {
+								const width = window.innerWidth;
+								const height = heroCanvas.parentElement?.clientHeight || heroCanvas.clientHeight;
+								
+								// Only resize and draw if dimensions changed or on first frame
+								if (heroCanvas.width !== width || heroCanvas.height !== height) {
+									heroCanvas.width = width;
+									heroCanvas.height = height;
+									gl.viewport(0, 0, width, height);
+									gl.uniform2f(resolutionLocation, width, height);
+									gl.drawArrays(gl.TRIANGLES, 0, 6);
+								}
+							};
+
+							window.addEventListener('resize', render);
+							ScrollTrigger.addEventListener("refresh", render);
+							
+							// Render once initially
+							setTimeout(render, 0);
+						}
+					}
+				}
+			}
+
+			// WebGL Background for CTA
+			const canvas = document.getElementById('cta-bg') as HTMLCanvasElement | null;
+			if (canvas) {
+				const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl') as WebGLRenderingContext | null;
+				
+				const hexToGLSL = (hex: string) => {
+					const r = parseInt(hex.slice(1, 3), 16) / 255;
+					const g = parseInt(hex.slice(3, 5), 16) / 255;
+					const b = parseInt(hex.slice(5, 7), 16) / 255;
+					return `vec3(${r.toFixed(4)}, ${g.toFixed(4)}, ${b.toFixed(4)})`;
+				};
+
+				if (gl) {
+					const vsSource = `
+						attribute vec2 position;
+						void main() {
+							gl_Position = vec4(position, 0.0, 1.0);
+						}
+					`;
+					const fsSource = `
+						precision highp float;
+						uniform vec2 u_resolution; // Разрешение экрана (ширина и высота)
+						uniform float u_time; // Текущее время для анимации
+
+						void main() {
+							// Нормализованные координаты пикселя от 0.0 до 1.0
+							vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+							
+							// --- НАСТРОЙКИ ЦВЕТА ---
+							// Цвета фонового градиента
+							vec3 bg_top = ${'hexToGLSL(\'#ffffff\')'}; // Верхний цвет фона
+							vec3 bg_bottom = ${'hexToGLSL(\'#3534c8\')'}; // Нижний цвет фона
+							
+							// Цвета самой волны
+							vec3 wave_top = ${'hexToGLSL(\'#02021f\')'}; // Верхний край волны
+							vec3 wave_bottom = ${'hexToGLSL(\'#02021f\')'}; // Нижний край волны
+
+							// --- ПАРАМЕТРЫ ВОЛНЫ ---
+							float height = 0.35; // Базовая высота волны (0.0 - низ, 1.0 - верх)
+							float amplitude = 0.09; // Амплитуда (размах колебаний волны)
+							float frequency = 5.5; // Частота изгибов (количество гребней)
+							float speed = 0.4; // Скорость движения волны вбок
+							float vertical_speed = 0.05; // Скорость медленного подъема/спуска
+							float blur = 0.19; // Размытие границы волны (0.0 - резкая линия)
+
+							// --- МАТЕМАТИКА ВОЛНЫ ---
+							// Главная синусоида
+							float w1 = sin(uv.x * frequency + u_time * speed) * amplitude;
+							// Вторичная волна (добавляет неравномерность и естественность)
+							float w2 = cos(uv.x * (frequency * 1.7) - u_time * (speed * 0.8)) * (amplitude * 0.35);
+							// Медленное покачивание волны вверх-вниз
+							float w3 = sin(u_time * vertical_speed) * 0.03;
+
+							// Итоговая высота волны в текущей точке по X
+							float wave_height = height + w1 + w2 + w3;
+							// Расстояние от текущего пикселя до линии волны
+							float dist = uv.y - wave_height;
+							// Маска для разделения волны и фона (с учетом размытия)
+							float wave_mask = smoothstep(blur, -blur, dist);
+
+							// --- ГРАДИЕНТ ФОНА ---
+							// Настройка позиций цветов фона (в процентах от верха экрана)
+							float bg_top_percent = 0.01;
+							float bg_bottom_percent = 0.50;
+							
+							// Конвертация в координаты WebGL
+							float bg_top_y = 1.0 - bg_top_percent;
+							float bg_bottom_y = 1.0 - bg_bottom_percent;
+
+							// Плавное смешивание цветов фона
+							float bg_factor = smoothstep(bg_bottom_y, bg_top_y, uv.y);
+							vec3 bgColor = mix(bg_bottom, bg_top, bg_factor);
+							
+							// --- ГРАДИЕНТ ВОЛНЫ ---
+							// Плавное смешивание цветов внутри самой волны от низа до верхнего края
+							float normalized_wave_y = clamp(uv.y / wave_height, 0.0, 1.0);
+							vec3 waveColor = mix(wave_bottom, wave_top, normalized_wave_y);
+
+							// --- ФИНАЛЬНЫЙ РЕЗУЛЬТАТ ---
+							// Смешиваем фон и волну на основе полученной маски
+							vec3 finalColor = mix(bgColor, waveColor, wave_mask);
+							// Вывод итогового цвета с альфа-каналом 1.0 (полностью непрозрачный)
+							gl_FragColor = vec4(finalColor, 1.0);
+						}
+					`;
+
+					const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
+						const shader = gl.createShader(type);
+						if (!shader) return null;
+						gl.shaderSource(shader, source);
+						gl.compileShader(shader);
+						return shader;
+					};
+
+					const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+					const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+					if (vertexShader && fragmentShader) {
+						const program = gl.createProgram();
+						if (program) {
+							gl.attachShader(program, vertexShader);
+							gl.attachShader(program, fragmentShader);
+							gl.linkProgram(program);
+							gl.useProgram(program);
+
+							const positionLocation = gl.getAttribLocation(program, 'position');
+							const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+							const timeLocation = gl.getUniformLocation(program, 'u_time');
+
+							const buffer = gl.createBuffer();
+							gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+							gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+								-1.0, -1.0,  1.0, -1.0, -1.0,  1.0,
+								-1.0,  1.0,  1.0, -1.0,  1.0,  1.0
+							]), gl.STATIC_DRAW);
+
+							gl.enableVertexAttribArray(positionLocation);
+							gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+							const resizeCanvas = () => {
+								const width = window.innerWidth;
+								const height = canvas.parentElement?.clientHeight || window.innerHeight;
+								canvas.width = width;
+								canvas.height = height;
+								gl.viewport(0, 0, width, height);
+								gl.uniform2f(resolutionLocation, width, height);
+							};
+
+							window.addEventListener('resize', resizeCanvas);
+							ScrollTrigger.addEventListener("refresh", resizeCanvas);
+							setTimeout(resizeCanvas, 0);
+
+							const render = (time: number) => {
+								gl.uniform1f(timeLocation, time * 0.001);
+								gl.drawArrays(gl.TRIANGLES, 0, 6);
+								requestAnimationFrame(render);
+							};
+							requestAnimationFrame(render);
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

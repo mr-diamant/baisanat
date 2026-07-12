@@ -72,10 +72,10 @@
 
 	@media (min-width: 769px) {
 		.principles {
-			min-height: 100vh;
+			height: 100vh;
 			display: flex;
 			align-items: flex-start;
-			padding-top: 140px;
+			padding-top: 80px;
 			padding-bottom: 25px;
 		}
 	}
@@ -91,23 +91,23 @@
 	}
 
 	.principles__label {
-		margin-bottom: 60px;
+		margin-bottom: 40px;
 	}
 
 	.hero__section-label {
-		display: flex;
-		align-items: flex-start;
-		gap: 80px;
+		position: relative;
 		color: #ffffff;
 	}
 
 	.hero__number {
+		position: absolute;
+		left: -80px;
+		top: 4px;
 		font-size: 12px;
 		font-weight: 400;
 		line-height: 1;
 		opacity: 0.8;
 		min-width: 30px;
-		padding-top: 4px;
 	}
 
 	.hero__label-block {
@@ -141,28 +141,27 @@
 	}
 
 	.principles__content {
-		margin-left: 110px;
+		/* margin-left: 110px; removed */
 	}
 
 	.principles__title {
 		font-family: var(--font-main);
-		font-size: 2.5vw;
+		font-size: 3.5vw;
 		font-weight: 500;
 		line-height: 1.1;
 		color: #ffffff;
 		letter-spacing: -0.02em;
-		margin-bottom: 80px;
+		margin-bottom: 4vw;
 	}
 
 	.principles__list {
 		display: flex;
 		flex-direction: column;
-		max-width: 900px;
 	}
 
 	.principles__item {
 		display: flex;
-		gap: 100px;
+		gap: 15vw;
 		padding-top: 24px;
 	}
 
@@ -174,7 +173,7 @@
 
 	.principles__item-num {
 		font-family: var(--font-main);
-		font-size: 24px;
+		font-size: 1.7vw;
 		font-weight: 400;
 		color: #ffffff;
 		flex: 0 0 50px;
@@ -189,22 +188,25 @@
 		padding-bottom: 0px;
 	}
 
+	.principles__item:last-child .principles__item-text {
+		border-bottom: none;
+	}
+
 	.principles__item-title {
 		font-family: var(--font-main);
-		font-size: 28px;
-		font-weight: 400;
+		font-size: 2.5vw;
+		font-weight: 500;
 		color: #ffffff;
 		margin: 0;
 	}
 
 	.principles__item-desc {
 		font-family: var(--font-main);
-		font-size: 18px;
+		font-size: 1.7vw;
 		font-weight: 300;
 		line-height: 1;
 		color: #ffffff;
 		margin: 0;
-		max-width: 700px;
 		padding-bottom: 25px;
 	}
 
@@ -214,7 +216,7 @@
 
 	@media (max-width: 1024px) {
 		.principles__content {
-			margin-left: 40px;
+			/* margin-left: 40px; removed */
 		}
 
 		.principles__title {
@@ -233,7 +235,7 @@
 		}
 		
 		.principles__content {
-			margin-left: 0;
+			/* margin-left: 0; removed */
 		}
 
 		.principles__title {
@@ -292,11 +294,12 @@
 	const principlesSection = document.querySelector('.principles');
 	const principlesItems = document.querySelectorAll('.principles__item');
 	if (principlesSection && principlesItems.length > 0) {
-		// Set overflow hidden for descriptions initially
+		// Set overflow hidden and initial collapsed state
 		principlesItems.forEach(item => {
 			const desc = item.querySelector('.principles__item-desc') as HTMLElement | null;
 			if (desc) {
 				desc.style.overflow = 'hidden';
+				gsap.set(desc, { height: 0, opacity: 0 });
 			}
 		});
 
@@ -317,9 +320,8 @@
 			const desc = item.querySelector('.principles__item-desc') as HTMLElement | null;
 			if (desc) {
 				tl.to(desc, {
-					height: 0,
-					opacity: 0,
-					marginTop: -12, // offsets the gap in flex container
+					height: 'auto',
+					opacity: 1,
 					duration: 1,
 					ease: 'power1.inOut'
 				}, index > 0 ? '+=0.2' : '+=0.2');
