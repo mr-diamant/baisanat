@@ -451,6 +451,12 @@ const { theme = 'dark' } = Astro.props;
 	}
 }
 
+@media (min-width: 1512px) and (max-width: 1727px) {
+	.header__inner.container {
+		max-width: calc(var(--container) + var(--gutter) * 2 - 20px);
+	}
+}
+
 @media (min-width: 1728px) {
 	.site-header {
 		padding-top: 50px;
