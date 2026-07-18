@@ -225,21 +225,30 @@ import Footer from '../components/Footer.astro';
 				margin-bottom: 60px;
 			}
 			.hero__section-label {
-				display: flex;
-				align-items: flex-start;
-				gap: 40px;
+				position: relative;
 			}
 			.hero__section-label--dark {
 				color: #000;
 			}
 			.hero__number {
+				position: absolute;
+				left: -80px;
+				top: 4px;
 				font-size: 12px;
-				margin-top: 2px;
+				font-weight: 400;
+				line-height: 1;
+				opacity: 0.8;
+				min-width: 30px;
 			}
 			.hero__label-block {
 				display: flex;
 				flex-direction: column;
 				gap: 10px;
+			}
+			.hero__label {
+				font-size: 15px;
+				font-weight: 400;
+				line-height: 1;
 			}
 			.hero__line {
 				width: 50px;
