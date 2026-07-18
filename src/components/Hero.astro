@@ -197,6 +197,15 @@
 	}
 }
 
+@media (min-width: 1512px) and (max-width: 1727px) {
+	.hero__inner.container {
+		max-width: calc(var(--container) + var(--gutter) * 2 - 20px);
+	}
+	.hero__number {
+		left: calc(-1 * var(--gutter)) !important;
+	}
+}
+
 [typewriter="true"] .split-chars {
   opacity: 0.1;  /* изначально символы почти прозрачные */
 }
