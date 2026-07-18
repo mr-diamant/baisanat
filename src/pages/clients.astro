@@ -361,13 +361,13 @@ import Footer from '../components/Footer.astro';
 				grid-template-columns: repeat(4, 1fr);
 				gap: 40px;
 				padding-top: 3vw;
-				padding-left: 11vw;
+				padding-left: 16vw;
 				padding-bottom: 3vw;
 			}
 			.clients__logo {
 				display: flex;
 				align-items: center;
-				justify-content: center;
+				justify-content: flex-start;
 				filter: grayscale(100%);
 				opacity: 0.8;
 				transition: all 0.3s ease;
@@ -377,7 +377,6 @@ import Footer from '../components/Footer.astro';
 				opacity: 1;
 			}
 			.clients__logo img {
-				max-width: 120px;
 				height: auto;
 				object-fit: contain;
 			}
