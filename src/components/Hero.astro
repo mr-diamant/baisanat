@@ -100,13 +100,12 @@
 .hero__title-accent {
 	display: block;
 	color: #85a0ff;
-	font-weight: 700;
+	font-weight: 600;
 }
 
 .hero__title-base {
 	display: block;
 	color: var(--color-white);
-	margin-top: 0.1em;
 }
 
 .hero__formula {
@@ -180,6 +179,21 @@
 
 	.hero__columns {
 		flex-direction: column;
+	}
+}
+
+@media (min-width: 1728px) {
+	.hero__inner {
+		padding-top: 21.5vw;
+	}
+	.hero__title {
+		letter-spacing: 0;
+	}
+	.hero__formula {
+		margin-top: 175px;
+	}
+	.hero__columns p {
+		font-size: 31px;
 	}
 }
 

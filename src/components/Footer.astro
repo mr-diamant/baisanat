@@ -1,12 +1,12 @@
 ---
 interface Props {
-	theme?: 'dark' | 'light';
+	theme?: 'dark' | 'light' | 'principles';
 }
 
 const { theme = 'dark' } = Astro.props;
 ---
 
-<footer class={`footer ${theme === 'light' ? 'footer--light' : ''}`} id="footer">
+<footer class={`footer ${theme === 'light' ? 'footer--light' : ''} ${theme === 'principles' ? 'footer--principles' : ''}`} id="footer" data-theme={theme}>
 	<canvas id="footer-bg" class="footer__bg-canvas"></canvas>
 	<div class="container footer__container">
 		<div class="footer__content">
@@ -426,7 +426,55 @@ const { theme = 'dark' } = Astro.props;
 					gl_Position = vec4(position, 0.0, 1.0);
 				}
 			`;
-			const fsSource = `
+			const theme = canvas.parentElement?.getAttribute('data-theme') || 'dark';
+
+			const fsSourcePrinciples = `
+				precision highp float;
+				uniform vec2 u_resolution;
+				uniform float u_time;
+
+				void main() {
+					vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+					
+					vec3 bg_top = ${hexToGLSL('#ffffff')};
+					vec3 bg_bottom = ${hexToGLSL('#3534c8')};
+					vec3 wave_top = ${hexToGLSL('#02021f')};
+					vec3 wave_bottom = ${hexToGLSL('#02021f')};
+
+					float height = 0.35;
+					float amplitude = 0.09;
+					float frequency = 5.5;
+					float speed = 0.4;
+					float vertical_speed = 0.05;
+					float blur = 0.19;
+
+					float w1 = sin(uv.x * frequency + u_time * speed) * amplitude;
+					float w2 = cos(uv.x * (frequency * 1.7) - u_time * (speed * 0.8)) * (amplitude * 0.35);
+					float w3 = sin(u_time * vertical_speed) * 0.03;
+
+					float wave_height = height + w1 + w2 + w3;
+					float dist = uv.y - wave_height;
+					float wave_mask = smoothstep(blur, -blur, dist);
+
+					float bg_top_percent = 0.01;
+					float bg_bottom_percent = 0.50;
+
+					float bg_top_y = 1.0 - bg_top_percent;
+					float bg_bottom_y = 1.0 - bg_bottom_percent;
+
+					float bg_factor = smoothstep(bg_bottom_y, bg_top_y, uv.y);
+					vec3 bgColor = mix(bg_bottom, bg_top, bg_factor);
+					
+					float normalized_wave_y = clamp(uv.y / wave_height, 0.0, 1.0);
+					vec3 waveColor = mix(wave_bottom, wave_top, normalized_wave_y);
+
+					vec3 finalColor = mix(bgColor, waveColor, wave_mask);
+
+					gl_FragColor = vec4(finalColor, 1.0);
+				}
+			`;
+
+			const fsSourceDefault = `
 				precision highp float;
 				uniform vec2 u_resolution;
 				uniform float u_time;
@@ -486,6 +534,8 @@ const { theme = 'dark' } = Astro.props;
 					gl_FragColor = vec4(finalColor, 1.0);
 				}
 			`;
+
+			const fsSource = theme === 'principles' ? fsSourcePrinciples : fsSourceDefault;
 
 			const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
 				const shader = gl.createShader(type);
