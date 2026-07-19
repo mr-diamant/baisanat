@@ -148,21 +148,21 @@ import Footer from '../components/Footer.astro';
 	}
 
 	.hero__section-label {
-		display: flex;
-		align-items: flex-start;
-		gap: 80px;
+		position: relative;
 		color: var(--color-white);
 	}
 	.projects__label {
 		margin-bottom: 60px;
 	}
 	.hero__number {
+		position: absolute;
+		left: -80px;
+		top: 4px;
 		font-size: 12px;
 		font-weight: 400;
 		line-height: 1;
 		opacity: 0.8;
 		min-width: 30px;
-		padding-top: 4px;
 	}
 	.hero__label-block {
 		display: flex;
@@ -314,6 +314,15 @@ import Footer from '../components/Footer.astro';
 
 		.contacts-map-card {
 			height: 350px;
+		}
+	}
+
+	@media (min-width: 1728px) {
+		.contacts-page {
+			padding-top: 18.7vw;
+		}
+		.projects__label {
+			margin-bottom: 4.5vw;
 		}
 	}
 </style>
