@@ -60,7 +60,7 @@
 	inset: 0;
 	width: 100%;
 	height: 100%;
-	background-color: #ffffff;
+	background-color: #3c6eff;
 	z-index: -1;
 	overflow: hidden;
 }
@@ -240,9 +240,22 @@
 	ScrollTrigger.create({
 		trigger: '.hero',
 		start: 'top -200px',
-		end: '+=500px',
+		end: '+=1200px',
 		pin: true,
 		pinSpacing: true,
+		onEnter: (self) => {
+			const spacer = self.spacer;
+			if (spacer) {
+				spacer.style.backgroundColor = '#3c6eff';
+			}
+		},
+		onUpdate: (self) => {
+			// Дополнительно страхуем на случай ререндеров
+			const spacer = self.spacer;
+			if (spacer && spacer.style.backgroundColor !== 'rgb(60, 110, 255)') {
+				spacer.style.backgroundColor = '#3c6eff';
+			}
+		}
 	});
 
 	// 1. Эффект печатной машинки для заголовка "Формула Baisanat"
@@ -318,7 +331,7 @@
 					
 					// Цвета заднего фона (градиент снизу вверх)
 					vec3 bg_top = ${hexToGLSL('#3c6eff')};    // Светло-синий под волной
-					vec3 bg_bottom = ${hexToGLSL('#ffffff')}; // Белый низ (стыковка со следующим блоком)
+					vec3 bg_bottom = ${hexToGLSL('#3c6eff')}; // Голубоватый низ (стыковка со следующим блоком)
 					
 					// Цвета волны (градиент сверху вниз)
 					vec3 wave_top = ${hexToGLSL('#02021f')};    // Темно-синий верх (под шапку)

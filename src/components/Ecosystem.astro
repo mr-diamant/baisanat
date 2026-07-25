@@ -4,6 +4,8 @@ import HeroCard from './HeroCard.astro';
 
 <section class="ecosystem hero__sticky-wrapper" id="ecosystem">
 	<div class="hero__sticky-content">
+		<!-- Фоновый голубой градиентный слой (остается фиксированным в начале) -->
+		<div class="hero__sticky-bg-blue"></div>
 		<!-- Фоновый оранжевый градиентный слой -->
 		<div class="hero__sticky-bg-orange"></div>
 		<!-- Фоновый серый градиентный слой -->
@@ -189,6 +191,19 @@ import HeroCard from './HeroCard.astro';
 	position: relative;
 }
 
+.hero__sticky-bg-blue {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to bottom, #3c6eff 0%, #7d9fff 25%, #ffffff 40%);
+	z-index: 1;
+	pointer-events: none;
+}
+
 .hero__sticky-bg-orange {
 	position: absolute;
 	top: 0;
@@ -197,7 +212,7 @@ import HeroCard from './HeroCard.astro';
 	bottom: 0;
 	width: 100%;
 	background: linear-gradient(191deg, #ff5000 20%, #ffffff 60%, #ffffff 100%);
-	z-index: 1;
+	z-index: 2;
 	pointer-events: none;
 	transform: translateY(100%);
 }
@@ -210,7 +225,7 @@ import HeroCard from './HeroCard.astro';
 	bottom: 0;
 	width: 100%;
 	background: linear-gradient(191deg, #adb0c1 20%, #ffffff 60%, #ffffff 100%);
-	z-index: 1;
+	z-index: 3;
 	pointer-events: none;
 	transform: translateY(100%);
 }
@@ -232,6 +247,10 @@ import HeroCard from './HeroCard.astro';
 		z-index: 2;
 	}
 	
+	.hero__sticky-bg-blue {
+		z-index: 1; /* Самый нижний слой, прикреплен к верху sticky */
+	}
+	
 	.hero__sticky-bg-orange {
 		z-index: 3; /* Выезжает поверх карточек */
 	}
@@ -244,6 +263,11 @@ import HeroCard from './HeroCard.astro';
 		margin-top: 0;
 		position: relative;
 		z-index: 7; /* Всегда поверх всех фонов */
+	}
+
+	.container.hero__ecosystem-container {
+		position: relative;
+		z-index: 8;
 	}
 
 	.hero__sticky-dynamic {
@@ -999,7 +1023,7 @@ import HeroCard from './HeroCard.astro';
 
 			const scrolled = -rect.top;
 			const maxHorizontalScroll = cardsInner.scrollWidth - cardsInner.clientWidth;
-			const phase1Distance = maxHorizontalScroll * 1.8;
+			const phase1Distance = maxHorizontalScroll * 3.5;
 			const travelDistance = viewHeight;
 			const grayTravelDistance = viewHeight;
 			
@@ -1111,8 +1135,8 @@ import HeroCard from './HeroCard.astro';
 				bgGray.style.transform = `translateY(${grayTravelDistance}px)`;
 				updateStatsStyles(1);
 
-				// Оранжевый фон начинает подниматься за viewHeight * 0.75 до окончания горизонтального скролла (так же плавно, как и серый фон)
-				const orangeRiseDistance = viewHeight * 0.75;
+				// Оранжевый фон начинает подниматься в самом конце горизонтального скролла
+				const orangeRiseDistance = viewHeight * 0.5;
 				const bgStart = phase1Distance - orangeRiseDistance;
 				let bgTranslateY = travelDistance;
 				let bgProgress = 0;
