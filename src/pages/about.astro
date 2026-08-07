@@ -1,0 +1,1599 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href={import.meta.env.BASE_URL + 'Media/favicon.png'} />
+		<meta name="viewport" content="width=1440" />
+		<meta name="generator" content={Astro.generator} />
+		<title>О холдинге — Baisanat Holding</title>
+		<meta name="description" content="О холдинге Baisanat Holding — Мы архитекторы комплексных решений" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+	<body class="about-body">
+		<Header theme="dark" />
+		
+		<main class="about-page">
+			<section class="about-hero">
+				<!-- WebGL Canvas Background (same as homepage hero) -->
+				<div class="hero__bg">
+					<canvas id="hero-bg" class="hero__canvas"></canvas>
+				</div>
+				
+				<div class="container about-hero__inner">
+					<!-- Левая колонка -->
+					<div class="about-hero__content">
+						<div class="hero__section-label">
+							<span class="hero__number">05</span>
+							<div class="hero__label-block">
+								<span class="hero__label" typewriter="true" typewriter-delay="150">
+									<span class="split-lines">
+										<span class="split-words">
+											<span class="split-chars">О</span><span class="split-space">&nbsp;</span><span class="split-chars">х</span><span class="split-chars">о</span><span class="split-chars">л</span><span class="split-chars">д</span><span class="split-chars">и</span><span class="split-chars">н</span><span class="split-chars">г</span><span class="split-chars">е</span>
+										</span>
+									</span>
+								</span>
+								<span class="hero__line"></span>
+							</div>
+						</div>
+
+						<h1 class="about-hero__title">
+							Мы - архитекторы<br />комплексных решений
+						</h1>
+
+						<div class="about-hero__desc-wrapper">
+							<p class="about-hero__desc">
+								Работаем на стыке стратегии, управления, коммуникаций, креатива, технологий и событий.
+							</p>
+							<p class="about-hero__subdesc">
+								Мы разрабатываем и реализуем сложные проекты с ведущими компаниями в срок и на высоком уровне
+							</p>
+						</div>
+					</div>
+
+					<!-- Правая колонка с интерактивным созвездием -->
+					<div class="about-hero__visual">
+						<div class="constellation-wrapper">
+							<!-- SVG Polygons and Lines -->
+							<svg class="constellation-svg" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet">
+								<defs>
+									<!-- Gradients for edges -->
+									<linearGradient id="edge-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+										<stop offset="0%" stop-color="#ff5000" stop-opacity="1"/>
+										<stop offset="100%" stop-color="#ff8000" stop-opacity="0.6"/>
+									</linearGradient>
+									<linearGradient id="edge-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+										<stop offset="0%" stop-color="#3c6eff" stop-opacity="1"/>
+										<stop offset="100%" stop-color="#00d2ff" stop-opacity="0.6"/>
+									</linearGradient>
+									<linearGradient id="edge-white" x1="0%" y1="0%" x2="100%" y2="100%">
+										<stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+										<stop offset="100%" stop-color="#ffffff" stop-opacity="0.4"/>
+									</linearGradient>
+								</defs>
+
+								<!-- Faces of the 3D-like pyramid (Completely transparent background) -->
+								<!-- 1. Orange face (Strategy, Events, Creative) -->
+								<polygon class="c-face face-orange" points="750,100 380,520 920,320" />
+								
+								<!-- 2. White face (Strategy, Communications, Management) -->
+								<polygon class="c-face face-white" points="750,100 880,645 180,350" />
+								
+								<!-- 3. Blue face (Strategy, Management, Technology) -->
+								<polygon class="c-face face-blue" points="750,100 180,350 780,480" />
+
+								<!-- Interactive lines (edges) -->
+								<!-- Orange edges -->
+								<line class="c-line line-orange" x1="750" y1="100" x2="380" y2="520" />
+								<line class="c-line line-orange" x1="750" y1="100" x2="920" y2="320" />
+								<line class="c-line line-orange" x1="380" y1="520" x2="920" y2="320" />
+
+								<!-- White edges -->
+								<line class="c-line line-white" x1="750" y1="100" x2="880" y2="645" />
+								<line class="c-line line-white" x1="750" y1="100" x2="180" y2="350" />
+								<line class="c-line line-white" x1="880" y1="645" x2="180" y2="350" />
+
+								<!-- Blue edges -->
+								<line class="c-line line-blue" x1="750" y1="100" x2="780" y2="480" />
+								<line class="c-line line-blue" x1="180" y1="350" x2="780" y2="480" />
+							</svg>
+
+							<!-- Strategy Node -->
+							<div class="c-node node-strategy" style="top: 14.285%; left: 75%;">
+								<div class="node-label">Strategy</div>
+								<div class="node-icon-wrapper">
+									<svg class="node-hover-tri" viewBox="0 0 40 40">
+										<polygon points="20,4 36,32 4,32" class="tri-path" />
+									</svg>
+									<span class="white-square-dot"></span>
+								</div>
+							</div>
+
+							<!-- Management Node -->
+							<div class="c-node node-management" style="top: 50%; left: 18%;">
+								<div class="node-icon-wrapper">
+									<svg class="node-hover-tri" viewBox="0 0 40 40">
+										<polygon points="20,4 36,32 4,32" class="tri-path" />
+									</svg>
+									<span class="white-square-dot"></span>
+								</div>
+								<div class="node-label">Management</div>
+							</div>
+
+							<!-- Events Node -->
+							<div class="c-node node-events" style="top: 74.285%; left: 38%;">
+								<div class="node-icon-wrapper">
+									<svg class="node-hover-tri" viewBox="0 0 40 40">
+										<polygon points="20,4 36,32 4,32" class="tri-path" />
+									</svg>
+									<span class="white-square-dot"></span>
+								</div>
+								<div class="node-label color-orange">Events</div>
+							</div>
+
+							<!-- Creative Node -->
+							<div class="c-node node-creative" style="top: 45.714%; left: 92%;">
+								<div class="node-icon-wrapper">
+									<svg class="node-hover-tri" viewBox="0 0 40 40">
+										<polygon points="20,4 36,32 4,32" class="tri-path" />
+									</svg>
+									<span class="white-square-dot"></span>
+								</div>
+								<div class="node-label color-orange">Creative</div>
+							</div>
+
+							<!-- Technology Node -->
+							<div class="c-node node-technology" style="top: 68.571%; left: 78%;">
+								<div class="node-icon-wrapper">
+									<svg class="node-hover-tri" viewBox="0 0 40 40">
+										<polygon points="20,4 36,32 4,32" class="tri-path" />
+									</svg>
+									<span class="white-square-dot"></span>
+								</div>
+								<div class="node-label color-gray font-tech">Technology</div>
+							</div>
+
+							<!-- Communications Node -->
+							<div class="c-node node-communications" style="top: 92.142%; left: 88%;">
+								<div class="node-icon-wrapper">
+									<svg class="node-hover-tri" viewBox="0 0 40 40">
+										<polygon points="20,4 36,32 4,32" class="tri-path" />
+									</svg>
+									<span class="white-square-dot"></span>
+								</div>
+								<div class="node-label">Communications</div>
+							</div>
+						</div>
+					</div>
+			</section>
+
+			<section class="philosophy">
+				<div class="container philosophy__container">
+					<h2 class="philosophy__title">Наша философия</h2>
+					<div class="philosophy__wrap">
+						<div class="philosophy__content">
+							<p class="philosophy__intro">Baisanat объединяет два ключевых смысла:</p>
+							<div class="philosophy__columns">
+								<div class="philosophy__col">
+									<span class="text-orange">«Бай»</span> — богатство знаниями, идеями, опытом;
+								</div>
+								<div class="philosophy__col">
+									<strong>«Санат»</strong> — высокое искусство, качество и культура действия
+								</div>
+							</div>
+						</div>
+						
+						<div class="philosophy__brand">
+							<svg class="philosophy__arrow" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M5.51484 0.386729L27.036 2.97609e-05L26.6493 21.5212L22.3148 25.9013L22.176 25.7625L22.4999 7.69465L3.15874 27.0358L0.000237633 23.8773L19.2938 4.58379L1.31985 4.90627L1.13409 4.72052L5.51484 0.386729Z" fill="#FE5000" style="fill:#FE5000;fill:color(display-p3 0.9961 0.3137 0.0000);fill-opacity:1;"/>
+							</svg>
+							<span class="philosophy__logo-text"><span class="text-orange">BAI</span>SANAT</span>
+						</div>
+						
+						<p class="philosophy__footer-text">
+							Это <strong>определяет нашу философию</strong>, где высочайший уровень экспертизы становится базой для точных решений, а их внедрение через экосистему <strong>гарантирует безупречный результат</strong>
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="history">
+				<div class="container history__container">
+					<h2 class="history__title">История Baisanat</h2>
+					<div class="history__list">
+						<!-- 2018 -->
+						<div class="history__item history__item--active">
+							<div class="history__year">2018</div>
+							<div class="history__info">
+								<h3 class="history__item-title">Организация событий:</h3>
+								<p class="history__item-desc">выход на рынок в качестве ивент-агентства</p>
+							</div>
+						</div>
+
+						<!-- 2019 -->
+						<div class="history__item history__item--active">
+							<div class="history__year">2019</div>
+							<div class="history__info">
+								<h3 class="history__item-title">Медиа-production:</h3>
+								<p class="history__item-desc">развитие экспертизы в производстве контента</p>
+							</div>
+						</div>
+
+						<!-- 2020 -->
+						<div class="history__item">
+							<div class="history__year">2020</div>
+							<div class="history__info">
+								<h3 class="history__item-title">Управление СМИ и медиаплатформами:</h3>
+								<p class="history__item-desc">телевизионный сектор и радиовещание</p>
+							</div>
+						</div>
+
+						<!-- 2021 -->
+						<div class="history__item">
+							<div class="history__year">2021</div>
+							<div class="history__info">
+								<h3 class="history__item-title">Управление репутацией:</h3>
+								<p class="history__item-desc">сопровождение транснациональных компаний, бизнеса и квазигосударственного сектора</p>
+							</div>
+						</div>
+
+						<!-- 2022 -->
+						<div class="history__item">
+							<div class="history__year">2022</div>
+							<div class="history__info">
+								<h3 class="history__item-title">Супервайзинг бизнес-структур:</h3>
+								<p class="history__item-desc">кризис-менеджмент, трансформация и агентирование крупных компаний</p>
+							</div>
+						</div>
+
+						<!-- 2023 -->
+						<div class="history__item">
+							<div class="history__year">2023</div>
+							<div class="history__info">
+								<h3 class="history__item-title">Исследования и коммуникационные стратегии:</h3>
+								<p class="history__item-desc">фокус на аналитике и стратегическом консалтинге</p>
+							</div>
+						</div>
+
+						<!-- 2024 -->
+						<div class="history__item">
+							<div class="history__year">2024</div>
+							<div class="history__info">
+								<h3 class="history__item-title">Проектное управление:</h3>
+								<p class="history__item-desc">внедрение международных стандартов и развитие проектного офиса</p>
+							</div>
+						</div>
+
+						<!-- 2025 -->
+						<div class="history__item">
+							<div class="history__year">2025</div>
+							<div class="history__info">
+								<h3 class="history__item-title">Образовательные проекты:</h3>
+								<p class="history__item-desc">запуск инициатив в сфере медиа и коммуникаций</p>
+							</div>
+						</div>
+
+						<!-- 2026 -->
+						<div class="history__item">
+							<div class="history__year">2026</div>
+							<div class="history__info">
+								<h3 class="history__item-title">Цифровые продукты:</h3>
+								<p class="history__item-desc">создание, сопровождение и развитие digital-проектов</p>
+							</div>
+						</div>
+					</div>
+			</section>
+
+			<section class="today">
+				<div class="container today__container">
+					<div class="today__header">
+						<h2 class="today__title">Baisanat сегодня</h2>
+						<p class="today__subtitle">Проектная структура полного цикла, с единым стандартом качества, кругом надежных партнеров и постоянных клиентов</p>
+					</div>
+					<div class="today__stats">
+						<!-- Stat 1 -->
+						<div class="today__stat-item">
+							<div class="today__stat-number">7</div>
+							<div class="today__stat-text">
+								<div class="today__stat-label">
+									<svg class="today__arrow" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M5.51484 0.386729L27.036 2.97609e-05L26.6493 21.5212L22.3148 25.9013L22.176 25.7625L22.4999 7.69465L3.15874 27.0358L0.000237633 23.8773L19.2938 4.58379L1.31985 4.90627L1.13409 4.72052L5.51484 0.386729Z" fill="#FE5000" style="fill:#FE5000;fill:color(display-p3 0.9961 0.3137 0.0000);fill-opacity:1;"/>
+									</svg>
+									лет
+								</div>
+								<div class="today__stat-desc">на рынке</div>
+							</div>
+						</div>
+						<!-- Stat 2 -->
+						<div class="today__stat-item">
+							<div class="today__stat-number">8</div>
+							<div class="today__stat-text">
+								<div class="today__stat-label">
+									<svg class="today__arrow today__arrow--rotated" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M5.51484 0.386729L27.036 2.97609e-05L26.6493 21.5212L22.3148 25.9013L22.176 25.7625L22.4999 7.69465L3.15874 27.0358L0.000237633 23.8773L19.2938 4.58379L1.31985 4.90627L1.13409 4.72052L5.51484 0.386729Z" fill="#FE5000" style="fill:#FE5000;fill:color(display-p3 0.9961 0.3137 0.0000);fill-opacity:1;"/>
+									</svg>
+									регионов
+								</div>
+								<div class="today__stat-desc">присутствия</div>
+							</div>
+						</div>
+						<!-- Stat 3 -->
+						<div class="today__stat-item">
+							<div class="today__stat-number">50<span class="text-orange">+</span></div>
+							<div class="today__stat-text">
+								<div class="today__stat-label">реализованных</div>
+								<div class="today__stat-desc">проектов</div>
+							</div>
+						</div>
+			</section>
+
+			<section class="process">
+				<div class="container process__container">
+					<h2 class="process__title">Как мы работаем</h2>
+					<div class="process__steps">
+						<!-- Step 1 -->
+						<div class="process__step">
+							<div class="process__step-number">01</div>
+							<div class="process__step-bar"></div>
+							<h3 class="process__step-title">Погружение</h3>
+							<p class="process__step-desc">Проводим интервью, определяем главную задачу проекта</p>
+						</div>
+						<!-- Step 2 -->
+						<div class="process__step">
+							<div class="process__step-number">02</div>
+							<div class="process__step-bar"></div>
+							<h3 class="process__step-title">Архитектура</h3>
+							<p class="process__step-desc">Строим решение только из нужных элементов экосистемы</p>
+						</div>
+						<!-- Step 3 -->
+						<div class="process__step">
+							<div class="process__step-number">03</div>
+							<div class="process__step-bar"></div>
+							<h3 class="process__step-title">Управление</h3>
+							<p class="process__step-desc">Определяем одну точку контакта. Прозрачную и проактивную коммуникацию</p>
+						</div>
+						<!-- Step 4 -->
+						<div class="process__step">
+							<div class="process__step-number">04</div>
+							<div class="process__step-bar"></div>
+							<h3 class="process__step-title">Результат</h3>
+							<p class="process__step-desc">Измеряем и анализируем. Масштабируем успех</p>
+						</div>
+			</section>
+
+			<section class="industries">
+				<div class="container industries__container">
+					<h2 class="industries__title">Отрасли</h2>
+					<div class="industries__tags">
+						<span class="ind-tag ind-tag--dark">Бизнес и корпоративный сектор</span>
+						<span class="ind-tag ind-tag--blue">Государственные проекты</span>
+						<span class="ind-tag ind-tag--dark">Искусство</span>
+						<span class="ind-tag ind-tag--blue">Культура</span>
+						<span class="ind-tag ind-tag--orange">Технологии</span>
+						<span class="ind-tag ind-tag--dark">Digital</span>
+						<span class="ind-tag ind-tag--orange">Медиа и развлечения</span>
+						<span class="ind-tag ind-tag--dark">Социальные проекты</span>
+					</div>
+
+					<div class="industries__big-idea">
+						<div class="industries__big-idea-title">BIG IDEA</div>
+						<div class="industries__big-idea-content">
+							<p class="industries__big-idea-text">
+								<svg class="industries__arrow" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M5.51484 0.386729L27.036 2.97609e-05L26.6493 21.5212L22.3148 25.9013L22.176 25.7625L22.4999 7.69465L3.15874 27.0358L0.000237633 23.8773L19.2938 4.58379L1.31985 4.90627L1.13409 4.72052L5.51484 0.386729Z" fill="#FE5000" style="fill:#FE5000;fill:color(display-p3 0.9961 0.3137 0.0000);fill-opacity:1;"/>
+								</svg>
+								Мы <span class="text-orange">формируем профессиональную среду, стандарты и систему</span>, в которой результат проекта измеряется создаваемой им ценностью
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<Footer theme="dark" />
+
+		<script>
+			import Lenis from 'lenis';
+			import { gsap } from 'gsap';
+			import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+			gsap.registerPlugin(ScrollTrigger);
+
+			// Lenis scroll integration
+			const lenis = new Lenis({
+				duration: 1.8,
+				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+				autoRaf: true,
+				smoothWheel: true,
+			});
+
+			lenis.on('scroll', ScrollTrigger.update);
+
+			// Typewriter effect for header label
+			const typewriterElement = document.querySelector('.hero__label[typewriter="true"]') as HTMLElement | null;
+			if (typewriterElement) {
+				const chars = typewriterElement.querySelectorAll('.split-chars');
+				const delayAttr = typewriterElement.getAttribute('typewriter-delay');
+				const delay = delayAttr ? parseInt(delayAttr, 10) / 1000 : 0.15;
+
+				gsap.to(chars, {
+					opacity: 1,
+					duration: 0.002,
+					stagger: {
+						amount: 0.5,
+					},
+					delay: delay,
+					scrollTrigger: {
+						trigger: typewriterElement,
+						start: 'top 95%',
+						toggleActions: 'play none none none',
+					}
+				});
+			}
+
+			// Constellation float animations (subtle 3D hover/float)
+			const nodes = document.querySelectorAll('.c-node');
+			nodes.forEach((node, index) => {
+				const xOffset = (index % 2 === 0 ? 1 : -1) * (8 + (index * 2));
+				const yOffset = (index % 3 === 0 ? -1 : 1) * (6 + (index * 3));
+				
+				gsap.to(node, {
+					x: `+=${xOffset}`,
+					y: `+=${yOffset}`,
+					duration: 5 + index,
+					repeat: -1,
+					yoyo: true,
+					ease: "sine.inOut"
+				});
+			});
+
+			// Animating SVG Polygons and Lines together with the nodes
+			const svgLines = document.querySelectorAll('.c-line');
+			const polyOrange = document.querySelector('.face-orange') as SVGPolygonElement | null;
+			const polyWhite = document.querySelector('.face-white') as SVGPolygonElement | null;
+			const polyBlue = document.querySelector('.face-blue') as SVGPolygonElement | null;
+			
+			function updateGraph() {
+				const container = document.querySelector('.constellation-wrapper') as HTMLElement;
+				if (!container) return;
+
+				const containerRect = container.getBoundingClientRect();
+				if (containerRect.width === 0 || containerRect.height === 0) {
+					requestAnimationFrame(updateGraph);
+					return;
+				}
+
+				const nodesData = [
+					{ class: '.node-strategy' },       // 0
+					{ class: '.node-management' },     // 1
+					{ class: '.node-events' },         // 2
+					{ class: '.node-creative' },       // 3
+					{ class: '.node-technology' },     // 4
+					{ class: '.node-communications' }, // 5
+				];
+
+				const pos = nodesData.map(nodeData => {
+					const element = document.querySelector(nodeData.class) as HTMLElement;
+					const dot = element?.querySelector('.white-square-dot') as HTMLElement;
+					if (!element || !dot) return { x: 0, y: 0 };
+
+					const dotRect = dot.getBoundingClientRect();
+
+					// Calculate dot center relative to container
+					const xInPixels = (dotRect.left + dotRect.width / 2) - containerRect.left;
+					const yInPixels = (dotRect.top + dotRect.height / 2) - containerRect.top;
+
+					// Scale to 1000x700 viewBox coordinates
+					const x = (xInPixels / containerRect.width) * 1000;
+					const y = (yInPixels / containerRect.height) * 700;
+
+					return { x, y };
+				});
+
+				// Update lines (edges)
+				// Orange edges
+				if (svgLines[0]) { svgLines[0].setAttribute('x1', String(pos[0].x)); svgLines[0].setAttribute('y1', String(pos[0].y)); svgLines[0].setAttribute('x2', String(pos[2].x)); svgLines[0].setAttribute('y2', String(pos[2].y)); }
+				if (svgLines[1]) { svgLines[1].setAttribute('x1', String(pos[0].x)); svgLines[1].setAttribute('y1', String(pos[0].y)); svgLines[1].setAttribute('x2', String(pos[3].x)); svgLines[1].setAttribute('y2', String(pos[3].y)); }
+				if (svgLines[2]) { svgLines[2].setAttribute('x1', String(pos[2].x)); svgLines[2].setAttribute('y1', String(pos[2].y)); svgLines[2].setAttribute('x2', String(pos[3].x)); svgLines[2].setAttribute('y2', String(pos[3].y)); }
+
+				// White edges
+				if (svgLines[3]) { svgLines[3].setAttribute('x1', String(pos[0].x)); svgLines[3].setAttribute('y1', String(pos[0].y)); svgLines[3].setAttribute('x2', String(pos[5].x)); svgLines[3].setAttribute('y2', String(pos[5].y)); }
+				if (svgLines[4]) { svgLines[4].setAttribute('x1', String(pos[0].x)); svgLines[4].setAttribute('y1', String(pos[0].y)); svgLines[4].setAttribute('x2', String(pos[1].x)); svgLines[4].setAttribute('y2', String(pos[1].y)); }
+				if (svgLines[5]) { svgLines[5].setAttribute('x1', String(pos[5].x)); svgLines[5].setAttribute('y1', String(pos[5].y)); svgLines[5].setAttribute('x2', String(pos[1].x)); svgLines[5].setAttribute('y2', String(pos[1].y)); }
+
+				// Blue edges
+				if (svgLines[6]) { svgLines[6].setAttribute('x1', String(pos[0].x)); svgLines[6].setAttribute('y1', String(pos[0].y)); svgLines[6].setAttribute('x2', String(pos[4].x)); svgLines[6].setAttribute('y2', String(pos[4].y)); }
+				if (svgLines[7]) { svgLines[7].setAttribute('x1', String(pos[1].x)); svgLines[7].setAttribute('y1', String(pos[1].y)); svgLines[7].setAttribute('x2', String(pos[4].x)); svgLines[7].setAttribute('y2', String(pos[4].y)); }
+
+				// Update polygon faces
+				if (polyOrange) {
+					polyOrange.setAttribute('points', `${pos[0].x},${pos[0].y} ${pos[2].x},${pos[2].y} ${pos[3].x},${pos[3].y}`);
+				}
+				if (polyWhite) {
+					polyWhite.setAttribute('points', `${pos[0].x},${pos[0].y} ${pos[5].x},${pos[5].y} ${pos[1].x},${pos[1].y}`);
+				}
+				if (polyBlue) {
+					polyBlue.setAttribute('points', `${pos[0].x},${pos[0].y} ${pos[1].x},${pos[1].y} ${pos[4].x},${pos[4].y}`);
+				}
+
+				requestAnimationFrame(updateGraph);
+			}
+
+			requestAnimationFrame(updateGraph);
+
+			// Fade in Animations
+			gsap.from('.about-hero__title', {
+				opacity: 0,
+				y: 40,
+				duration: 1,
+				ease: 'power3.out',
+				delay: 0.3
+			});
+
+			gsap.from('.about-hero__desc, .about-hero__subdesc', {
+				opacity: 0,
+				y: 20,
+				duration: 0.8,
+				stagger: 0.2,
+				ease: 'power2.out',
+				delay: 0.6
+			});
+
+			gsap.from('.constellation-wrapper', {
+				opacity: 0,
+				scale: 0.95,
+				duration: 1.5,
+				ease: 'power2.out',
+				delay: 0.4
+			});
+			// 3. WebGL Background (same gradient as homepage hero)
+			const heroCanvas = document.getElementById('hero-bg') as HTMLCanvasElement | null;
+			if (heroCanvas) {
+				const gl = heroCanvas.getContext('webgl') || heroCanvas.getContext('experimental-webgl') as WebGLRenderingContext | null;
+				
+				const hexToGLSL = (hex: string) => {
+					const r = parseInt(hex.slice(1, 3), 16) / 255;
+					const g = parseInt(hex.slice(3, 5), 16) / 255;
+					const b = parseInt(hex.slice(5, 7), 16) / 255;
+					return `vec3(${r.toFixed(4)}, ${g.toFixed(4)}, ${b.toFixed(4)})`;
+				};
+
+				if (gl) {
+					const vsSource = `
+						attribute vec2 position;
+						void main() {
+							gl_Position = vec4(position, 0.0, 1.0);
+						}
+					`;
+					const fsSource = `
+						precision highp float;
+						uniform vec2 u_resolution;
+						uniform float u_time;
+
+						void main() {
+							vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+							
+							vec3 bg_top = ${hexToGLSL('#3c6eff')};
+							vec3 bg_bottom = ${hexToGLSL('#ffffff')};
+							
+							vec3 wave_top = ${hexToGLSL('#02021f')};
+							vec3 wave_bottom = ${hexToGLSL('#24166f')};
+
+							float height = 0.45;
+							float amplitude = 0.08;
+							float frequency = 5.5;
+							float speed = 0.4;
+							float vertical_speed = 0.2;
+							float blur = 0.19;
+
+							float w1 = sin(uv.x * frequency + u_time * speed) * amplitude;
+							float w2 = cos(uv.x * (frequency * 1.7) - u_time * (speed * 0.8)) * (amplitude * 0.35);
+							float w3 = sin(u_time * vertical_speed) * 0.03;
+
+							float wave_height = height + w1 + w2 + w3;
+							float dist = (1.0 - uv.y) - wave_height;
+							float wave_mask = smoothstep(blur, -blur, dist);
+
+							float bg_top_percent = 0.70;
+							float bg_bottom_percent = 1.00;
+
+							float bg_top_y = 1.0 - bg_top_percent;
+							float bg_bottom_y = 1.0 - bg_bottom_percent;
+
+							float bg_factor = smoothstep(bg_bottom_y, bg_top_y, uv.y);
+							vec3 bgColor = mix(bg_bottom, bg_top, bg_factor);
+							
+							float normalized_wave_y = clamp((uv.y - (1.0 - wave_height)) / wave_height, 0.0, 1.0);
+							vec3 waveColor = mix(wave_bottom, wave_top, normalized_wave_y);
+
+							vec3 finalColor = mix(bgColor, waveColor, wave_mask);
+							gl_FragColor = vec4(finalColor, 1.0);
+						}
+					`;
+
+					const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
+						const shader = gl.createShader(type);
+						if (!shader) return null;
+						gl.shaderSource(shader, source);
+						gl.compileShader(shader);
+						return shader;
+					};
+
+					const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+					const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+					if (vertexShader && fragmentShader) {
+						const program = gl.createProgram();
+						if (program) {
+							gl.attachShader(program, vertexShader);
+							gl.attachShader(program, fragmentShader);
+							gl.linkProgram(program);
+							gl.useProgram(program);
+
+							const positionLocation = gl.getAttribLocation(program, 'position');
+							const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+							const timeLocation = gl.getUniformLocation(program, 'u_time');
+
+							const buffer = gl.createBuffer();
+							gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+							gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+								-1.0, -1.0,
+								 1.0, -1.0,
+								-1.0,  1.0,
+								-1.0,  1.0,
+								 1.0, -1.0,
+								 1.0,  1.0
+							]), gl.STATIC_DRAW);
+
+							gl.enableVertexAttribArray(positionLocation);
+							gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+							const resizeCanvas = () => {
+								const width = window.innerWidth;
+								const height = heroCanvas.parentElement?.clientHeight || window.innerHeight;
+								heroCanvas.width = width;
+								heroCanvas.height = height;
+								gl.viewport(0, 0, width, height);
+								gl.uniform2f(resolutionLocation, width, height);
+							};
+
+							window.addEventListener('resize', resizeCanvas);
+							setTimeout(resizeCanvas, 0);
+
+							const render = (time: number) => {
+								gl.uniform1f(timeLocation, time * 0.001);
+								gl.drawArrays(gl.TRIANGLES, 0, 6);
+								requestAnimationFrame(render);
+							};
+							requestAnimationFrame(render);
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
+
+<style>
+	.about-body {
+		background: #030310 !important;
+		color: var(--color-white) !important;
+		overflow-x: hidden;
+	}
+
+	.hero__section-label {
+		position: relative;
+		color: var(--color-white);
+	}
+
+	.hero__number {
+		position: absolute;
+		left: -80px;
+		top: 4px;
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1;
+		opacity: 0.8;
+		min-width: 30px;
+	}
+
+	.hero__label-block {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.hero__label {
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.hero__line {
+		display: block;
+		width: 50px;
+		height: 1px;
+		background: var(--color-accent);
+	}
+
+	.about-page {
+		position: relative;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.about-hero {
+		position: relative;
+		width: 100%;
+		padding-top: 14vw;
+		padding-bottom: 13vw;
+		z-index: 1;
+		overflow: hidden;
+	}
+
+	.hero__bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #ffffff;
+		z-index: -1;
+		overflow: hidden;
+	}
+
+	.hero__canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.about-hero__inner {
+		display: grid;
+		grid-template-columns: 4fr 3fr;
+		gap: 20px;
+		align-items: center;
+	}
+
+	.about-hero__content {
+		z-index: 2;
+	}
+
+	.about-hero__content .hero__section-label {
+		margin-bottom: 4vw;
+	}
+
+	.about-hero__title {
+		font-family: var(--font-main);
+		font-size: clamp(36px, 4vw, 63px);
+		font-weight: 500;
+		line-height: 1.1;
+		color: var(--color-white);
+		margin-bottom: 4vw;
+		letter-spacing: 1px;
+	}
+
+	.about-hero__desc-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+		max-width: 755px;
+	}
+
+	.about-hero__desc {
+		font-size: clamp(18px, 1.9vw, 30px);
+		font-weight: 400;
+		line-height: 1;
+		color: var(--color-white);
+	}
+
+	.about-hero__subdesc {
+		font-size: clamp(18px, 1.9vw, 30px);
+		font-weight: 300;
+		line-height: 1;
+	}
+
+	/* Constellation visualization */
+	.about-hero__visual {
+		position: relative;
+		width: 100%;
+		height: 600px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.constellation-wrapper {
+		position: relative;
+		width: 100%;
+		aspect-ratio: 10 / 7;
+		max-width: 700px;
+	}
+
+	.constellation-svg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		pointer-events: none;
+	}
+
+	.c-face {
+		fill: none;
+	}
+
+	/* Edges */
+	.c-line {
+		stroke-linecap: round;
+		stroke-width: 1.5px;
+	}
+
+	.line-orange {
+		stroke: url(#edge-orange);
+	}
+
+	.line-white {
+		stroke: url(#edge-white);
+		stroke-opacity: 0.6;
+	}
+
+	.line-blue {
+		stroke: url(#edge-blue);
+		stroke-opacity: 0.8;
+	}
+
+	.c-node {
+		position: absolute;
+		transform: translate(-50%, -50%);
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.node-icon-wrapper {
+		position: relative;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	}
+
+	.c-node:hover .node-icon-wrapper {
+		transform: scale(1.2);
+	}
+
+	.node-hover-tri {
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		fill: none;
+		pointer-events: none;
+		opacity: 0;
+		transform: scale(0.6);
+		transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+		z-index: 2;
+	}
+
+	.node-hover-tri .tri-path {
+		stroke: #ffffff;
+		stroke-width: 1.5;
+		fill: rgba(255, 255, 255, 0.05);
+	}
+
+	.c-node:hover .node-hover-tri {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	.white-square-dot {
+		width: 8px;
+		height: 8px;
+		background-color: #ffffff;
+		border-radius: 1px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 3;
+	}
+
+	/* Absolute positioning for node labels so wrapper size is exactly 40x40 and center remains on vertex */
+	.node-label {
+		position: absolute;
+		font-family: var(--font-main);
+		font-size: 14px;
+		font-weight: 500;
+		color: #ffffff;
+		white-space: nowrap;
+		pointer-events: none;
+		letter-spacing: 0.02em;
+		text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+	}
+
+	.node-strategy .node-label {
+		bottom: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		margin-bottom: 12px;
+	}
+
+	.node-management .node-label {
+		left: 100%;
+		top: 50%;
+		transform: translateY(-50%);
+		margin-left: 12px;
+	}
+
+	.node-events .node-label {
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		margin-top: 12px;
+	}
+
+	.node-creative .node-label {
+		left: 100%;
+		top: 50%;
+		transform: translateY(-50%);
+		margin-left: 12px;
+	}
+
+	.node-technology .node-label {
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		margin-top: 12px;
+	}
+
+	.node-communications .node-label {
+		top: 100%;
+		left: 50%;
+		transform: translateX(-50%);
+		margin-top: 12px;
+	}
+
+	.color-orange {
+		color: #ff5000;
+	}
+
+	.color-gray {
+		color: #8ea4e0;
+	}
+
+	[typewriter="true"] .split-chars {
+		opacity: 0.1;
+	}
+
+	.split-lines, .split-words, .split-chars, .split-space {
+		display: inline-block;
+	}
+
+	/* Responsive layouts */
+	@media (max-width: 1024px) {
+		.about-hero__inner {
+			grid-template-columns: 1fr;
+			gap: 40px;
+		}
+
+		.about-hero__visual {
+			height: 520px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.about-hero {
+			padding-top: 140px;
+			padding-bottom: 80px;
+		}
+
+		.about-hero__title {
+			font-size: 34px;
+			margin-bottom: 24px;
+		}
+
+		.about-hero__desc {
+			font-size: 18px;
+		}
+
+		.about-hero__subdesc {
+			font-size: 15px;
+		}
+
+		.about-hero__visual {
+			height: 420px;
+		}
+	}
+
+	/* Philosophy Section Styles */
+	.philosophy {
+		background: #ffffff;
+		color: #121b3d;
+		padding: 7vw 0 2vw;
+		position: relative;
+		z-index: 2;
+	}
+
+	.philosophy__container {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.philosophy__title {
+		font-family: var(--font-main);
+		font-size: clamp(32px, 3.5vw, 54px);
+		font-weight: 500;
+		color: #121b3d;
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+	}
+
+	.philosophy__wrap {
+		margin-left: 20vw;
+		width: calc(100% - 20vw);
+	}
+
+	.philosophy__content {
+		display: flex;
+		flex-direction: column;
+		gap: 2vw;
+		margin: 87px 0px 28px 0;
+		width: 100%;
+		max-width: 689px;
+	}
+
+	.philosophy__intro {
+		font-size: clamp(18px, 2.6vw, 31px);
+		font-weight: 400;
+		color: #121b3d;
+		line-height: 1.3;
+	}
+
+	.philosophy__columns {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 21px;
+	}
+
+	.philosophy__col {
+		font-size: clamp(15px, 3.2vw, 30px);
+		line-height: 1;
+		color: #3b4260;
+	}
+
+	.philosophy__col strong {
+		color: #121b3d;
+		font-weight: 600;
+	}
+
+	.philosophy__col .text-orange {
+		color: #ff5000;
+		font-weight: 500;
+	}
+
+	.philosophy__brand {
+		display: flex;
+		align-items: flex-start;
+		align-content: flex-start;
+		gap: 0px;
+		margin: 3.5vw -37px;
+	}
+
+	.philosophy__arrow {
+		color: #ff5000;
+		width: clamp(23px, 3vw, 25px);
+		height: auto;
+		flex-shrink: 0;
+	}
+
+	.philosophy__logo-text {
+		font-family: var(--font-main);
+		font-size: clamp(55px, 10.5vw, 175px);
+		font-weight: 300;
+		line-height: 0.65;
+		letter-spacing: 0.02em;
+		color: #121b3d;
+	}
+
+	.philosophy__logo-text .text-orange {
+		color: #ff5000;
+		font-weight: 500;
+	}
+
+	.philosophy__footer-text {
+		font-size: clamp(16px, 3.4vw, 31px);
+		line-height: 1;
+		color: #121b3d;
+		max-width: 930px;
+		font-weight: 400;
+	}
+
+	.philosophy__footer-text strong {
+		font-weight: 600;
+	}
+
+	@media (max-width: 1024px) {
+		.philosophy__container {
+			grid-template-columns: 1fr;
+			gap: 48px;
+		}
+
+		.philosophy__wrap {
+			margin-left: 0;
+			width: 100%;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.philosophy {
+			padding: 80px 0;
+		}
+
+		.philosophy__columns {
+			grid-template-columns: 1fr;
+			gap: 24px;
+		}
+
+		.philosophy__brand {
+			margin: 24px 0;
+			gap: 12px;
+		}
+	}
+
+	/* History Section Styles */
+	.history {
+		background: #ffffff;
+		color: #121b3d;
+		padding: 7vw 0 10vw;
+		position: relative;
+		z-index: 2;
+	}
+
+	.history__container {
+	}
+
+	.history__title {
+		font-family: var(--font-main);
+		font-size: clamp(32px, 3.5vw, 54px);
+		font-weight: 500;
+		color: #121b3d;
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+		margin-bottom: 6vw;
+	}
+
+	.history__list {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.history__item {
+		display: grid;
+		grid-template-columns: 1.5fr 4.5fr;
+		gap: 5px;
+		padding: 17px 0 50px;
+		position: relative;
+		border-top: 1px solid #85A0FF;
+	}
+
+	.history__item::before {
+		content: '';
+		position: absolute;
+		top: -7px;
+		left: 0;
+		width: 45px;
+		height: 7px;
+		background: transparent;
+		transition: background-color 0.3s ease;
+	}
+
+	.history__item--active::before,
+	.history__item:hover::before {
+		background: #85A0FF;
+	}
+
+	.history__year {
+		font-size: clamp(20px, 1.8vw, 35px);
+		font-weight: 300;
+		color: #121b3d;
+	}
+
+	.history__info {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	.history__item-title {
+		font-size: clamp(17px, 3.3vw, 31px);
+		font-weight: 600;
+		color: #121b3d;
+		line-height: 1;
+	}
+
+	.history__item-desc {
+		font-size: clamp(14px, 3.1vw, 31px);
+		font-weight: 300;
+		line-height: 1;
+	}
+
+	@media (max-width: 1024px) {
+	}
+
+	@media (max-width: 768px) {
+		.history {
+			padding: 80px 0 100px;
+		}
+
+		.history__item {
+			grid-template-columns: 1fr;
+			gap: 12px;
+			padding: 24px 0;
+		}
+
+		.history__item::before {
+			width: 24px;
+		}
+	}
+
+	/* Today Section Styles */
+	.today {
+		background: #ffffff;
+		color: #121b3d;
+		padding: 4vw 0 10vw;
+		position: relative;
+		z-index: 2;
+	}
+
+	.today__header {
+		max-width: 1030px;
+		margin-bottom: 6vw;
+	}
+
+	.today__title {
+		font-family: var(--font-main);
+		font-size: clamp(32px, 3.5vw, 54px);
+		font-weight: 500;
+		color: #121b3d;
+		margin-bottom: 35px;
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+	}
+
+	.today__subtitle {
+		font-size: clamp(16px, 4.4vw, 30px);
+		line-height: 1;
+		color: #3b4260;
+	}
+
+	.today__stats {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 60px;
+		max-width: 1000px;
+	}
+
+	.today__stat-item {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.today__stat-number {
+		font-family: var(--font-main);
+		font-size: clamp(80px, 12vw, 175px);
+		font-weight: 500;
+		line-height: 0.9;
+		color: #121b3d;
+		letter-spacing: -0.03em;
+		display: inline-flex;
+		align-items: flex-start;
+	}
+
+	.today__stat-number .text-orange {
+		font-size: 4.5vw;
+		font-weight: 700;
+		color: #ff5000;
+		line-height: 1;
+		margin-top: 1vw;
+	}
+
+	.today__stat-text {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.today__stat-label {
+		font-size: clamp(18px, 2.5vw, 32px);
+		font-weight: 500;
+		color: #121b3d;
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+
+	.today__arrow {
+		width: clamp(23px, 3vw, 25px);
+		height: auto;
+		flex-shrink: 0;
+		transform: rotate(45deg);
+		transform-origin: center;
+	}
+
+	.today__arrow--rotated {
+		transform: none;
+	}
+
+	.today__stat-desc {
+		font-size: clamp(18px, 2.5vw, 32px);
+		font-weight: 500;
+	}
+
+	@media (max-width: 1024px) {
+		.today__stats {
+			gap: 40px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.today {
+			padding: 40px 0 80px;
+		}
+
+		.today__stats {
+			grid-template-columns: 1fr;
+			gap: 36px;
+		}
+
+		.today__stat-number {
+			margin-bottom: 12px;
+		}
+	}
+
+	/* Process Section Styles */
+	.process {
+		background: #ffffff;
+		color: #121b3d;
+		padding: 0 0 10vw;
+		position: relative;
+		z-index: 2;
+	}
+
+	.process__container {
+		display: flex;
+		flex-direction: column;
+		gap: 5vw;
+	}
+
+	.process__title {
+		font-family: var(--font-main);
+		font-size: clamp(32px, 3.5vw, 54px);
+		font-weight: 500;
+		color: #121b3d;
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+	}
+
+	.process__steps {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 30px;
+		position: relative;
+	}
+
+	/* Horizontal connection line */
+	.process__steps::after {
+		content: '';
+		position: absolute;
+		top: 40px; /* Aligned vertically with the thick orange bar */
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: #FE5000;
+		z-index: 1;
+	}
+
+	.process__step {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		z-index: 2;
+	}
+
+	.process__step-number {
+		font-size: 22px;
+		font-weight: 500;
+		color: #ff5000;
+		margin-bottom: 12px;
+	}
+
+	.process__step-bar {
+		width: 45px;
+		height: 6px;
+		background: #ff5000;
+		margin-bottom: 24px;
+		margin-top: 2px;
+	}
+
+	.process__step-title {
+		font-size: clamp(18px, 2.4vw, 31px);
+		font-weight: 600;
+		color: #121b3d;
+		margin-bottom: 16px;
+		line-height: 1.25;
+	}
+
+	.process__step-desc {
+		font-size: clamp(14px, 2.1vw, 23px);
+		font-weight: 300;
+		line-height: 1.4;
+	}
+
+	@media (max-width: 1024px) {
+		.process__steps {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 40px;
+		}
+
+		/* Hide connection line on wrap layouts */
+		.process__steps::after {
+			display: none;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.process {
+			padding: 0 0 80px;
+		}
+
+		.process__steps {
+			grid-template-columns: 1fr;
+			gap: 32px;
+		}
+
+		.process__step-bar {
+			margin-bottom: 16px;
+		}
+	}
+
+	/* Industries Section Styles */
+	.industries {
+		background: #ffffff;
+		color: #121b3d;
+		padding: 0 0 10vw;
+		position: relative;
+		z-index: 2;
+	}
+
+	.industries__title {
+		font-family: var(--font-main);
+		font-size: clamp(32px, 3.5vw, 54px);
+		font-weight: 500;
+		color: #121b3d;
+		margin-bottom: 90px;
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+	}
+
+	.industries__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 14px 15px;
+		max-width: 1040px;
+		margin-bottom: 7vw;
+	}
+
+	.ind-tag {
+		font-size: clamp(14px, 3.1vw, 30px);
+		padding: 5px 24px;
+		border-radius: 30px;
+		display: inline-block;
+		font-weight: 300;
+		line-height: 1.2;
+		transition: all 0.3s ease;
+		cursor: default;
+	}
+
+	.ind-tag--dark {
+		border: 1.5px solid #121b3d;
+		color: #121b3d;
+	}
+
+	.ind-tag--blue {
+		border: 1.5px solid #3c6eff;
+		color: #121b3d;
+	}
+
+	.ind-tag--orange {
+		border: 1.5px solid #ff5000;
+		color: #121b3d;
+	}
+
+	.ind-tag:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(18, 27, 61, 0.08);
+	}
+
+	.industries__big-idea {
+		margin-top: 8vw;
+	}
+
+	.industries__big-idea-title {
+		font-family: var(--font-main);
+		font-size: clamp(80px, 11vw, 180px);
+		font-weight: 500;
+		color: #ff5000;
+		line-height: 0.9;
+		margin-bottom: 30px;
+	}
+
+	.industries__big-idea-content {
+		display: grid;
+		grid-template-columns: 1fr 6fr;
+		gap: 40px;
+	}
+
+	.industries__big-idea-text {
+		grid-column: 2;
+		font-size: clamp(18px, 2.6vw, 31px);
+		line-height: 1;
+		color: #121b3d;
+		font-weight: 400;
+		max-width: 900px;
+	}
+
+	.industries__arrow {
+		width: clamp(23px, 3vw, 25px);
+		height: auto;
+		display: inline-block;
+		vertical-align: middle;
+		margin-right: 8px;
+		margin-top: -4px;
+	}
+
+	.industries__big-idea-text .text-orange {
+		color: #ff5000;
+	}
+
+	@media (max-width: 1024px) {
+		.industries__big-idea-content {
+			grid-template-columns: 1fr;
+			gap: 20px;
+		}
+
+		.industries__big-idea-text {
+			grid-column: 1;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.industries {
+			padding: 0 0 80px;
+		}
+
+		.industries__tags {
+			gap: 10px;
+			margin-bottom: 40px;
+		}
+
+		.ind-tag {
+			padding: 8px 18px;
+		}
+	}
+</style>

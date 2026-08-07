@@ -20,7 +20,7 @@
 		</div>
 
 		<div class="principles__content">
-			<h2 class="principles__title">
+			<h2 class="principles__title" data-split-lines>
 				Система координат Baisanat
 			</h2>
 
@@ -267,6 +267,7 @@
 <script>
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import SplitType from 'split-type';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -308,7 +309,7 @@
 			scrollTrigger: {
 				trigger: principlesSection,
 				start: 'top top',
-				end: '+=180%',
+				end: '+=250%',
 				pin: true,
 				scrub: 1,
 			}
@@ -328,6 +329,9 @@
 				}, index > 0 ? '+=0.2' : '+=0.2');
 			}
 		});
+
+		// Ожидание в конце (2 условных "скролла")
+		tl.to({}, { duration: 2 });
 	}
 
 	// WebGL Background
@@ -363,7 +367,7 @@
 					// ==========================================
 					
 					// Цвета заднего фона (градиент сверху вниз)
-					vec3 bg_top = ${hexToGLSL('#ffffff')};    // Белый верх (переход от предыдущего блока)
+					vec3 bg_top = ${hexToGLSL('#ddddf6')};    // Белый верх (переход от предыдущего блока)
 					vec3 bg_bottom = ${hexToGLSL('#3534c8')}; // Сине-фиолетовый низ
 					
 					// Цвета волны (градиент сверху вниз)
@@ -487,5 +491,35 @@
 				}
 			}
 		}
+	}
+
+	const titleElement = document.querySelector('.principles__title[data-split-lines]') as HTMLElement | null;
+	if (titleElement) {
+		const split = new SplitType(titleElement, { types: 'lines' });
+		
+		split.lines?.forEach(line => {
+			const wrapper = document.createElement('div');
+			wrapper.className = 'line-inner';
+			wrapper.style.transform = 'translateY(170%)';
+			
+			line.style.overflow = 'hidden';
+			
+			while (line.firstChild) {
+				wrapper.appendChild(line.firstChild);
+			}
+			line.appendChild(wrapper);
+		});
+
+		gsap.to(titleElement.querySelectorAll('.line-inner'), {
+			y: '0%',
+			duration: 1.2,
+			stagger: 0.066,
+			ease: 'cubic-bezier(0, 0, 0, 1)',
+			scrollTrigger: {
+				trigger: titleElement,
+				start: 'top bottom-=15%',
+				toggleActions: 'play none none none',
+			}
+		});
 	}
 </script>

@@ -20,7 +20,7 @@
 				</div>
 
 				<div class="clients__content">
-					<h2 class="clients__title">
+					<h2 class="clients__title" data-split-lines>
 					Нам доверяют лидеры<br />индустрий
 				</h2>
 				
@@ -215,7 +215,7 @@
 
 	@media (min-width: 769px) {
 		.clients {
-			padding: 1vw 0;
+			padding: 5vw 0;
 		}
 	}
 
@@ -283,6 +283,7 @@
 <script>
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import SplitType from 'split-type';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -304,6 +305,59 @@
 			scrollTrigger: {
 				trigger: clientsTypewriter,
 				start: 'top 90%',
+				toggleActions: 'play none none none',
+			}
+		});
+	}
+
+	const titleElement = document.querySelector('.clients__title[data-split-lines]') as HTMLElement | null;
+	if (titleElement) {
+		const split = new SplitType(titleElement, { types: 'lines' });
+		
+		split.lines?.forEach(line => {
+			const wrapper = document.createElement('div');
+			wrapper.className = 'line-inner';
+			wrapper.style.transform = 'translateY(170%)';
+			
+			line.style.overflow = 'hidden';
+			
+			while (line.firstChild) {
+				wrapper.appendChild(line.firstChild);
+			}
+			line.appendChild(wrapper);
+		});
+
+		gsap.to(titleElement.querySelectorAll('.line-inner'), {
+			y: '0%',
+			duration: 1.2,
+			stagger: 0.066,
+			ease: 'cubic-bezier(0, 0, 0, 1)',
+			scrollTrigger: {
+				trigger: titleElement,
+				start: 'top bottom-=15%',
+				toggleActions: 'play none none none',
+			}
+		});
+	}
+
+	const logos = document.querySelectorAll('#clients .clients__logo');
+	if (logos.length > 0) {
+		logos.forEach(logo => {
+			(logo as HTMLElement).style.overflow = 'hidden';
+			const img = logo.querySelector('img');
+			if (img) {
+				img.style.transform = 'translateY(170%)';
+			}
+		});
+
+		gsap.to('#clients .clients__logo img', {
+			y: '0%',
+			duration: 1.2,
+			stagger: 0.066,
+			ease: 'cubic-bezier(0, 0, 0, 1)',
+			scrollTrigger: {
+				trigger: titleElement || '#clients',
+				start: 'top bottom-=15%',
 				toggleActions: 'play none none none',
 			}
 		});

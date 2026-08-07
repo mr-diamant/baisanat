@@ -20,7 +20,7 @@
 		</div>
 
 		<div class="cooperation__content">
-			<h2 class="cooperation__title">
+			<h2 class="cooperation__title" data-split-lines>
 				Baisanat - территория партнерства
 			</h2>
 			<p class="cooperation__subtitle">
@@ -71,7 +71,7 @@
 
 	@media (min-width: 769px) {
 		.cooperation {
-			padding-top: 1vw;
+			padding-top: 10vw;
 		}
 	}
 
@@ -295,6 +295,7 @@
 <script>
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import SplitType from 'split-type';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -481,5 +482,35 @@
 				}
 			}
 		}
+	}
+
+	const titleElement = document.querySelector('.cooperation__title[data-split-lines]') as HTMLElement | null;
+	if (titleElement) {
+		const split = new SplitType(titleElement, { types: 'lines' });
+		
+		split.lines?.forEach(line => {
+			const wrapper = document.createElement('div');
+			wrapper.className = 'line-inner';
+			wrapper.style.transform = 'translateY(170%)';
+			
+			line.style.overflow = 'hidden';
+			
+			while (line.firstChild) {
+				wrapper.appendChild(line.firstChild);
+			}
+			line.appendChild(wrapper);
+		});
+
+		gsap.to(titleElement.querySelectorAll('.line-inner'), {
+			y: '0%',
+			duration: 1.2,
+			stagger: 0.066,
+			ease: 'cubic-bezier(0, 0, 0, 1)',
+			scrollTrigger: {
+				trigger: titleElement,
+				start: 'top bottom-=15%',
+				toggleActions: 'play none none none',
+			}
+		});
 	}
 </script>

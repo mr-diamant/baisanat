@@ -19,7 +19,7 @@
 		</div>
 
 		<div class="projects__content">
-			<h2 class="projects__title">
+			<h2 class="projects__title" data-split-lines>
 				Создано командой Baisanat
 			</h2>
 
@@ -50,7 +50,7 @@
 <style>
 	.projects {
 		padding: 60px 0;
-		background-color: #ffffff;
+		background: linear-gradient(0deg, #ddddf6, #fff 20%);
 		position: relative;
 		z-index: 2;
 	}
@@ -206,7 +206,7 @@
 	:global(.projects__item--active) {
 		color: #000000;
 		font-weight: 500;
-		transform: translateX(8px);
+		transform: translateX(27px);
 	}
 
 	:global(.projects__item-icon) {
@@ -313,6 +313,7 @@
 <script>
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+	import SplitType from 'split-type';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -453,4 +454,34 @@
 
 	initProjects();
 	document.addEventListener('astro:page-load', initProjects);
+
+	const titleElement = document.querySelector('.projects__title[data-split-lines]') as HTMLElement | null;
+	if (titleElement) {
+		const split = new SplitType(titleElement, { types: 'lines' });
+		
+		split.lines?.forEach(line => {
+			const wrapper = document.createElement('div');
+			wrapper.className = 'line-inner';
+			wrapper.style.transform = 'translateY(170%)';
+			
+			line.style.overflow = 'hidden';
+			
+			while (line.firstChild) {
+				wrapper.appendChild(line.firstChild);
+			}
+			line.appendChild(wrapper);
+		});
+
+		gsap.to(titleElement.querySelectorAll('.line-inner'), {
+			y: '0%',
+			duration: 1.2,
+			stagger: 0.066,
+			ease: 'cubic-bezier(0, 0, 0, 1)',
+			scrollTrigger: {
+				trigger: titleElement,
+				start: 'top bottom-=15%',
+				toggleActions: 'play none none none',
+			}
+		});
+	}
 </script>
