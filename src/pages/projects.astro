@@ -1,0 +1,612 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href={import.meta.env.BASE_URL + 'Media/favicon.png'} />
+		<meta name="viewport" content="width=1440" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Наши проекты — Baisanat Holding</title>
+		<meta name="description" content="Проекты, которые говорят за нас" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+	<body class="projects-body">
+		<Header theme="light" />
+		
+		<main class="projects-page">
+			<section class="projects-hero">
+				<div class="container projects-hero__inner">
+					<div class="projects-hero__content">
+						<div class="hero__section-label hero__section-label--dark">
+							<span class="hero__number">05</span>
+							<div class="hero__label-block">
+								<span class="hero__label" typewriter="true" typewriter-delay="150">
+									<span class="split-lines">
+										<span class="split-words">
+											<span class="split-chars">Н</span><span class="split-chars">а</span><span class="split-chars">ш</span><span class="split-chars">и</span><span class="split-space">&nbsp;</span><span class="split-chars">п</span><span class="split-chars">р</span><span class="split-chars">о</span><span class="split-chars">е</span><span class="split-chars">к</span><span class="split-chars">т</span><span class="split-chars">ы</span>
+										</span>
+									</span>
+								</span>
+								<span class="hero__line hero__line--dark"></span>
+							</div>
+						</div>
+
+						<h1 class="projects-hero__title">
+							Проекты,<br />которые говорят за нас
+						</h1>
+
+						<div class="projects-hero__desc-wrapper">
+							<p class="projects-hero__desc">
+								От идеи и архитектуры до реализации и развития
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="projects-list">
+				<div class="container projects-list__container">
+					<div class="projects-filters">
+						<div class="projects-filter">
+							<span class="projects-filter__text">Все клиенты</span>
+							<svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</div>
+						<div class="projects-filter">
+							<span class="projects-filter__text">Все направления</span>
+							<svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</div>
+					</div>
+
+					<div class="projects-grid">
+						<!-- Card 1 -->
+						<a href="#" class="project-card" style="--card-bg: linear-gradient(180deg, #264a85 0%, #152243 100%);">
+							<div class="project-card__image-wrap">
+								<img src={import.meta.env.BASE_URL + 'Media/project_slide2.jpg'} alt="Project" class="project-card__img" />
+								<div class="project-card__tag">Управление</div>
+							</div>
+							<div class="project-card__content">
+								<div class="project-card__line"></div>
+								<h3 class="project-card__title">Международная<br/>конференция Digital<br/>Tanba.....</h3>
+								<p class="project-card__desc">/ PR, маркетинг, аналитика, медиапланирование, запуск репутационных и рекламных стратегий.</p>
+								<div class="project-card__link">
+									<svg width="15" height="15" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
+									</svg>
+									Посмотреть кейс
+								</div>
+							</div>
+						</a>
+
+						<!-- Card 2 -->
+						<a href="#" class="project-card" style="--card-bg: linear-gradient(180deg, #c74808 0%, #631201 100%);">
+							<div class="project-card__image-wrap">
+								<img src={import.meta.env.BASE_URL + 'Media/project_slide2.jpg'} alt="Project" class="project-card__img" />
+								<div class="project-card__tag">Управление</div>
+							</div>
+							<div class="project-card__content">
+								<div class="project-card__line"></div>
+								<h3 class="project-card__title">Международная<br/>конференция Digital<br/>Tanba.....</h3>
+								<p class="project-card__desc">/ PR, маркетинг, аналитика, медиапланирование, запуск репутационных и рекламных стратегий. Медиапланирование, запуск репутационных ...</p>
+								<div class="project-card__link">
+									<svg width="15" height="15" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
+									</svg>
+									Посмотреть кейс
+								</div>
+							</div>
+						</a>
+
+						<!-- Card 3 -->
+						<a href="#" class="project-card" style="--card-bg: linear-gradient(180deg, #6c2b74 0%, #2f0e34 100%);">
+							<div class="project-card__image-wrap">
+								<img src={import.meta.env.BASE_URL + 'Media/project_slide2.jpg'} alt="Project" class="project-card__img" />
+								<div class="project-card__tag">Управление</div>
+							</div>
+							<div class="project-card__content">
+								<div class="project-card__line"></div>
+								<h3 class="project-card__title">Международная<br/>конференция Digital<br/>Tanba.....</h3>
+								<p class="project-card__desc">/ PR, маркетинг, аналитика, медиапланирование, запуск репутационных и рекламных стратегий.</p>
+								<div class="project-card__link">
+									<svg width="15" height="15" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
+									</svg>
+									Посмотреть кейс
+								</div>
+							</div>
+						</a>
+
+						<!-- Card 4 -->
+						<a href="#" class="project-card" style="--card-bg: linear-gradient(180deg, #264a85 0%, #152243 100%);">
+							<div class="project-card__image-wrap">
+								<img src={import.meta.env.BASE_URL + 'Media/project_slide2.jpg'} alt="Project" class="project-card__img" />
+								<div class="project-card__tag">Управление</div>
+							</div>
+							<div class="project-card__content">
+								<div class="project-card__line"></div>
+								<h3 class="project-card__title">Международная<br/>конференция Digital<br/>Tanba.....</h3>
+								<p class="project-card__desc">/ PR, маркетинг, аналитика, медиапланирование, запуск репутационных и рекламных стратегий.</p>
+								<div class="project-card__link">
+									<svg width="15" height="15" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
+									</svg>
+									Посмотреть кейс
+								</div>
+							</div>
+						</a>
+
+						<!-- Card 5 -->
+						<a href="#" class="project-card" style="--card-bg: linear-gradient(180deg, #c74808 0%, #631201 100%);">
+							<div class="project-card__image-wrap">
+								<img src={import.meta.env.BASE_URL + 'Media/project_slide2.jpg'} alt="Project" class="project-card__img" />
+								<div class="project-card__tag">Управление</div>
+							</div>
+							<div class="project-card__content">
+								<div class="project-card__line"></div>
+								<h3 class="project-card__title">Международная<br/>конференция Digital<br/>Tanba.....</h3>
+								<p class="project-card__desc">/ PR, маркетинг, аналитика, медиапланирование, запуск репутационных и рекламных стратегий. Медиапланирование, запуск репутационных ...</p>
+								<div class="project-card__link">
+									<svg width="15" height="15" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
+									</svg>
+									Посмотреть кейс
+								</div>
+							</div>
+						</a>
+
+						<!-- Card 6 -->
+						<a href="#" class="project-card" style="--card-bg: linear-gradient(180deg, #6c2b74 0%, #2f0e34 100%);">
+							<div class="project-card__image-wrap">
+								<img src={import.meta.env.BASE_URL + 'Media/project_slide2.jpg'} alt="Project" class="project-card__img" />
+								<div class="project-card__tag">Управление</div>
+							</div>
+							<div class="project-card__content">
+								<div class="project-card__line"></div>
+								<h3 class="project-card__title">Международная<br/>конференция Digital<br/>Tanba.....</h3>
+								<p class="project-card__desc">/ PR, маркетинг, аналитика, медиапланирование, запуск репутационных и рекламных стратегий.</p>
+								<div class="project-card__link">
+									<svg width="15" height="15" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M3.14185 0V1.75466H13.9546L0 15.7093L1.25858 17L15.2453 3.00865V13.7892H17V0H3.14185Z" fill="currentColor"/>
+									</svg>
+									Посмотреть кейс
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="projects-more">
+						<button class="projects-more__btn">
+							Еще проекты
+							<svg width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M1 1L12 12L23 1" stroke="#FF5000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="projects-team">
+				<div class="container projects-team__container">
+					<p class="projects-team__text">
+						Мы формируем отдельную команду<br/>
+						под каждый проект и контролируем<br/>
+						его реализацию на всех этапах
+					</p>
+					<div class="projects-team__line"></div>
+				</div>
+			</section>
+		</main>
+
+		<Footer theme="principles" />
+
+		<script>
+			import Lenis from 'lenis';
+			import { gsap } from 'gsap';
+			import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+			gsap.registerPlugin(ScrollTrigger);
+
+			// Lenis scroll integration
+			const lenis = new Lenis({
+				duration: 1.8,
+				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+				autoRaf: true,
+				smoothWheel: true,
+			});
+
+			lenis.on('scroll', ScrollTrigger.update);
+
+			// Typewriter effect for header label
+			const typewriterElement = document.querySelector('.hero__label[typewriter="true"]') as HTMLElement | null;
+			if (typewriterElement) {
+				const chars = typewriterElement.querySelectorAll('.split-chars');
+				const delayAttr = typewriterElement.getAttribute('typewriter-delay');
+				const delay = delayAttr ? parseInt(delayAttr, 10) / 1000 : 0.15;
+
+				gsap.to(chars, {
+					opacity: 1,
+					duration: 0.002,
+					stagger: {
+						amount: 0.5,
+					},
+					delay: delay,
+					scrollTrigger: {
+						trigger: typewriterElement,
+						start: 'top 95%',
+						toggleActions: 'play none none none',
+					}
+				});
+			}
+
+			// Fade in Animations
+			gsap.from('.projects-hero__title', {
+				opacity: 0,
+				y: 40,
+				duration: 1,
+				ease: 'power3.out',
+				delay: 0.3
+			});
+
+			gsap.from('.projects-hero__desc', {
+				opacity: 0,
+				y: 20,
+				duration: 0.8,
+				ease: 'power2.out',
+				delay: 0.6
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	.projects-body {
+		background: #ffffff !important;
+		color: #000000 !important;
+		overflow-x: hidden;
+	}
+
+	.hero__section-label {
+		position: relative;
+		margin-bottom: 4vw;
+	}
+
+	.hero__section-label--dark {
+		color: #000000;
+	}
+
+	.hero__number {
+		position: absolute;
+		left: -80px;
+		top: 4px;
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1;
+		opacity: 0.8;
+		min-width: 30px;
+	}
+
+	.hero__label-block {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.hero__label {
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.hero__line {
+		display: block;
+		width: 50px;
+		height: 1px;
+	}
+
+	.hero__line--dark {
+		background: #000000;
+	}
+
+	.projects-page {
+		position: relative;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.projects-hero {
+		position: relative;
+		width: 100%;
+		padding-top: 19vw;
+		padding-bottom: 5vw;
+		z-index: 1;
+	}
+
+	.projects-hero__inner {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.projects-hero__content {
+		max-width: 900px;
+	}
+
+	.projects-hero__title {
+		font-family: var(--font-main);
+		font-size: clamp(36px, 4vw, 63px);
+		font-weight: 500;
+		line-height: 1.1;
+		margin-bottom: 1.5vw;
+		letter-spacing: 1px;
+	}
+
+	.projects-hero__desc-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+		max-width: 755px;
+	}
+
+	.projects-hero__desc {
+		font-size: clamp(18px, 1.9vw, 30px);
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	[typewriter="true"] .split-chars {
+		opacity: 0.1;
+	}
+
+	.split-lines, .split-words {
+		display: inline;
+	}
+
+	.split-chars, .split-space {
+		display: inline-block;
+	}
+
+	@media (max-width: 768px) {
+		.hero__number {
+			position: static;
+			margin-bottom: 8px;
+		}
+		
+		.projects-hero {
+			padding-top: 140px;
+			padding-bottom: 60px;
+		}
+	}
+
+	.projects-list {
+		padding-bottom: 120px;
+		background: #ffffff;
+	}
+
+	.projects-filters {
+		display: flex;
+		gap: 18vw;
+		margin-bottom: 60px;
+		border-top: 1px solid #FF5000;
+	}
+
+	.projects-filter {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 24px 0 12px;
+		cursor: pointer;
+		position: relative;
+		font-family: var(--font-main);
+		font-size: 22px;
+		font-weight: 400;
+		color: #000000;
+	}
+
+	.projects-filter::before {
+		content: '';
+		position: absolute;
+		top: -1px;
+		left: 0;
+		width: 50px;
+		height: 7px;
+		background: #ff5000;
+	}
+
+	.projects-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+	}
+
+	.project-card {
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		color: #ffffff;
+		background: var(--card-bg, #000);
+		overflow: hidden;
+		transition: transform 0.3s ease;
+		clip-path: polygon(0 0, calc(100% - 40px) 0, 100% 40px, 100% 100%, 0 100%);
+	}
+
+	.project-card:hover {
+		transform: translateY(-5px);
+	}
+
+	.project-card__image-wrap {
+		position: relative;
+		width: 100%;
+		padding-top: 280px;
+	}
+
+	.project-card__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.project-card__tag {
+		position: absolute;
+		top: 30px;
+		left: 30px;
+		border: 1px solid #fff;
+		padding: 8px 16px;
+		font-family: var(--font-main);
+		font-size: 17px;
+		font-weight: 400;
+		color: #ffffff;
+	}
+
+	.project-card__content {
+		padding: 0 40px 40px;
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+
+	.project-card__line {
+		width: 50px;
+		height: 6px;
+		background: #ffffff;
+		margin-bottom: 20px;
+	}
+
+	.project-card__title {
+		font-family: var(--font-main);
+		font-size: clamp(20px, 1.8vw, 28px);
+		font-weight: 400;
+		line-height: 1.1;
+		margin-bottom: 20px;
+	}
+
+	.project-card__desc {
+		font-family: var(--font-main);
+		font-size: clamp(13px, 1vw, 15px);
+		font-weight: 400;
+		line-height: 1;
+		margin-bottom: 40px;
+	}
+
+	.project-card__link {
+		margin-top: auto;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--font-main);
+		font-size: 16px;
+		font-weight: 400;
+		color: #ffffff;
+		border-bottom: 1px solid rgba(255,255,255,0.4);
+		padding-bottom: 4px;
+		transition: border-color 0.3s ease;
+		align-self: flex-start;
+	}
+
+	.project-card:hover .project-card__link {
+		border-color: #ffffff;
+	}
+
+	.project-card__link svg {
+		transition: transform 0.3s ease;
+	}
+
+	.project-card:hover .project-card__link svg {
+		transform: translate(2px, -2px);
+	}
+
+	@media (max-width: 1024px) {
+		.projects-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.projects-grid {
+			grid-template-columns: 1fr;
+		}
+		
+		.projects-filters {
+			flex-direction: column;
+			gap: 20px;
+		}
+
+		.projects-more {
+			margin-top: 60px;
+		}
+	}
+
+	.projects-more {
+		display: flex;
+		justify-content: center;
+		margin-top: 80px;
+	}
+
+	.projects-more__btn {
+		background: none;
+		border: none;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 16px;
+		font-family: var(--font-main);
+		font-size: 22px;
+		font-weight: 400;
+		color: #000000;
+		transition: opacity 0.3s ease;
+		padding: 0;
+	}
+
+	.projects-more__btn:hover {
+		opacity: 0.7;
+	}
+	
+	.projects-more__btn svg {
+		transition: transform 0.3s ease;
+	}
+	
+	.projects-more__btn:hover svg {
+		transform: translateY(4px);
+	}
+
+	.projects-team {
+		padding: 120px 0 11vw;
+		background: #ffffff;
+		position: relative;
+	}
+
+	.projects-team__container {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.projects-team__text {
+		font-family: var(--font-main);
+		font-size: clamp(24px, 3.5vw, 49px);
+		font-weight: 400;
+		line-height: 1.2;
+		color: #000000;
+		max-width: 900px;
+		padding-bottom: 30px;
+		border-bottom: 1px solid #ff5000;
+	}
+
+	.projects-team__line {
+		width: 50px;
+		height: 6px;
+		background: #ff5000;
+	}
+</style>

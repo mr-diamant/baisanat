@@ -1,0 +1,1244 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import tagsData from '../../public/Media/tags13.json';
+
+const numDivisions = tagsData.length;
+let numServices = 0;
+let numActions = 0;
+
+tagsData.forEach((cat: any) => {
+	if (cat.subcategories) {
+		numServices += cat.subcategories.length;
+		cat.subcategories.forEach((sub: any) => {
+			if (sub.tags) {
+				numActions += sub.tags.length;
+			}
+		});
+	}
+});
+---
+
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href={import.meta.env.BASE_URL + 'Media/favicon.png'} />
+		<meta name="viewport" content="width=1440" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Сервисы и услуги — Baisanat Holding</title>
+		<meta name="description" content="Экосистема проектных возможностей Baisanat Holding" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+	</head>
+	<body class="services-page">
+		<Header theme="light" />
+		
+		<main class="services-main">
+			<section class="services-hero">
+				<div class="hero__bg">
+					<canvas id="services-hero-bg" class="hero__canvas"></canvas>
+				</div>
+				<div class="container services-hero__inner">
+					<div class="services-hero__content">
+						<div class="hero__section-label hero__section-label--dark">
+							<span class="hero__number">05</span>
+							<div class="hero__label-block">
+								<span class="hero__label" typewriter="true" typewriter-delay="150">
+									<span class="split-lines">
+										<span class="split-words">
+											<span class="split-chars">С</span><span class="split-chars">е</span><span class="split-chars">р</span><span class="split-chars">в</span><span class="split-chars">и</span><span class="split-chars">с</span><span class="split-chars">ы</span>
+                                            <span class="split-space">&nbsp;</span>
+                                            <span class="split-chars">и</span>
+                                            <span class="split-space">&nbsp;</span>
+                                            <span class="split-chars">у</span><span class="split-chars">с</span><span class="split-chars">л</span><span class="split-chars">у</span><span class="split-chars">г</span><span class="split-chars">и</span>
+										</span>
+									</span>
+								</span>
+								<span class="hero__line hero__line--dark"></span>
+							</div>
+						</div>
+
+						<h1 class="services-hero__title">
+							Экосистема проектных<br />возможностей
+						</h1>
+
+						<div class="services-hero__subtitle-wrapper">
+							<p class="services-hero__subtitle">
+								<span class="text-accent">Большинство задач</span> в медиа, коммуникациях<br />
+								и креативных индустриях <span class="text-accent">требуют системных решений.</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="services-intro">
+				<div class="container services-intro__container">
+					<div class="services-intro__grid">
+						<!-- Col 1 -->
+						<div class="services-intro__item active">
+							<div class="services-intro__item-line"></div>
+							<p class="services-intro__item-text">
+								<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="services-intro__arrow">
+									<path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="#FF5000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+								<span class="inline-text">Стратегия<br/>без производства -<br/>не работает</span>
+							</p>
+						</div>
+						<!-- Col 2 -->
+						<div class="services-intro__item">
+							<div class="services-intro__item-line"></div>
+							<p class="services-intro__item-text">
+								Производство<br/>без коммуникации<br/>теряется
+							</p>
+						</div>
+						<!-- Col 3 -->
+						<div class="services-intro__item">
+							<div class="services-intro__item-line"></div>
+							<p class="services-intro__item-text">
+								Коммуникация<br/>без аналитики -<br/>просто шум
+							</p>
+						</div>
+					</div>
+
+					<div class="services-intro__bottom">
+						<div class="services-intro__desc-wrapper">
+							<p class="services-intro__desc">
+								<span class="text-accent">Мы создаём стратегии</span>, управляем процессами,<br/>
+								производим контент, развиваем бренды и запускаем<br/>
+								масштабные мероприятия, <span class="text-accent">применяя экосистемный подход.</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="services-stats">
+				<div class="container">
+					<div class="services-stats__grid">
+						<!-- Content Row -->
+						<div class="services-stats__content">
+							<div class="services-stats__num-wrap">
+								<span class="services-stats__num">{numDivisions}</span>
+								<svg class="services-stats__arrow services-stats__arrow--left" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M2.64552 23.6151L0 20.9696L19.7247 1.24495L22.3702 3.89047L2.64552 23.6151ZM20.1137 21.242L19.997 21.1252L19.997 4.51294L19.1411 3.65704L2.5288 3.65704L2.37319 3.50142L5.91351 0L23.6151 0L23.6151 17.7016L20.1137 21.242Z" fill="#FE5000" style="fill:#FE5000;fill:color(display-p3 0.9961 0.3137 0.0000);fill-opacity:1;"/>
+								</svg>
+							</div>
+							<div class="services-stats__label">подразделений</div>
+						</div>
+						
+						<div class="services-stats__content">
+							<div class="services-stats__num-wrap">
+								<svg class="services-stats__arrow services-stats__arrow--upright" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M2.64552 23.6151L0 20.9696L19.7247 1.24495L22.3702 3.89047L2.64552 23.6151ZM20.1137 21.242L19.997 21.1252L19.997 4.51294L19.1411 3.65704L2.5288 3.65704L2.37319 3.50142L5.91351 0L23.6151 0L23.6151 17.7016L20.1137 21.242Z" fill="#FE5000" style="fill:#FE5000;fill:color(display-p3 0.9961 0.3137 0.0000);fill-opacity:1;"/>
+								</svg>
+								<span class="services-stats__num">{numServices}</span>
+							</div>
+							<div class="services-stats__label">сервисов</div>
+						</div>
+						
+						<div class="services-stats__content">
+							<div class="services-stats__num-wrap">
+								<span class="services-stats__num">{numActions}</span>
+							</div>
+							<div class="services-stats__label">услуг</div>
+						</div>
+
+						<!-- Line Row -->
+						<div class="services-stats__line"></div>
+
+						<!-- Icons Row -->
+						<div class="services-stats__icon">
+							<div class="square-1"></div>
+						</div>
+						
+						<div class="services-stats__icon">
+							<div class="square-2">
+								<div></div>
+								<div></div>
+							</div>
+						</div>
+						
+						<div class="services-stats__icon">
+							<div class="square-4">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="services-accordion-section">
+				<div class="container">
+					<div class="services-accordion">
+						<!-- Studios (From Mockup) -->
+						<div class="accordion-item">
+							<div class="accordion-header">
+								<h3 class="accordion-title">Baisanat Studios</h3>
+								<div class="accordion-icon">
+									<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+								</div>
+							</div>
+							<div class="accordion-content">
+								<div class="accordion-item">
+									<div class="accordion-header">
+										<h4 class="accordion-title accordion-title--sub">Media Production</h4>
+										<div class="accordion-icon">
+											<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+										</div>
+									</div>
+									<div class="accordion-content"></div>
+								</div>
+								<div class="accordion-item">
+									<div class="accordion-header">
+										<h4 class="accordion-title accordion-title--sub">Design</h4>
+										<div class="accordion-icon">
+											<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+										</div>
+									</div>
+									<div class="accordion-content"></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Academy -->
+						<div class="accordion-item">
+							<div class="accordion-header">
+								<h3 class="accordion-title">Baisanat Academy</h3>
+								<div class="accordion-icon">
+									<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+								</div>
+							</div>
+							<div class="accordion-content">
+								<div class="accordion-item">
+									<div class="accordion-header">
+										<h4 class="accordion-title accordion-title--sub">Образовательные проекты</h4>
+										<div class="accordion-icon">
+											<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+										</div>
+									</div>
+									<div class="accordion-content"></div>
+								</div>
+								<div class="accordion-item">
+									<div class="accordion-header">
+										<h4 class="accordion-title accordion-title--sub">Talent Management</h4>
+										<div class="accordion-icon">
+											<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+										</div>
+									</div>
+									<div class="accordion-content"></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Media -->
+						<div class="accordion-item">
+							<div class="accordion-header">
+								<h3 class="accordion-title">Baisanat Media</h3>
+								<div class="accordion-icon">
+									<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+								</div>
+							</div>
+							<div class="accordion-content">
+								<div class="accordion-item">
+									<div class="accordion-header">
+										<h4 class="accordion-title accordion-title--sub">WEB</h4>
+										<div class="accordion-icon">
+											<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+										</div>
+									</div>
+									<div class="accordion-content"></div>
+								</div>
+								<div class="accordion-item">
+									<div class="accordion-header">
+										<h4 class="accordion-title accordion-title--sub">SMM</h4>
+										<div class="accordion-icon">
+											<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+										</div>
+									</div>
+									<div class="accordion-content"></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Holding -->
+						<div class="accordion-item">
+							<div class="accordion-header">
+								<h3 class="accordion-title">Baisanat Holding</h3>
+								<div class="accordion-icon">
+									<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+								</div>
+							</div>
+							<div class="accordion-content">
+								<div class="accordion-item">
+									<div class="accordion-header">
+										<h4 class="accordion-title accordion-title--sub">Holding</h4>
+										<div class="accordion-icon">
+											<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+										</div>
+									</div>
+									<div class="accordion-content">
+										<ul class="services-list">
+											<li class="services-list__item">
+												<div class="services-list__number">/01</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Стратегическое управление</div>
+													<div class="services-list__desc">(Управление активами, развитие новых направлений)</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Partners -->
+						<div class="accordion-item">
+							<div class="accordion-header">
+								<h3 class="accordion-title">Baisanat Partners</h3>
+								<div class="accordion-icon">
+									<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+								</div>
+							</div>
+							<div class="accordion-content">
+								<div class="accordion-item">
+									<div class="accordion-header">
+										<h4 class="accordion-title accordion-title--sub">Partners</h4>
+										<div class="accordion-icon">
+											<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+										</div>
+									</div>
+									<div class="accordion-content">
+										<ul class="services-list">
+											<li class="services-list__item">
+												<div class="services-list__number">/15</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Партнерские программы</div>
+													<div class="services-list__desc">(Совместные проекты, инвестиции)</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Events -->
+						<div class="accordion-item active">
+							<div class="accordion-header">
+								<h3 class="accordion-title">Baisanat Events</h3>
+								<div class="accordion-icon">
+									<svg width="36" height="2" viewBox="0 0 36 2" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="1" x2="36" y2="1" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+								</div>
+							</div>
+							<div class="accordion-content" style="display: block;">
+								<div class="accordion-item">
+									<div class="accordion-header">
+										<h4 class="accordion-title accordion-title--sub">Event</h4>
+										<div class="accordion-icon">
+											<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+										</div>
+									</div>
+									<div class="accordion-content">
+										<ul class="services-list">
+											<li class="services-list__item">
+												<div class="services-list__number">/29</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Деловые мероприятия</div>
+													<div class="services-list__desc">(Форумы, круглые столы, конференции, симпозиумы, корпоративные события, таунхоллы, road-show)</div>
+												</div>
+											</li>
+											<li class="services-list__item">
+												<div class="services-list__number">/30</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Концерты</div>
+													<div class="services-list__desc">(Сольные концерты, фестивали, шоу-программы)</div>
+												</div>
+											</li>
+											<li class="services-list__item">
+												<div class="services-list__number">/31</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Выставки</div>
+													<div class="services-list__desc">(Профессиональные форматы, экспо-маркеты)</div>
+												</div>
+											</li>
+											<li class="services-list__item">
+												<div class="services-list__number">/32</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Малые форматы</div>
+													<div class="services-list__desc">(Экскурсии, экспедиции, частные мероприятия)</div>
+												</div>
+											</li>
+											<li class="services-list__item">
+												<div class="services-list__number">/33</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Спортивные мероприятия</div>
+													<div class="services-list__desc">(Марафоны, турниры, Family day, спартакиады)</div>
+												</div>
+											</li>
+											<li class="services-list__item">
+												<div class="services-list__number">/34</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Зарубежные мероприятия</div>
+													<div class="services-list__desc">(Деловые, концерты, выставки, частные)</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="accordion-item">
+									<div class="accordion-header">
+										<h4 class="accordion-title accordion-title--sub">Технические решения</h4>
+										<div class="accordion-icon">
+											<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>
+										</div>
+									</div>
+									<div class="accordion-content">
+										<ul class="services-list">
+											<li class="services-list__item">
+												<div class="services-list__number">/35</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Media-проектирование</div>
+													<div class="services-list__desc">(Проектирование телевизионных/радио/спортивных медиа-комплексов)</div>
+												</div>
+											</li>
+											<li class="services-list__item">
+												<div class="services-list__number">/36</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Поставка оборудования</div>
+													<div class="services-list__desc">(Закуп/доставка DDP)</div>
+												</div>
+											</li>
+											<li class="services-list__item">
+												<div class="services-list__number">/37</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Интеграция и пусконаладка оборудования</div>
+													<div class="services-list__desc">(Установка оборудования и внедрение технических решений)</div>
+												</div>
+											</li>
+											<li class="services-list__item">
+												<div class="services-list__number">/38</div>
+												<div class="services-list__text">
+													<div class="services-list__title">Медиа-интеграция</div>
+													<div class="services-list__desc">(Внедрение цифровых решений)</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<Footer theme="principles" />
+
+		<script>
+			import Lenis from 'lenis';
+			import { gsap } from 'gsap';
+			import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+			gsap.registerPlugin(ScrollTrigger);
+
+			// Lenis scroll integration
+			const lenis = new Lenis({
+				duration: 1.8,
+				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+				autoRaf: true,
+				smoothWheel: true,
+			});
+
+			lenis.on('scroll', ScrollTrigger.update);
+
+			// Typewriter effect for header label
+			const typewriterElement = document.querySelector('.hero__label[typewriter="true"]') as HTMLElement | null;
+			if (typewriterElement) {
+				const chars = typewriterElement.querySelectorAll('.split-chars');
+				const delayAttr = typewriterElement.getAttribute('typewriter-delay');
+				const delay = delayAttr ? parseInt(delayAttr, 10) / 1000 : 0.15;
+
+				gsap.to(chars, {
+					opacity: 1,
+					duration: 0.002,
+					stagger: {
+						amount: 0.5,
+					},
+					delay: delay,
+					scrollTrigger: {
+						trigger: typewriterElement,
+						start: 'top 95%',
+						toggleActions: 'play none none none',
+					}
+				});
+			}
+
+			// Fade in Animations
+			gsap.from('.services-hero__title', {
+				opacity: 0,
+				y: 40,
+				duration: 1,
+				ease: 'power3.out',
+				delay: 0.3
+			});
+
+			gsap.from('.services-hero__subtitle', {
+				opacity: 0,
+				y: 20,
+				duration: 0.8,
+				ease: 'power2.out',
+				delay: 0.6
+			});
+
+			gsap.from('.services-intro__item', {
+				opacity: 0,
+				y: 30,
+				duration: 0.8,
+				stagger: 0.2,
+				ease: 'power2.out',
+				scrollTrigger: {
+					trigger: '.services-intro',
+					start: 'top 80%',
+					toggleActions: 'play none none none'
+				}
+			});
+
+			gsap.from('.services-intro__desc', {
+				opacity: 0,
+				y: 30,
+				duration: 0.8,
+				ease: 'power2.out',
+				scrollTrigger: {
+					trigger: '.services-intro__bottom',
+					start: 'top 85%',
+					toggleActions: 'play none none none'
+				}
+			});
+
+			gsap.from('.services-stats__num-wrap', {
+				opacity: 0,
+				y: 40,
+				duration: 1,
+				stagger: 0.2,
+				ease: 'power3.out',
+				scrollTrigger: {
+					trigger: '.services-stats',
+					start: 'top 80%',
+					toggleActions: 'play none none none'
+				}
+			});
+
+			gsap.from('.services-stats__line', {
+				scaleX: 0,
+				transformOrigin: 'left center',
+				duration: 1,
+				ease: 'power3.out',
+				scrollTrigger: {
+					trigger: '.services-stats',
+					start: 'top 80%',
+					toggleActions: 'play none none none'
+				}
+			});
+
+			gsap.from('.services-stats__icon > div', {
+				opacity: 0,
+				scale: 0.5,
+				duration: 0.6,
+				stagger: 0.2,
+				ease: 'back.out(1.5)',
+				scrollTrigger: {
+					trigger: '.services-stats',
+					start: 'top 80%',
+					toggleActions: 'play none none none'
+				}
+			});
+
+			// Accordion Logic
+			const accordionHeaders = document.querySelectorAll('.accordion-header');
+			
+			accordionHeaders.forEach(header => {
+				header.addEventListener('click', () => {
+					const item = header.parentElement;
+					const content = header.nextElementSibling as HTMLElement;
+					const icon = header.querySelector('.accordion-icon') as HTMLElement;
+					
+					// Toggle current
+					if (item?.classList.contains('active')) {
+						// Close it
+						gsap.to(content, { height: 0, opacity: 0, duration: 0.4, ease: 'power2.out', onComplete: () => {
+							content.style.display = 'none';
+							item.classList.remove('active');
+						}});
+						icon.innerHTML = '<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>';
+					} else {
+						// Close sibling active items ONLY
+						const siblings = item?.parentElement?.children;
+						if (siblings) {
+							Array.from(siblings).forEach(siblingItem => {
+								if (siblingItem !== item && siblingItem.classList.contains('accordion-item') && siblingItem.classList.contains('active')) {
+									const activeHeader = Array.from(siblingItem.children).find(c => c.classList.contains('accordion-header'));
+									const activeContent = Array.from(siblingItem.children).find(c => c.classList.contains('accordion-content')) as HTMLElement;
+									if (activeHeader && activeContent) {
+										const activeIcon = activeHeader.querySelector('.accordion-icon') as HTMLElement;
+										gsap.to(activeContent, { height: 0, opacity: 0, duration: 0.4, ease: 'power2.out', onComplete: () => {
+											activeContent.style.display = 'none';
+											siblingItem.classList.remove('active');
+										}});
+										if (activeIcon) {
+											activeIcon.innerHTML = '<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="18" x2="36" y2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/><line x1="18" y1="36" x2="18" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>';
+										}
+									}
+								}
+							});
+						}
+
+						// Open current
+						item?.classList.add('active');
+						content.style.display = 'block';
+						gsap.fromTo(content, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.4, ease: 'power2.out' });
+						icon.innerHTML = '<svg width="36" height="2" viewBox="0 0 36 2" fill="none" xmlns="http://www.w3.org/2000/svg"><line y1="1" x2="36" y2="1" stroke="#FE5000" style="stroke:#FE5000;stroke:color(display-p3 0.9961 0.3137 0.0000);stroke-opacity:1;" stroke-width="2"/></svg>';
+					}
+				});
+			});
+
+			// Pinning removed per user request
+
+			// WebGL Wave Background
+			const heroCanvas = document.getElementById('services-hero-bg') as HTMLCanvasElement | null;
+			if (heroCanvas) {
+				const gl = heroCanvas.getContext('webgl') || heroCanvas.getContext('experimental-webgl') as WebGLRenderingContext | null;
+				
+				const hexToGLSL = (hex: string) => {
+					const r = parseInt(hex.slice(1, 3), 16) / 255;
+					const g = parseInt(hex.slice(3, 5), 16) / 255;
+					const b = parseInt(hex.slice(5, 7), 16) / 255;
+					return `vec3(${r.toFixed(4)}, ${g.toFixed(4)}, ${b.toFixed(4)})`;
+				};
+
+				if (gl) {
+					const vsSource = `
+						attribute vec2 position;
+						void main() {
+							gl_Position = vec4(position, 0.0, 1.0);
+						}
+					`;
+					const fsSource = `
+						precision highp float;
+						uniform vec2 u_resolution;
+						uniform float u_time; // Время для анимации
+
+						void main() {
+							vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+							
+							// ==========================================
+							// НАСТРОЙКИ ЦВЕТОВ (HEX-коды)
+							// ==========================================
+							
+							// Цвета заднего фона (градиент снизу вверх)
+							vec3 bg_top = ${hexToGLSL('#ffffff')};    // Верхний цвет фона под волной
+							vec3 bg_bottom = ${hexToGLSL('#ffffff')}; // Нижний цвет фона (белый)
+							
+							// Цвета волны (градиент сверху вниз)
+							vec3 wave_top = ${hexToGLSL('#ff3a00')};    // Цвет верхушки волны
+							vec3 wave_bottom = ${hexToGLSL('#ff6b26')}; // Цвет нижней части волны
+
+							// ==========================================
+							// НАСТРОЙКИ ПАРАМЕТРОВ ВОЛНЫ
+							// ==========================================
+							
+							float height = 0.45;        // Базовая высота волны сверху (от 0.0 до 1.0)
+							float amplitude = 0.08;     // Амплитуда колебаний (размах волны)
+							float frequency = 5.5;      // Частота изгибов (количество волн по горизонтали)
+							float speed = 0.4;          // Скорость горизонтального движения волны
+							float vertical_speed = 0.2; // Скорость колебаний волны вверх-вниз
+							float blur = 0.19;          // Размытие края волны (0.01 - четкая грань, 0.2 - очень мягкая)
+
+							// ==========================================
+							// МАТЕМАТИКА ВОЛНЫ (СВЕРХУ ЭКРАНА)
+							// ==========================================
+							
+							// Основное синусоидальное движение
+							float w1 = sin(uv.x * frequency + u_time * speed) * amplitude;
+							// Вторичная волна с более высокой частотой для естественности
+							float w2 = cos(uv.x * (frequency * 1.7) - u_time * (speed * 0.8)) * (amplitude * 0.35);
+							// Медленное вертикальное покачивание (подъем / опускание)
+							float w3 = sin(u_time * vertical_speed) * 0.03;
+
+							// Суммарная высота волны в точке X
+							float wave_height = height + w1 + w2 + w3;
+
+							// Расстояние пикселя до волны по оси Y (волна сверху, поэтому расстояние от верха)
+							float dist = (1.0 - uv.y) - wave_height;
+
+							// Маска волны (1.0 — внутри волны сверху, 0.0 — фон снизу)
+							float wave_mask = smoothstep(blur, -blur, dist);
+
+							// Смещение фонового градиента в процентах от верха экрана 
+							// (например, чтобы белый цвет не шел до самого верха)
+							float bg_top_percent = 0.70;    // Граница верхнего цвета фона (70% от верха)
+							float bg_bottom_percent = 1.00; // Граница нижнего цвета фона (100% от верха)
+
+							// Переводим проценты (от верха) в WebGL координаты uv.y (1.0 - верх, 0.0 - низ)
+							float bg_top_y = 1.0 - bg_top_percent;
+							float bg_bottom_y = 1.0 - bg_bottom_percent;
+
+							// Градиент заднего фона
+							float bg_factor = smoothstep(bg_bottom_y, bg_top_y, uv.y);
+							vec3 bgColor = mix(bg_bottom, bg_top, bg_factor);
+							
+							// Градиент самой волны (сверху вниз)
+							float normalized_wave_y = clamp((uv.y - (1.0 - wave_height)) / wave_height, 0.0, 1.0);
+							vec3 waveColor = mix(wave_bottom, wave_top, normalized_wave_y);
+
+							vec3 finalColor = mix(bgColor, waveColor, wave_mask);
+
+							gl_FragColor = vec4(finalColor, 1.0);
+						}
+					`;
+
+					const createShader = (gl: WebGLRenderingContext, type: number, source: string) => {
+						const shader = gl.createShader(type);
+						if (!shader) return null;
+						gl.shaderSource(shader, source);
+						gl.compileShader(shader);
+						return shader;
+					};
+
+					const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+					const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+
+					if (vertexShader && fragmentShader) {
+						const program = gl.createProgram();
+						if (program) {
+							gl.attachShader(program, vertexShader);
+							gl.attachShader(program, fragmentShader);
+							gl.linkProgram(program);
+							gl.useProgram(program);
+
+							const positionLocation = gl.getAttribLocation(program, 'position');
+							const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
+							const timeLocation = gl.getUniformLocation(program, 'u_time');
+
+							const buffer = gl.createBuffer();
+							gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+							gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+								-1.0, -1.0,
+								 1.0, -1.0,
+								-1.0,  1.0,
+								-1.0,  1.0,
+								 1.0, -1.0,
+								 1.0,  1.0
+							]), gl.STATIC_DRAW);
+
+							gl.enableVertexAttribArray(positionLocation);
+							gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+							const resizeCanvas = () => {
+								const width = window.innerWidth;
+								const height = heroCanvas.parentElement?.clientHeight || window.innerHeight;
+								heroCanvas.width = width;
+								heroCanvas.height = height;
+								gl.viewport(0, 0, width, height);
+								gl.uniform2f(resolutionLocation, width, height);
+							};
+
+							window.addEventListener('resize', resizeCanvas);
+							setTimeout(resizeCanvas, 0);
+
+							const render = (time: number) => {
+								gl.uniform1f(timeLocation, time * 0.001);
+								gl.drawArrays(gl.TRIANGLES, 0, 6);
+								requestAnimationFrame(render);
+							};
+							requestAnimationFrame(render);
+						}
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
+
+<style>
+	.services-page {
+		background: #ffffff;
+		color: #000000 !important;
+		overflow-x: hidden;
+        min-height: 100vh;
+	}
+
+	.hero__section-label {
+		position: relative;
+		margin-bottom: 4vw;
+	}
+
+	.hero__section-label--dark {
+		color: #000000;
+	}
+
+	.hero__number {
+		position: absolute;
+		left: -80px;
+		top: 4px;
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 1;
+		opacity: 0.8;
+		min-width: 30px;
+	}
+
+	.hero__label-block {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.hero__label {
+		font-size: 15px;
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.hero__line {
+		display: block;
+		width: 50px;
+		height: 1px;
+	}
+
+	.hero__line--dark {
+		background: #000000;
+	}
+
+	.services-main {
+		position: relative;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.services-hero {
+		position: relative;
+		width: 100%;
+		padding-top: 19vw;
+		padding-bottom: 0vw;
+		z-index: 1;
+	}
+
+	.hero__bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #ffffff;
+		z-index: -1;
+		overflow: hidden;
+	}
+
+	.hero__canvas {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.services-hero__inner {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.services-hero__content {
+		max-width: 1000px;
+	}
+
+	.services-hero__title {
+		font-family: var(--font-main);
+		font-size: clamp(36px, 4vw, 63px);
+		font-weight: 400;
+		line-height: 1.1;
+		margin-bottom: 1.5vw;
+		letter-spacing: 1px;
+	}
+
+	.services-hero__subtitle-wrapper {
+		margin-top: 4vw;
+		max-width: 880px;
+	}
+
+	.services-hero__subtitle {
+		font-family: var(--font-main);
+		font-size: clamp(16px, 3.6vw, 31px);
+		font-weight: 400;
+		line-height: 1;
+	}
+
+	.services-hero__subtitle .text-accent {
+		color: #FF5000;
+	}
+
+	.services-intro {
+		padding: 6vw 0 10vw;
+		background: transparent;
+	}
+
+	.services-intro__grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 40px;
+		border-top: 1px solid #ff5000;
+		position: relative;
+	}
+
+	.services-intro__item {
+		padding-top: 40px;
+		position: relative;
+	}
+
+	.services-intro__item-line {
+		position: absolute;
+		top: -4px;
+		left: 0;
+		width: 50px;
+		height: 7px;
+		background: #000000;
+	}
+
+	.services-intro__item.active .services-intro__item-line {
+		background: #FF5000;
+	}
+
+	.services-intro__item-text {
+		font-family: var(--font-main);
+		font-size: clamp(16px, 2.6vw, 31px);
+		font-weight: 400;
+		line-height: 1;
+		color: #000000;
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	.services-intro__arrow {
+		margin-top: 2px;
+		flex-shrink: 0;
+	}
+
+	.services-intro__bottom {
+		margin-top: 4vw;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 40px;
+	}
+
+	.services-intro__desc-wrapper {
+		grid-column: 2 / span 2;
+	}
+
+	.services-intro__desc {
+		font-family: var(--font-main);
+		font-size: clamp(18px, 1.8vw, 30px);
+		font-weight: 400;
+		line-height: 1.3;
+		color: #000000;
+	}
+
+	.services-intro__desc .text-accent {
+		color: #FF5000;
+	}
+
+	.services-stats {
+		padding: 0vw 0 13vw;
+		background: transparent;
+	}
+
+	.services-stats__grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		column-gap: 40px;
+	}
+
+	.services-stats__content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.services-stats__num-wrap {
+		display: flex;
+		align-items: flex-end;
+	}
+
+	.services-stats__num {
+		font-family: var(--font-main);
+		font-size: clamp(80px, 11vw, 180px);
+		font-weight: 500;
+		line-height: 0.85;
+		color: #000000;
+		letter-spacing: -0.02em;
+	}
+
+	.services-stats__arrow {
+		margin-bottom: 0.5vw;
+	}
+
+	.services-stats__arrow--left {
+		width: clamp(20px, 2.5vw, 25px);
+		height: clamp(20px, 2.5vw, 25px);
+		transform: rotate(-135deg);
+	}
+
+	.services-stats__arrow--upright {
+		width: clamp(20px, 2.5vw, 25px);
+		height: clamp(20px, 2.5vw, 25px);
+	}
+
+	.services-stats__label {
+		font-family: var(--font-main);
+		font-size: clamp(16px, 1.8vw, 31px);
+		font-weight: 500;
+		color: #000000;
+		margin-top: 12px;
+	}
+
+	.services-stats__line {
+		grid-column: 1 / -1;
+		width: 100%;
+		height: 1px;
+		background: #ff5000;
+		margin: 20px 0;
+	}
+
+	.services-stats__icon {
+		display: flex;
+		align-items: flex-start;
+	}
+
+	.square-1 {
+		width: clamp(30px, 3.5vw, 50px);
+		height: clamp(30px, 3.5vw, 50px);
+		border: 2px solid #ff5000;
+	}
+
+	.square-2 {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		position: relative;
+	}
+
+	.square-2::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 2px;
+		height: 20px;
+		background: #ff5000;
+		z-index: 0;
+	}
+
+	.square-4 {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+		width: max-content;
+		position: relative;
+	}
+
+	.square-4::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: calc(100% - clamp(12px, 1.5vw, 21px));
+		height: calc(100% - clamp(12px, 1.5vw, 21px));
+		border: 2px solid #ff5000;
+		z-index: 0;
+	}
+
+	.square-2 div, .square-4 div {
+		width: clamp(12px, 1.5vw, 21px);
+		height: clamp(12px, 1.5vw, 21px);
+		border: 2px solid #ff5000;
+		position: relative;
+		z-index: 1;
+		background: #ffffff;
+	}
+
+	@media (max-width: 768px) {
+		.services-stats__grid {
+			grid-template-columns: 1fr;
+			row-gap: 40px;
+		}
+		
+		.services-stats__line {
+			display: none; 
+		}
+
+		.services-stats__content {
+			border-bottom: 1px solid #ff5000;
+			padding-bottom: 24px;
+			margin-bottom: 16px;
+		}
+
+		.services-stats__icon {
+			margin-bottom: 24px;
+		}
+	}
+
+	.services-accordion-section {
+		padding: 0 0 10vw;
+	}
+
+	.accordion-item {
+		position: relative;
+	}
+
+	.accordion-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.4vw 0;
+		cursor: pointer;
+		border-bottom: 1px solid #000000;
+		position: relative;
+	}
+
+	.accordion-header::after {
+		content: '';
+		position: absolute;
+		bottom: -6px;
+		left: 0;
+		width: clamp(40px, 4vw, 52px);
+		height: 7px;
+		background: #ff5000;
+		z-index: 1;
+	}
+
+	.accordion-title {
+		font-family: var(--font-main);
+		font-size: clamp(24px, 3.2vw, 44px);
+		font-weight: 500;
+		color: #000000;
+		margin: 0;
+	}
+
+	.accordion-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: clamp(25px, 3.5vw, 32px);
+		height: clamp(25px, 3.5vw, 32px);
+	}
+	
+	.accordion-icon svg {
+		width: 100%;
+		height: auto;
+	}
+
+	.accordion-content {
+		display: none;
+		padding-top: 1vw;
+		padding-bottom: 3vw;
+		overflow: hidden;
+	}
+
+	.accordion-title--sub {
+		font-family: var(--font-main);
+		font-size: clamp(18px, 1.8vw, 24px);
+		font-weight: 400;
+		color: #000000;
+		margin: 0;
+	}
+
+	.services-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		margin-left: 33%;
+	}
+
+	.services-list__item {
+		display: flex;
+		gap: 24px;
+		padding: 1.5vw 0;
+		border-bottom: 1px solid rgba(0,0,0,0.2);
+	}
+
+	.services-list__item:last-child {
+		border-bottom: none;
+	}
+
+	.services-list__number {
+		font-family: var(--font-main);
+		font-size: clamp(18px, 1.8vw, 28px);
+		font-weight: 400;
+		color: #000000;
+		flex-shrink: 0;
+	}
+
+	.services-list__title {
+		font-family: var(--font-main);
+		font-size: clamp(18px, 1.8vw, 28px);
+		font-weight: 500;
+		color: #000000;
+		line-height: 1.2;
+	}
+
+	.services-list__desc {
+		font-family: var(--font-main);
+		font-size: clamp(14px, 1.2vw, 18px);
+		font-weight: 400;
+		color: #000000;
+		opacity: 0.7;
+		margin-top: 8px;
+		line-height: 1.3;
+	}
+
+	@media (max-width: 768px) {
+		.accordion-header {
+			padding: 4vw 0;
+		}
+		.services-list {
+			margin-left: 0;
+		}
+		.services-list__item {
+			padding: 4vw 0;
+			gap: 16px;
+		}
+	}
+
+	[typewriter="true"] .split-chars {
+		opacity: 0.1;
+	}
+
+	.split-lines, .split-words {
+		display: inline;
+	}
+
+	.split-chars, .split-space {
+		display: inline-block;
+	}
+
+	@media (max-width: 768px) {
+		.hero__number {
+			position: static;
+			margin-bottom: 8px;
+		}
+		
+		.services-hero {
+			padding-top: 140px;
+			padding-bottom: 60px;
+		}
+	}
+</style>

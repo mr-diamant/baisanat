@@ -1,5 +1,21 @@
 ---
 import HeroCard from './HeroCard.astro';
+import tagsData from '../../public/Media/tags13.json';
+
+const numDivisions = tagsData.length;
+let numServices = 0;
+let numActions = 0;
+
+tagsData.forEach((cat: any) => {
+	if (cat.subcategories) {
+		numServices += cat.subcategories.length;
+		cat.subcategories.forEach((sub: any) => {
+			if (sub.tags) {
+				numActions += sub.tags.length;
+			}
+		});
+	}
+});
 ---
 
 <section class="ecosystem hero__sticky-wrapper" id="ecosystem">
@@ -28,15 +44,15 @@ import HeroCard from './HeroCard.astro';
 
 				<div class="hero__stats">
 					<div class="hero__stat" id="stat-divisions">
-						<span class="hero__stat-value hero__stat-value--filled">5</span>
+						<span class="hero__stat-value hero__stat-value--filled">{numDivisions}</span>
 						<span class="hero__stat-caption hero__stat-caption--filled">подразделений</span>
 					</div>
 					<div class="hero__stat" id="stat-services">
-						<span class="hero__stat-value hero__stat-value--outlined">12</span>
+						<span class="hero__stat-value hero__stat-value--outlined">{numServices}</span>
 						<span class="hero__stat-caption hero__stat-caption--outlined">сервисов</span>
 					</div>
 					<div class="hero__stat" id="stat-actions">
-						<span class="hero__stat-value hero__stat-value--outlined">70</span>
+						<span class="hero__stat-value hero__stat-value--outlined">{numActions}</span>
 						<span class="hero__stat-caption hero__stat-caption--outlined">услуг</span>
 					</div>
 				</div>
@@ -1027,11 +1043,10 @@ import HeroCard from './HeroCard.astro';
 
 			const scrolled = -rect.top;
 			const maxHorizontalScroll = cardsInner.scrollWidth - cardsInner.clientWidth;
-			const phase1Distance = maxHorizontalScroll * 3.5;
+			const phase1Distance = maxHorizontalScroll * 1.5;
 			const travelDistance = viewHeight;
 			const grayTravelDistance = viewHeight;
 			
-			// Увеличиваем расстояние Phase 2 до 2.2 * viewHeight, чтобы задержать просмотр оранжевого блока
 			const phase2Distance = viewHeight * 2.2;
 			const phase3Distance = viewHeight * 2.5;
 			const totalScrollDistance = phase1Distance + phase2Distance + phase3Distance;
@@ -1039,6 +1054,14 @@ import HeroCard from './HeroCard.astro';
 			// Сдвиг старта скролла карточек на 400px до прилипания
 			const scrollOffset = 400;
 
+			// Расчет для оранжевого фона (начинается на 60% фазы 1)
+			const orangeStart = phase1Distance * 0.6;
+			const orangeRiseDistance = viewHeight * 2.0; 
+			let orangeProgress = 0;
+			if (scrolled > orangeStart) {
+				orangeProgress = Math.min(1, (scrolled - orangeStart) / orangeRiseDistance);
+			}
+			const orangeTranslateY = travelDistance - orangeProgress * travelDistance;
 
 			// Анимация уменьшения верхнего отступа при прилипании
 			if (stickyContent) {
@@ -1139,20 +1162,11 @@ import HeroCard from './HeroCard.astro';
 				bgGray.style.transform = `translateY(${grayTravelDistance}px)`;
 				updateStatsStyles(1);
 
-				// Оранжевый фон начинает подниматься в самом конце горизонтального скролла
-				const orangeRiseDistance = viewHeight * 0.5;
-				const bgStart = phase1Distance - orangeRiseDistance;
-				let bgTranslateY = travelDistance;
-				let bgProgress = 0;
-				if (scrolled > bgStart) {
-					bgProgress = Math.min(1, (scrolled - bgStart) / orangeRiseDistance);
-					bgTranslateY = travelDistance - bgProgress * travelDistance;
-				}
-				bgOrange.style.transform = `translateY(${bgTranslateY}px)`;
+				bgOrange.style.transform = `translateY(${orangeTranslateY}px)`;
 
 				if (servicesLeft) {
-					servicesLeft.style.opacity = bgProgress > 0 ? '1' : '0';
-					servicesLeft.style.transform = `translateY(${bgTranslateY}px)`;
+					servicesLeft.style.opacity = orangeProgress > 0 ? '1' : '0';
+					servicesLeft.style.transform = `translateY(${orangeTranslateY}px)`;
 				}
 				if (servicesRight) {
 					servicesRight.style.opacity = '0';
@@ -1175,12 +1189,13 @@ import HeroCard from './HeroCard.astro';
 			else if (scrolled <= phase1Distance + phase2Distance) {
 				cardsInner.scrollLeft = maxHorizontalScroll;
 				bgGray.style.transform = `translateY(${grayTravelDistance}px)`;
-				bgOrange.style.transform = 'translateY(0px)';
 				actionsWrapper.style.opacity = '0';
 				actionsWrapper.style.pointerEvents = 'none';
 				actionsWrapper.style.transform = 'translateY(40px)';
 
 				const progress2 = (scrolled - phase1Distance) / phase2Distance;
+
+				bgOrange.style.transform = `translateY(${orangeTranslateY}px)`;
 
 				// 1. Скрываем карточки (не используем opacity, чтобы они не исчезали плавно)
 				// Добавляем translateX, чтобы они продолжали движение влево
@@ -1193,15 +1208,15 @@ import HeroCard from './HeroCard.astro';
 				// 4. Появление услуг (сервисов)
 				servicesWrapper.style.opacity = '1';
 				servicesWrapper.style.transform = 'none';
-				servicesWrapper.style.pointerEvents = progress2 > 0.6 ? 'auto' : 'none';
+				servicesWrapper.style.pointerEvents = progress2 > 0.7 ? 'auto' : 'none';
 
 				if (servicesLeft && servicesRight) {
-					// Левый блок остается полностью видимым (он поднялся с оранжевым фоном на фазе 1)
-					servicesLeft.style.opacity = '1';
-					servicesLeft.style.transform = 'none';
+					// Левый блок поднимается вместе с оранжевым фоном
+					servicesLeft.style.opacity = orangeProgress > 0 ? '1' : '0';
+					servicesLeft.style.transform = `translateY(${orangeTranslateY}px)`;
 
-					// Правый блок с таблицей появляется на отрезке progress2 от 0.3 до 0.7 (после того как поднялся фон)
-					const rightProgress = Math.max(0, Math.min(1, (progress2 - 0.3) / 0.4));
+					// Правый блок с таблицей появляется на отрезке progress2 от 0.5 до 0.9 (после того как поднялся фон)
+					const rightProgress = Math.max(0, Math.min(1, (progress2 - 0.5) / 0.4));
 					servicesRight.style.opacity = rightProgress.toString();
 					servicesRight.style.transform = `translateY(${(1 - rightProgress) * 40}px)`;
 				}
@@ -1233,13 +1248,13 @@ import HeroCard from './HeroCard.astro';
 				if (servicesRight) servicesRight.style.opacity = '1';
 				servicesWrapper.style.pointerEvents = progress3 > 0.3 ? 'none' : 'auto';
 
-				// 2. Поднимаем серый фон (на отрезке progress3 от 0 до 0.35)
-				const bgProgress = Math.min(1, progress3 / 0.35);
+				// 2. Поднимаем серый фон (на отрезке progress3 от 0 до 0.8)
+				const bgProgress = Math.min(1, progress3 / 0.8);
 				const bgTranslateY = grayTravelDistance - bgProgress * grayTravelDistance;
 				bgGray.style.transform = `translateY(${bgTranslateY}px)`;
 
-				// 3. Переключение активной цифры на 70 (происходит после полного подъема серого фона, т.е. progress3 > 0.35)
-				if (progress3 > 0.35) {
+				// 3. Переключение активной цифры на 70 (когда серый фон почти поднялся)
+				if (progress3 > 0.6) {
 					updateStatsStyles(3);
 				} else {
 					updateStatsStyles(2);
@@ -1248,7 +1263,7 @@ import HeroCard from './HeroCard.astro';
 				// 4. Появление профильных услуг
 				actionsWrapper.style.opacity = '1';
 				actionsWrapper.style.transform = 'none';
-				actionsWrapper.style.pointerEvents = progress3 > 0.75 ? 'auto' : 'none';
+				actionsWrapper.style.pointerEvents = progress3 > 0.85 ? 'auto' : 'none';
 
 				// Левый блок (заголовок и подзаголовок) поднимается синхронно с серым фоном
 				if (actionsLeft) {
@@ -1256,16 +1271,16 @@ import HeroCard from './HeroCard.astro';
 					actionsLeft.style.transform = `translateY(${bgTranslateY}px)`;
 				}
 
-				// Появление 2 рядов кнопок (от progress3 = 0.35 до 0.6)
+				// Появление 2 рядов кнопок (от progress3 = 0.8 до 0.95)
 				if (actionsPills) {
-					const pillsProgress = Math.max(0, Math.min(1, (progress3 - 0.35) / 0.25));
+					const pillsProgress = Math.max(0, Math.min(1, (progress3 - 0.8) / 0.15));
 					actionsPills.style.opacity = pillsProgress.toString();
 					actionsPills.style.transform = `translateY(${(1 - pillsProgress) * 40}px)`;
 				}
 
-				// Появление кнопки Выбрать сервис (от progress3 = 0.55 до 0.75)
+				// Появление кнопки Выбрать сервис (от progress3 = 0.85 до 1.0)
 				if (actionsBtn) {
-					const btnProgress = Math.max(0, Math.min(1, (progress3 - 0.55) / 0.2));
+					const btnProgress = Math.max(0, Math.min(1, (progress3 - 0.85) / 0.15));
 					actionsBtn.style.opacity = btnProgress.toString();
 					actionsBtn.style.transform = `translateY(${(1 - btnProgress) * 40}px)`;
 				}
@@ -1275,7 +1290,7 @@ import HeroCard from './HeroCard.astro';
 		const updateWrapperHeight = () => {
 			if (window.innerWidth > 768) {
 				const maxHorizontalScroll = cardsInner.scrollWidth - cardsInner.clientWidth;
-				const phase1Distance = maxHorizontalScroll * 1.8;
+				const phase1Distance = maxHorizontalScroll * 1.5;
 				const phase2Distance = window.innerHeight * 2.2;
 				const phase3Distance = window.innerHeight * 2.5;
 				// Высота = высота экрана + горизонтальный скролл + Фаза 2 + Фаза 3
@@ -1337,10 +1352,19 @@ import HeroCard from './HeroCard.astro';
 		const row3 = actionsRows.querySelector('.actions__row-pills--3') as HTMLElement | null;
 		const servicesTable = document.querySelector('.services__table') as HTMLElement | null;
 
+		interface NewServiceCategory {
+			title: string;
+			color: string;
+			subcategories: {
+				name: string;
+				tags: { name: string; desc: string }[];
+			}[];
+		}
+
 		interface ServiceGroup {
 			name: string;
 			color: string;
-			tags: string[];
+			tags: any[];
 		}
 
 		interface TagItem {
@@ -1348,9 +1372,22 @@ import HeroCard from './HeroCard.astro';
 			color: string;
 		}
 
-		fetch(`${baseUrl}Media/tags12.json`)
+		fetch(`${baseUrl}Media/tags13.json`)
 			.then(res => res.json())
-			.then((data: ServiceGroup[]) => {
+			.then((rawData: NewServiceCategory[]) => {
+				const data: ServiceGroup[] = [];
+				rawData.forEach(category => {
+					if (Array.isArray(category.subcategories)) {
+						category.subcategories.forEach(sub => {
+							data.push({
+								name: sub.name,
+								color: category.color,
+								tags: sub.tags
+							});
+						});
+					}
+				});
+
 				// --- Заполнение таблицы сервисов (предыдущий блок) ---
 				if (servicesTable) {
 					servicesTable.innerHTML = '';
@@ -1419,7 +1456,7 @@ import HeroCard from './HeroCard.astro';
 					if (Array.isArray(group.tags)) {
 						group.tags.forEach(tag => {
 							allTagItems.push({
-								text: tag,
+								text: tag.name || tag,
 								color: group.color || '#000000'
 							});
 						});
